@@ -2,8 +2,15 @@ import { createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
     palette: {
+        primary: {
+            main: 'rgb(52,84,209)',
+            light: 'rgb(101,175,255)'
+        },
+        secondary: {
+            main: 'rgba(255,20,20,.87)'
+        },
         background: {
-            default: 'rgb(220,220,220)'
+            default: 'rgb(230,230,230)'
         }
     },
     typography: {
@@ -101,7 +108,7 @@ const theme = createTheme({
         },
         MuiPaper: {
             root: {
-                backgroundColor: 'rgb(200,200,200)'
+                backgroundColor: 'rgb(210,210,210)'
             }
         }, 
     },
