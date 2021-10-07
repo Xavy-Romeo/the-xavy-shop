@@ -20,17 +20,17 @@ const Header = () => {
                     className={classes.upperHeaderSpan_Header}
                     color='secondary'
                     component='span' 
-                    variant='caption' 
+                    variant='body2' 
                 >
                     FREE GROUND SHIPPING 
                 </Typography>
-                <Typography color='textPrimary' variant='caption'>
+                <Typography color='textPrimary' variant='body2'>
                     ON ORDERS OVER $
                 </Typography>
                 <Typography 
                     className={classes.upperHeaderNumb_Header}
                     color='textPrimary' 
-                    variant='caption' 
+                    variant='body2' 
                     component='span'
                 >
                     49
@@ -48,7 +48,7 @@ const Header = () => {
                             <img 
                                 src={Logo} 
                                 className={classes.xrLogo_Header}
-                                alt='cart icon'
+                                alt='site logo'
                             />
                             <Typography 
                                 className={classes.title_Header}
