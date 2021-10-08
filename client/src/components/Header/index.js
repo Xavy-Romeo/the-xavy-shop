@@ -73,17 +73,17 @@ const Header = () => {
                                     alignItems='center' 
                                 >
                                     <Grid item>
-                                        <Typography style={{color:'rgba(255,255,255,.87)'}}>
+                                        <Typography className={classes.navItem_Header}>
                                             Shop
                                         </Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography style={{color:'rgba(255,255,255,.87)'}}>
+                                        <Typography className={classes.navItem_Header}>
                                             Sign In
                                         </Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography style={{color:'rgba(255,255,255,.87)'}}>
+                                        <Typography className={classes.navItem_Header}>
                                             Order History
                                         </Typography>
                                     </Grid>

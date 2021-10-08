@@ -42,20 +42,40 @@ const useStyles = makeStyles({
     textMargin_Footer: {
         marginBottom: '15px'
     },
+    midFooterDiv_Footer: {
+        paddingRight: '20px' 
+    },
+    subscribeInput_Footer: {
+        width: '100%',
+        background: 'none',
+        border: 'none',
+        borderBottom: '1px solid rgba(255,255,255,.87)',
+        color: 'rgba(255,255,255,.87)',
+        fontFamily: 'Playfair Display, serif',
+        padding: '10px',
+        marginBottom: '20px'
+    },
+    moreInfo: {
+        padding: '0 20px'
+    },
     button_Footer: {
         width: '300px',
-        // background: 'rgb(48,71,94)',
-        // background: 'rgb(0,146,255)',
         background: 'rgb(5,44,133)',
-        // background: 'rgb(130, 180, 255)',
         color: 'rgba(255,255,255,.87)',
-        // color: 'black',
         borderRadius: '30px',
         '&:hover': {
-            // background: 'rgb(255,70,70)',
             background: 'rgb(47,96,162)',
-            // color: 'black'
         }
+    },
+    footerBottom_Footer: {
+        margin: '70px 0 5px 0', 
+        width: '100%', 
+        display: 'flex', 
+        justifyContent: 'center'
+    },
+    footerBottomBorder_Footer: {
+        width:'100%', 
+        borderTop: '2px solid rgba(255,255,255,.05)'
     },
     xrLogo_Footer: {
         height: '60px',
@@ -66,19 +86,16 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         margin: '0 5px',
-        // padding: '3px 3px 0 3px',
-        // background: 'rgba(5,44,133)',
-        // background: 'rgb(47,96,162)',
-        // background: 'rgb(130,180,255)',
         borderRadius: '5px',
         cursor: 'pointer',
         transition: '.1s ease-in',
         '&:hover': {
-            // border: '1px solid white',
             borderRadius: '4px',
-            // background: 'rgb(47,96,162)',
             background: 'rgb(5,44,133)',
         }
+    },
+    copyContainer_Footer: {
+        height: '100%'
     }
 });
 

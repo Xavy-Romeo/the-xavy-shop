@@ -8,15 +8,9 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import CheckCircleOutlineOutlinedIcon from '@material-ui/icons/CheckCircleOutlineOutlined';
 import LocalHospitalOutlinedIcon from '@material-ui/icons/LocalHospitalOutlined';
-// import FacebookIcon from '@material-ui/icons/Facebook';
-// import InstagramIcon from '@material-ui/icons/Instagram';
-// import PinterestIcon from '@material-ui/icons/Pinterest';
-// import TwitterIcon from '@material-ui/icons/Twitter';
-// import YouTubeIcon from '@material-ui/icons/YouTube';
 
 import useStyles from './styles';
 import Logo from '../../assets/images/xr-logo.png';
-
 import facebook from '../../assets/images/facebook.svg';
 import instagram from '../../assets/images/instagram.svg';
 import pinterest from '../../assets/images/pinterest.svg';
@@ -84,7 +78,7 @@ const Footer = () => {
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={5} style={{paddingRight: '20px'}}>
+                    <Grid item className={classes.midFooterDiv_Footer} xs={5}>
                         <Typography className={classes.textMargin_Footer} variant='h4'>
                             Subscribe
                         </Typography>
@@ -92,18 +86,8 @@ const Footer = () => {
                             Sign up for exclusive offers, original stories, charity, events and more.
                         </Typography>
                         <input 
+                            className={classes.subscribeInput_Footer}
                             placeholder='Email Address'
-                            style={{
-                                width: '100%',
-                                background: 'none',
-                                border: 'none',
-                                borderBottom: '1px solid rgba(255,255,255,.87)',
-                                color: 'rgba(255,255,255,.87)',
-                                fontFamily: 'Playfair Display, serif',
-                                padding: '10px',
-                                marginBottom: '20px'
-                            
-                            }}
                             required
                         />
                         <Button className={classes.button_Footer} type='submit'>
@@ -113,7 +97,7 @@ const Footer = () => {
                         </Button>
                     </Grid>
 
-                    <Grid item xs={2} style={{padding: '0 20px'}}>
+                    <Grid item xs={2} className={classes.moreInfo_Footer}>
                         <Typography className={classes.textMargin_Footer} variant='h4'>   
                             More Info
                         </Typography>
@@ -152,8 +136,8 @@ const Footer = () => {
                 </Grid>
                 
                 <Grid container>
-                    <Grid item style={{margin: '70px 0 5px 0', width: '100%', display: 'flex', justifyContent: 'center'}}>
-                        <Box style={{width:'100%', borderTop: '2px solid rgba(255,255,255,.05)'}} />
+                    <Grid item className={classes.footerBottom_Footer}>
+                        <Box className={classes.footerBottomBorder_Footer} />
                     </Grid>
                     <Grid container justifyContent='space-between'>
                         <Grid item>
@@ -178,7 +162,7 @@ const Footer = () => {
                             </Grid>
                         </Grid>
                         <Grid item>
-                            <Grid container direction='column' justifyContent='center' style={{height: '100%'}}>
+                            <Grid container className={classes.copyContainer_Footer} direction='column' justifyContent='center'>
                                 <Typography variant='caption'>
                                     &copy; 2005 - {new Date().getFullYear()} The Xavy Store, Inc.
                                 </Typography>

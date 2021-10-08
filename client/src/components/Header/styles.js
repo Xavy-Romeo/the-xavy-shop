@@ -36,6 +36,9 @@ const useStyles = makeStyles({
     navGrid_Header: {
         height: '100%'
     },
+    navItem_Header: {
+        color:'rgba(255,255,255,.87)'
+    },
     cartIcon_Header: {
         position: 'fixed',
         top: '60px',
