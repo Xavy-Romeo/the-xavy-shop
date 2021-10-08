@@ -76,7 +76,8 @@ const useStyles = makeStyles({
         '&:hover': {
             // border: '1px solid white',
             borderRadius: '4px',
-            background: 'rgb(47,96,162)',
+            // background: 'rgb(47,96,162)',
+            background: 'rgb(5,44,133)',
         }
     }
 });
