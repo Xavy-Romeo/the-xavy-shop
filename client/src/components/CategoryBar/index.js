@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
@@ -47,6 +48,7 @@ const CategoryBar = () => {
     };
 
     return (
+        // <Container maxWidth='xl'>
         <Box style={{position: 'relative'}}>
             <Button
                 className={`${classes.arrowButton_CatBar} ${classes.leftArrow_CatBar}`} 
@@ -59,15 +61,10 @@ const CategoryBar = () => {
                     <Grid item key={index} xs={1} md={3} style={{display: 'flex', justifyContent: 'center'}}>
                         <Box className={classes.categories_CatBar}>
                             <img src={tempImg} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
-                            <Grid container className={classes.categoryContent_CatBar} direction='column' justifyContent='space-between'>
+                            <Grid container className={classes.categoryContent_CatBar} alignItems='center' justifyContent='center'>
                                 <Typography className={classes.categoryTitle_CatBar} variant='h4'>
                                     {category.name}
                                 </Typography>
-                                <Button className={classes.categoryExploreBtn_CatBar}>
-                                    <Typography>
-                                        Explore
-                                    </Typography>
-                                </Button>
                             </Grid>
                         </Box>
                     </Grid> 
@@ -80,6 +77,7 @@ const CategoryBar = () => {
                 <KeyboardArrowRightIcon fontSize='large' />
             </Button>
         </Box>
+        // </Container>
     );
 };
 

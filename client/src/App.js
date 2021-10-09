@@ -43,6 +43,7 @@ function App() {
             <Header />
             <Switch>
               <Route exact path='/' component={Home} />
+              <Route component={Page404} />
             </Switch>
             <Footer />
           </Router>

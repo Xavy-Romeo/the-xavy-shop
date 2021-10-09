@@ -6,8 +6,9 @@ const useStyles = makeStyles({
         margin: '15px 10px', 
         width: '100%', 
         borderRadius: '10px',
+        cursor: 'pointer',
         '&:hover': {
-            transform: 'scale(1.03)'
+            transform: 'scale(1.03)',
         },
         '&::before': {
             content: "",
@@ -20,28 +21,26 @@ const useStyles = makeStyles({
         borderRadius: '10px'
     },
     categoryContent_CatBar: {
-        position: 'absolute', 
-        left: '5%', 
+        position: 'absolute',  
         top: '0%', 
         width: '100%', 
         height: '100%'
     },
-    categoryTitle_CatBar: {
-        margin: '35% 10px 0 10px', 
+    categoryTitle_CatBar: { 
         color: 'rgba(255,255,255,.87)',
     },
-    categoryExploreBtn_CatBar: {
-        width: '50%', 
-        margin: '10px', 
-        borderRadius: '30px',
-        background: 'rgba(255,255,255,.05)',
-        border: '2px solid rgba(255,255,255,.87)',
-        color: 'rgba(255,255,255,.87)',
-        '&:hover': {
-            background: 'rgba(255,255,255,.8)',
-            color: 'rgba(0,0,0,.87)'
-        }
-    },
+    // categoryExploreBtn_CatBar: {
+    //     width: '50%', 
+    //     margin: '10px', 
+    //     borderRadius: '30px',
+    //     background: 'rgba(255,255,255,.05)',
+    //     border: '2px solid rgba(255,255,255,.87)',
+    //     color: 'rgba(255,255,255,.87)',
+    //     '&:hover': {
+    //         background: 'rgba(255,255,255,.8)',
+    //         color: 'rgba(0,0,0,.87)',
+    //     }
+    // },
     arrowButton_CatBar: {  
         position: 'absolute', 
         top: '38%',
@@ -61,7 +60,7 @@ const useStyles = makeStyles({
     },
     rightArrow_CatBar: {
         right: '23%',
-    }
+    },
 });
 
 export default useStyles;
