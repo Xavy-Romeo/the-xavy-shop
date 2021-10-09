@@ -6,6 +6,7 @@ const useStyles = makeStyles({
         margin: '15px 10px', 
         width: '100%', 
         borderRadius: '10px',
+        boxShadow: '0px 3px 5px -1px rgba(0,0,0,.2), 0px 6px 10px 6px rgba(0,0,0,.14), 0px 1px 18px 0px rgba(0,0,0,.12)',
         cursor: 'pointer',
         '&:hover': {
             transform: 'scale(1.03)',
@@ -27,7 +28,8 @@ const useStyles = makeStyles({
         height: '100%'
     },
     categoryTitle_CatBar: { 
-        color: 'rgba(255,255,255,.87)',
+        color: 'rgba(255,255,255,1)',
+        textShadow: '7px 7px 10px black'
     },
     // categoryExploreBtn_CatBar: {
     //     width: '50%', 
