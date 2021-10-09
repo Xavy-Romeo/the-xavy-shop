@@ -153,8 +153,8 @@ const Footer = () => {
                                     Follow Us
                                 </Typography>
                                 <Grid container justifyContent='center'>
-                                    {socialLogos.map((img) => (
-                                        <Grid item className={classes.socialIconDiv_Footer} key={img.name}  >                    
+                                    {socialLogos.map((img, index) => (
+                                        <Grid item className={classes.socialIconDiv_Footer} key={index}  >                    
                                             <img src={img.logo} alt={img.name} height='30px' width='30px' />
                                         </Grid>
                                     ))}

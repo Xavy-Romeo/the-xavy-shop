@@ -2,18 +2,21 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({ 
     categories_CatBar: {
-        margin: '5px', 
-        width: '250px', 
-        height: '250px', 
-        position: 'relative', 
+        position: 'relative',
+        margin: '15px 10px', 
+        width: '100%', 
         borderRadius: '10px',
         '&:hover': {
             transform: 'scale(1.03)'
+        },
+        '&::before': {
+            content: "",
+            paddingTop: '100%', //initial ratio of 1:1  
         }
     },
     categoryImg_CatBar: {
-        height: '250px',
-        width: '250px',
+        height: '100%',
+        width: '100%',
         borderRadius: '10px'
     },
     categoryContent_CatBar: {
@@ -39,6 +42,26 @@ const useStyles = makeStyles({
             color: 'rgba(0,0,0,.87)'
         }
     },
+    arrowButton_CatBar: {  
+        position: 'absolute', 
+        top: '38%',
+        background: 'rgb(230,230,230)', 
+        zIndex: '9999',
+        borderRadius: '50%',
+        width: '60px',
+        height: '60px',
+        transition: '.3s ease',
+        '&:hover': {
+            background: 'rgb(150,150,150)',
+            color: 'white'
+        }
+    },
+    leftArrow_CatBar: {
+        left: '23%',
+    },
+    rightArrow_CatBar: {
+        right: '23%',
+    }
 });
 
 export default useStyles;
