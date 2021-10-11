@@ -10,10 +10,12 @@ import {
   ApolloProvider,
   createHttpLink
 } from "@apollo/client";
+
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Home from './pages/Home';
+import Shop from './pages/Shop';
 import Login from './pages/Login';
 import OrderHistory from './pages/OrderHistory';
 import Page404 from './pages/Page404';
@@ -43,6 +45,7 @@ function App() {
             <Header />
             <Switch>
               <Route exact path='/' component={Home} />
+              <Route exact path='/shop' component={Shop} />
               <Route component={Page404} />
             </Switch>
             <Footer />
