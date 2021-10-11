@@ -36,7 +36,6 @@ const useStyles = makeStyles({
         borderRadius: '30px', 
         marginTop: '20px', 
         background: 'black', 
-        color: 'rgba(255,255,255,.87)',
         '&:hover': {
             background: 'rgba(20,20,20,.5)'
         }

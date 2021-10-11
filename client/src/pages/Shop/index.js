@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
 import useStyles from './styles';
+import ProductShop from '../../components/ProductShop';
 
 const Shop = () => {
     const classes = useStyles();
@@ -61,7 +62,7 @@ const Shop = () => {
             <Grid container>
                 {sampleCategories.map((category, index) => (
                     <Grid item className={classes.productContainer_Shop} key={index} xs={2}>
-                        {category}
+                        <ProductShop />
                     </Grid>
                 ))}
             </Grid>

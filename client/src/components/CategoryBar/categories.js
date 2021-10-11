@@ -37,6 +37,7 @@ const tempCategories = [
     {name: 'Hiking', image: Hiking},
     {name: 'Boxing', image: Boxing},
     {name: 'Snow', image: Snow},
+    {name: 'Shoes', image: ''},
     {name: 'Nutrition', image: Nutrition}
 ];
 
