@@ -10,7 +10,7 @@ import Soccer from '../../assets/catImages/soccer.jpg';
 
 const ProductDetails = () => {
     return (
-        <Container maxWidth='xl' style={{marginTop: '100px'}}>
+        <Container maxWidth='xl' style={{marginTop: '120px'}}>
             <Grid container >
                 <Grid item xs={9}>
                     <Grid container>

@@ -6,10 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
-import Soccer from '../../assets/catImages/soccer.jpg';
+import useStyles from './styles';
 
+const ProductShop = ({ product }) => {
+    const classes = useStyles();
 
-const ProductShop = () => {
     return (
         <Link
             href='/shop/item'
@@ -17,7 +18,13 @@ const ProductShop = () => {
         >
             <Grid container direction='column'>
                 <Box style={{position: 'relative'}}>
-                    <img src={Soccer} width='100%' height='300px' alt='test' />
+                    
+                        <img 
+                            src={product.image} 
+                            className={classes.productImage_ProductShop} 
+                            alt={product.name} 
+                        />
+                    
                     <Box 
                         style={{position: 'absolute', bottom: '-8%', left: '5%'}}
                     >

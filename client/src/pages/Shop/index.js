@@ -7,14 +7,14 @@ import Typography from '@material-ui/core/Typography';
 
 import useStyles from './styles';
 import ProductShop from '../../components/ProductShop';
+import Products from '../../components/ProductShop/products';
 
 const Shop = () => {
     const classes = useStyles();
-
-    let sampleCategories = [1,2,3,4,5,6,7,8,9,10,11,12,13];
     
+
     return (
-        <Container maxWidth='xl' style={{marginTop: '100px'}}>
+        <Container maxWidth='xl' style={{marginTop: '120px'}}>
             <Grid container direction='column'>
                 <Typography variant='h4'>
                     Category: .....CATEGORY NAME .............
@@ -24,9 +24,9 @@ const Shop = () => {
                         Choose Cat dropdown
                     </Box>
                     
-                    {sampleCategories.map((category, index) => (
+                    {Products.map((category, index) => (
                         <Box style={{border: '1px solid black', margin: '5px', background: 'blue', color: 'white'}}>
-                            {category}
+                            {category.name}
                         </Box>
                     ))}
                     <Grid container 
@@ -40,18 +40,22 @@ const Shop = () => {
                             Check out our new items!!! (View on all category state only)
                         </Box>
                         <Grid container>
-                            {sampleCategories.map((category, index) => (
-                                <Grid item key={index}
+                            {Products.filter(category => category.new === true).map((category, index) => ( 
+                                <Grid 
+                                    item 
+                                    key={index}
                                     style={{
-                                        border: '1px solid black',
-                                        borderRadius: '50%',
-                                        height: '200px',
-                                        width: '200px',
                                         margin: '10px',
-                                        background: 'lightblue'
                                     }}
                                 >
-                                    {category}
+                                    <img src={category.image} height='100%' width='100%'
+                                        style={{
+                                            border: '1px solid black',
+                                            borderRadius: '50%',
+                                            height: '200px',
+                                            width: '200px',
+                                        }}
+                                    />
                                 </Grid>
                             ))}
                         </Grid>
@@ -60,9 +64,9 @@ const Shop = () => {
             </Grid>
 
             <Grid container>
-                {sampleCategories.map((category, index) => (
+                {Products.map((product, index) => (
                     <Grid item className={classes.productContainer_Shop} key={index} xs={2}>
-                        <ProductShop />
+                        <ProductShop product={product} />
                     </Grid>
                 ))}
             </Grid>
