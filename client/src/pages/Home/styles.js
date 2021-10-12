@@ -47,14 +47,14 @@ const useStyles = makeStyles({
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center', 
-        color: 'rgba(255,255,255,.87)' 
+        color: 'rgba(0,0,0,.87)' 
     },
     downloadAppBtn_Home: {
         borderRadius: '30px', 
         width: '150px', 
         marginLeft: '20px', 
         background: 'rgb(5,44,133)',
-        color: 'rbga(255,255,255,.87)'    
+        color: 'rgba(255,255,255,.87)'   
     }
 });
 
