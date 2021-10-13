@@ -1,12 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({ 
+const useStyles = makeStyles((theme) => ({ 
     Appbar_Header: {
         background: 'rgba(0,0,0.95)',
         height: '100px'
     },
     upperHeader_Header: {
-        background:'rgb(230,230,230)', 
+        background: theme.palette.background.default, 
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center'
@@ -27,8 +27,9 @@ const useStyles = makeStyles({
     title_Header: {
         fontFamily: 'Special Elite, serif', 
         fontWeight: 'bold', 
-        textShadow: '1px 1px 3px rgba(100,100,100, .87)',
-        padding: '10px 0 0 20px'
+        textShadow: '1px 1px 3px rgba(100,100,100,.87)',
+        padding: '10px 0 0 20px', 
+        opacity: '.87'
     },
     navContainer_Header: {
         height: '100%'
@@ -37,7 +38,7 @@ const useStyles = makeStyles({
         height: '100%'
     },
     navItem_Header: {
-        color:'rgba(255,255,255,.87)'
+        color: theme.palette.primary.contrastText
     },
     cartIcon_Header: {
         position: 'fixed',
@@ -50,11 +51,11 @@ const useStyles = makeStyles({
         width: '40px',
         height: '40px',
         padding: '30px',
-        backgroundColor: 'rgb(255,20,20)',
+        backgroundColor: theme.palette.secondary.main,
         '&:hover': {
             transform: 'rotate(-15deg)',
         }
     }
-});
+}));
 
 export default useStyles;

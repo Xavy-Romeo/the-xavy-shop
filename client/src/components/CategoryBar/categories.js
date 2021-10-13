@@ -18,7 +18,7 @@ import Weights from '../../assets/catImages/weights.jpg';
 import Womens from '../../assets/catImages/womens.jpg';
 import Yoga from '../../assets/catImages/yoga.jpg';
 
-const tempCategories = [
+const Categories = [
     {name: "Men's", image: Mens},
     {name: "Women's", image: Womens},
     {name: 'Kids', image: Kids},
@@ -41,4 +41,4 @@ const tempCategories = [
     {name: 'Nutrition', image: Nutrition}
 ];
 
-export default tempCategories;
+export default Categories;

@@ -8,7 +8,7 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 import useStyles from './styles';
-import tempCategories from './categories';
+import Categories from './categories';
 
 const CategoryBar = () => {
     const classes = useStyles();
@@ -16,19 +16,19 @@ const CategoryBar = () => {
     const [sliderIndex, setSliderIndex] = useState(0);
 
     const nextCategory = () => {
-        tempCategories.push(tempCategories.splice(0, 1)[0]);
+        Categories.push(Categories.splice(0, 1)[0]);
 
-        setSliderIndex(sliderIndex+1);
+        setSliderIndex(sliderIndex + 1);
     };
     
     const previousCategory = () => {
-        tempCategories.unshift(tempCategories.splice(15, 1)[0]);
+        Categories.unshift(Categories.splice(15, 1)[0]);
         
-        setSliderIndex(sliderIndex-1);
+        setSliderIndex(sliderIndex - 1);
     };
 
     return (
-        <Box style={{position: 'relative'}}>
+        <Box className={classes.categoryContainer_CatBar}>
             <Button
                 className={`${classes.arrowButton_CatBar} ${classes.leftArrow_CatBar}`} 
                 onClick={() => previousCategory()}
@@ -36,8 +36,13 @@ const CategoryBar = () => {
                 <KeyboardArrowLeftIcon fontSize='large' />
             </Button>
             <Grid container justifyContent='center'>
-                {tempCategories.slice(0,4).map((category, index) => (
-                    <Grid item key={index} xs={1} md={3} style={{display: 'flex', justifyContent: 'center'}}>
+                {Categories.slice(0,4).map((category, index) => (
+                    <Grid 
+                        item 
+                        className={classes.categoryItemContainer_CatBar}
+                        key={index} 
+                        xs={1} md={3}
+                    >
                         <Box className={classes.categories_CatBar}>
                             <img src={category.image} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
                             <Grid container className={classes.categoryContent_CatBar} alignItems='center' justifyContent='center'>

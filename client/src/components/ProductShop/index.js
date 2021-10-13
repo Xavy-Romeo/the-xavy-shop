@@ -17,44 +17,34 @@ const ProductShop = ({ product }) => {
             underline='none'
         >
             <Grid container direction='column'>
-                <Box style={{position: 'relative'}}>
-                    
-                        <img 
-                            src={product.image} 
-                            className={classes.productImage_ProductShop} 
-                            alt={product.name} 
-                        />
-                    
-                    <Box 
-                        style={{position: 'absolute', bottom: '-8%', left: '5%'}}
-                    >
-                        <Button
-                            style={{
-                                borderRadius: '30px',
-                                background: 'blue',
-                                color: 'white'
-                            }}
-                        >
+                <Box className={classes.productImageContainer_ProductShop}>
+                    <img 
+                        src={product.image} 
+                        className={classes.productImage_ProductShop} 
+                        alt={product.name} 
+                    />
+                    <Box className={classes.addBtnContainer_ProductShop}>
+                        <Button className={classes.addBtn_ProductShop}>
                             <Typography>
                                 + Add to Cart
                             </Typography>
                         </Button>
                     </Box>
                 </Box>
-                <Grid container style={{marginTop: '20px'}}>
-                    <Typography style={{fontWeight: 'bold', marginRight: '15px'}}>
+                <Grid container className={classes.productPriceContainer_ProductShop}>
+                    <Typography className={classes.productPrice_ProductShop}>
                         $ 99.99
                     </Typography>
-                    <Typography style={{color: 'red', marginRight: '15px'}}>
+                    <Typography className={classes.productSale_ProductShop}>
                         30% off
                     </Typography>
-                    <Typography style={{color: 'grey', textDecoration: 'line-through', textDecorationStyle: 'double'}}>
+                    <Typography className={classes.productStrikePrice_ProductShop}>
                         $ 130.00
                     </Typography>   
                 </Grid>
                 <Box>
                     <Typography >
-                        Product Name
+                        {product.name}
                     </Typography>
                 </Box>
             </Grid>

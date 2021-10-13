@@ -3,15 +3,19 @@ import { createTheme } from '@material-ui/core/styles';
 const theme = createTheme({
     palette: {
         primary: {
-            main: 'rgb(52,84,209)',
-            light: 'rgb(101,175,255)'
+            // main: 'rgb(52,84,209)',
+            // light: 'rgb(101,175,255)'
+            main: 'rgb(5,44,133)',
+            light: 'rgb(47,96,162)',
+            contrastText: 'rgba(255,255,255,.87)'
         },
         secondary: {
-            main: 'rgba(255,20,20,.87)'
+            main: 'rgb(255,20,20)',
+            light: 'rgb(255,70,70)'
         },
         background: {
             default: 'rgb(230,230,230)'
-        }
+        },
     },
     typography: {
         fontFamily: 'Playfair Display, Serif',
@@ -103,12 +107,14 @@ const theme = createTheme({
             root: {
                 textTransform: 'none',
                 padding: '1em',
-                borderRadius: '4px',
+                borderRadius: '30px',
+                background: 'rgb(5,44,133)',
+                color: 'rgba(255,255,255,.87)'
             },
         },
         MuiPaper: {
             root: {
-                backgroundColor: 'rgb(210,210,210)'
+                backgroundColor: 'rgb(218,218,218)'
             }
         }, 
     },
