@@ -4,11 +4,10 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 
 import useStyles from './styles';
 import ProductShop from '../../components/ProductShop';
+import HotItems from '../../components/HotItems';
 import Products from './products';
 
 const Shop = () => {
@@ -31,43 +30,8 @@ const Shop = () => {
                         </Box>
                     ))}
 
-                    <Grid item xs={12}>
-                        <Paper>
-                            <Grid 
-                                container 
-                                className={classes.newItemsContainer_Shop}
-                                direction='column'
-                            >
-                                <Grid container>
-                                    <Typography className={classes.hotTitle_Shop} variant='subtitle1'>
-                                        Hot new items!!!
-                                    </Typography>
-                                    <Button className={classes.exploreNewBtn_Shop}>
-                                        <Typography variant='body1' >
-                                            Explore New
-                                        </Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid container>
-                                    {Products.filter(product => product.new === true).map((product, index) => ( 
-                                        <Grid 
-                                            item 
-                                            className={classes.newProductContainer_Shop}
-                                            key={index}
-                                        >
-                                            <img 
-                                                src={product.image} 
-                                                className={classes.newImage_Shop}
-                                                height='100%' 
-                                                width='100%'
-                                                alt={product.name}
-                                            />
-                                        </Grid>
-                                    ))}
-                                </Grid>
-                            </Grid>
-                        </Paper>
-                    </Grid>
+                    <HotItems />
+
                 </Grid>
             </Grid>
 

@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
+    productLink_ProductShop: {
+        color: theme.palette.text.primary
+    },
     productImageContainer_ProductShop: {
         position: 'relative',
     },

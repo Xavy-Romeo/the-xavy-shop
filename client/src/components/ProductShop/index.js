@@ -14,6 +14,7 @@ const ProductShop = ({ product }) => {
     return (
         <Link
             href='/shop/item'
+            className={classes.productLink_ProductShop}
             underline='none'
         >
             <Grid container direction='column'>
