@@ -2,8 +2,8 @@ const { User, Product, Category, Order } = require('../models');
 
 const resolvers = {
     Query: {
-        categories: () => {
-            return Category.find();
+        categories: async () => {
+            return await Category.find();
         }
     }
 };
