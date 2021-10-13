@@ -1,15 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({ 
+const useStyles = makeStyles((theme) => ({ 
     toolbar_Footer: {
         background: 'black',
-        color: 'rgba(255,255,255,.87)',
+        color: theme.palette.primary.contrastText,
         display: 'flex',
         flexDirection: 'column'
     },
     toTop_Footer: {
         marginTop: '-20px',
-        background: 'rgb(255,20,20)',
+        background: theme.palette.secondary.main,
         borderRadius: '50%',
         height: '50px',
         width: '100px',
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         '&:hover': {
-            background: 'rgb(255,70,70)',
+            background: theme.palette.secondary.light,
             color: 'black',
             cursor: 'pointer'
         }
@@ -49,8 +49,8 @@ const useStyles = makeStyles({
         width: '100%',
         background: 'none',
         border: 'none',
-        borderBottom: '1px solid rgba(255,255,255,.87)',
-        color: 'rgba(255,255,255,.87)',
+        borderBottom: `1px solid ${theme.palette.primary.contrastText}`,
+        color: theme.palette.primary.contrastText,
         fontFamily: 'Playfair Display, serif',
         padding: '10px',
         marginBottom: '20px'
@@ -60,11 +60,11 @@ const useStyles = makeStyles({
     },
     button_Footer: {
         width: '300px',
-        background: 'rgb(5,44,133)',
-        color: 'rgba(255,255,255,.87)',
+        background: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
         borderRadius: '30px',
         '&:hover': {
-            background: 'rgb(47,96,162)',
+            background: theme.palette.primary.light,
         }
     },
     footerBottom_Footer: {
@@ -91,12 +91,12 @@ const useStyles = makeStyles({
         transition: '.1s ease-in',
         '&:hover': {
             borderRadius: '4px',
-            background: 'rgb(5,44,133)',
+            background: theme.palette.primary.main,
         }
     },
     copyContainer_Footer: {
         height: '100%'
     }
-});
+}));
 
 export default useStyles;

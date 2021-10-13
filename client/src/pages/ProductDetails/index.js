@@ -5,26 +5,29 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
 
 import Soccer from '../../assets/catImages/soccer.jpg';
+import useStyles from './styles';
 
 const ProductDetails = () => {
+    const classes = useStyles();
+    
     return (
-        <Container maxWidth='xl' style={{marginTop: '100px'}}>
-            <Grid container >
+        <Container maxWidth='xl' className={classes.detailsContainer_ProductDetails}>
+            <Grid container>
                 <Grid item xs={9}>
+                    <Paper>
                     <Grid container>
-                        <Grid item xs={4}
-                            style={{
-                                width:'100%',
-                                display: 'flex',
-                                justifyContent:'center'
-                            }}
+                        <Grid 
+                            item  
+                            className={classes.productImage_ProductDetails} 
+                            xs={4}
                         >
                             <img src={Soccer} height='300px' width='200px' />
                         </Grid>
                         <Grid item xs={8}>
-                            <Typography variant='subtitle2' style={{fontWeight: 'bold'}}>
+                            <Typography variant='subtitle2' className={classes.aboutTitle_ProductDetails}>
                                 About this item
                             </Typography>
                             <Typography variant='body2'>
@@ -36,15 +39,9 @@ const ProductDetails = () => {
                             </Typography>
                         </Grid>
                     </Grid>
+                    </Paper>
                 </Grid>
-                <Grid item xs={3} 
-                    style={{
-                        padding: '0 20px',
-                        border: '1px solid black',
-                        borderRadius: '5px',
-                        boxShadow: '0px 3px 5px -1px rgba(0,0,0,.2), 0px 6px 10px 6px rgba(0,0,0,.14), 0px 1px 18px 0px rgba(0,0,0,.12)',
-                    }}
-                >
+                <Grid item className={classes.addContainer_ProductDetails} xs={3}>
                     <Grid container direction='column'>
                         <Box>
                             <Typography variant='h5'>
@@ -68,13 +65,7 @@ const ProductDetails = () => {
                         <Box>
                             Quantity dropdown
                         </Box>
-                        <Button
-                            style={{
-                                color: 'white',
-                                background: 'blue',
-                                borderRadius: '30px'
-                            }}
-                        >
+                        <Button className={classes.addBtn_ProductDetails}>
                             <Typography>
                                 Add to Cart
                             </Typography>
@@ -84,7 +75,7 @@ const ProductDetails = () => {
             </Grid>
             <Grid container direction='column' style={{borderTop: '1px solid rgba(0,0,0,.05)', margin: '20px 0'}}>
                 <Box>
-                    <Typography variant='subtitle2' style={{fontWeight: 'bold'}}>
+                    <Typography className={classes.frequentTitle_ProductDetails} variant='subtitle2'>
                         Frequently bought together
                     </Typography>
                 </Box>
@@ -105,13 +96,7 @@ const ProductDetails = () => {
                                         $ X.XX
                                     </Typography>
                                 </Grid>
-                                <Button 
-                                    style={{
-                                        color: 'white',
-                                        background: 'blue',
-                                        borderRadius: '30px'
-                                    }}
-                                >
+                                <Button className={classes.buyTogetherBtn_ProductDetails}>
                                     <Typography variant='body2'>
                                         Buy Together
                                     </Typography>

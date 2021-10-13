@@ -1,10 +1,9 @@
 import React from 'react';
-// import { Link } from "react-router-dom";
 
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link'
+import Link from '@material-ui/core/Link';
 
 import useStyles from './styles';
 import CategoryBar from '../../components/CategoryBar';
@@ -29,11 +28,10 @@ const Home = () => {
                 <Button className={classes.shopHeroBtn_Home} >
                     <Link 
                         href='/Shop'
+                        className={classes.shopNowLink_Home}
                         underline='none'
                         variant='body1'
-                        style={{width: '100%', height: '100%', color: 'rgba(255,255,255,.87)'}}
                     >
-                    
                         Shop Now
                     </Link>
                 </Button>

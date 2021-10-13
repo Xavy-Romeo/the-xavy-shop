@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({ 
+const useStyles = makeStyles((theme) => ({ 
     homeBox_Home: {
         position: 'relative'
     },
@@ -31,6 +31,11 @@ const useStyles = makeStyles({
             width: '100%'
         },
     },
+    shopNowLink_Home: {
+        width: '100%', 
+        height: '100%', 
+        color: theme.palette.primary.contrastText
+    },
     shopHeroBtn_Home: {
         width: '50%', 
         borderRadius: '30px', 
@@ -53,9 +58,9 @@ const useStyles = makeStyles({
         borderRadius: '30px', 
         width: '150px', 
         marginLeft: '20px', 
-        background: 'rgb(5,44,133)',
-        color: 'rgba(255,255,255,.87)'   
+        background: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText   
     }
-});
+}));
 
 export default useStyles;

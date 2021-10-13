@@ -1,9 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({ 
+const useStyles = makeStyles((theme) => ({ 
+    shopContainer_Shop: {
+        marginTop: '120px'
+    },
     productContainer_Shop: {
-        padding: '10px',   
+        marginBottom: '20px'
     }
-});
+}));
 
 export default useStyles;

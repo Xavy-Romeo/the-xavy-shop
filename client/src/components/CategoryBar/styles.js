@@ -1,6 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({ 
+const useStyles = makeStyles((theme) => ({ 
+    categoryContainer_CatBar: {
+        position: 'relative'
+    },
+    categoryItemContainer_CatBar: {
+        display: 'flex', 
+        justifyContent: 'center'
+    },
     categories_CatBar: {
         position: 'relative',
         margin: '15px 10px', 
@@ -28,25 +35,13 @@ const useStyles = makeStyles({
         height: '100%'
     },
     categoryTitle_CatBar: { 
-        color: 'rgba(255,255,255,1)',
+        color: 'rgb(255,255,255)',
         textShadow: '7px 7px 10px black'
     },
-    // categoryExploreBtn_CatBar: {
-    //     width: '50%', 
-    //     margin: '10px', 
-    //     borderRadius: '30px',
-    //     background: 'rgba(255,255,255,.05)',
-    //     border: '2px solid rgba(255,255,255,.87)',
-    //     color: 'rgba(255,255,255,.87)',
-    //     '&:hover': {
-    //         background: 'rgba(255,255,255,.8)',
-    //         color: 'rgba(0,0,0,.87)',
-    //     }
-    // },
     arrowButton_CatBar: {  
         position: 'absolute', 
         top: '38%',
-        background: 'rgb(230,230,230)', 
+        background: theme.palette.background.default, 
         zIndex: '9999',
         borderRadius: '50%',
         width: '60px',
@@ -63,6 +58,6 @@ const useStyles = makeStyles({
     rightArrow_CatBar: {
         right: '23%',
     },
-});
+}));
 
 export default useStyles;
