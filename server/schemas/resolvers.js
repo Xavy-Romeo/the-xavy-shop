@@ -1,7 +1,9 @@
+const { User, Product, Category, Order } = require('../models');
+
 const resolvers = {
     Query: {
-        helloWorld: () => {
-            return 'Hello world!';
+        categories: () => {
+            return Category.find();
         }
     }
 };
