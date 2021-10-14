@@ -32,13 +32,17 @@ const typeDefs = gql`
         firstName: String
         lastName: String
         username: String
-        password: String
         email: String
         orders: [Order]
     }
 
+    type Auth {
+        token: ID
+        user: User
+    }
+
     type Query {
-        user(username: String!): User
+        user: User
         users: [User]
         categories: [Category]
         products: [Product]
@@ -52,9 +56,9 @@ const typeDefs = gql`
             username: String!, 
             email: String!,
             password: String!
-        ): User
+        ): Auth
 
-        login(username: String!, password: String!): User
+        login(username: String!, password: String!): Auth
     }
 `;
 
