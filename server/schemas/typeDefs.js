@@ -37,8 +37,20 @@ const typeDefs = gql`
     }
 
     type Query {
-        user: User
+        user(username: String!): User
         categories: [Category]
+        products: [Product]
+        product(_id: ID!): Product
+    }
+
+    type Mutation {
+        addUser(
+            firstName: String!, 
+            lastName: String!, 
+            username: String!, 
+            email: String!,
+            password: String!
+        ): User
     }
 `;
 
