@@ -32,12 +32,14 @@ const typeDefs = gql`
         firstName: String
         lastName: String
         username: String
+        password: String
         email: String
         orders: [Order]
     }
 
     type Query {
         user(username: String!): User
+        users: [User]
         categories: [Category]
         products: [Product]
         product(_id: ID!): Product
@@ -51,6 +53,8 @@ const typeDefs = gql`
             email: String!,
             password: String!
         ): User
+
+        login(username: String!, password: String!): User
     }
 `;
 
