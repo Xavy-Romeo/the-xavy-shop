@@ -25,7 +25,7 @@ const Shop = () => {
                     </Box>
                     
                     {Products.map((category, index) => (
-                        <Box style={{border: '1px solid black', margin: '5px', background: 'rgb(5,44,133)', color: 'white'}}>
+                        <Box key={index} style={{border: '1px solid black', margin: '5px', background: 'rgb(5,44,133)', color: 'white'}}>
                             {category.name}
                         </Box>
                     ))}

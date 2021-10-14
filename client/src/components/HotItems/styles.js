@@ -9,9 +9,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '0 10px'
     },
     exploreNewBtn_HotItem: {
-        background: theme.palette.primary.main,
-        width: '200px', 
-        color: theme.palette.primary.contrastText,  
+        width: '200px',  
         marginLeft: '10px',
         '&:hover': {
             background: theme.palette.primary.light

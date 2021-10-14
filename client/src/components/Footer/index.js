@@ -29,11 +29,19 @@ const socialLogos = [
 
 const Footer = () => {
     const classes = useStyles();
-    
+
+    const toTop = () => {
+        window.scrollTo(0,0);
+    };
+
     return (
         <Toolbar className={classes.toolbar_Footer}>
             <Grid container justifyContent='center' className={classes.toTopDiv_Footer}>
-                <Box className={classes.toTop_Footer} color='secondary'>
+                <Box 
+                    className={classes.toTop_Footer} 
+                    onClick={() => toTop()}
+                    color='secondary'
+                >
                     <Typography className={classes.toTopSpan_Footer} component='span'>
                         ^
                     </Typography>

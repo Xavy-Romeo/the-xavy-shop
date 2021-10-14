@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import useStyles from './styles';
@@ -78,9 +79,16 @@ const Header = () => {
                                         </Typography>
                                     </Grid>
                                     <Grid item>
+                                        <Link
+                                            href='/login'
+                                            className={classes.fakeClass}
+                                            underline='none'
+                                            variant='body1'   
+                                        >
                                         <Typography className={classes.navItem_Header}>
-                                            Sign In
+                                            Account
                                         </Typography>
+                                        </Link>
                                     </Grid>
                                     <Grid item>
                                         <Typography className={classes.navItem_Header}>
