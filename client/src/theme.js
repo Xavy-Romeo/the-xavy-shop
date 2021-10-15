@@ -3,8 +3,6 @@ import { createTheme } from '@material-ui/core/styles';
 const theme = createTheme({
     palette: {
         primary: {
-            // main: 'rgb(52,84,209)',
-            // light: 'rgb(101,175,255)'
             main: 'rgb(5,44,133)',
             light: 'rgb(47,96,162)',
             contrastText: 'rgba(255,255,255,.87)'
@@ -108,9 +106,11 @@ const theme = createTheme({
                 textTransform: 'none',
                 padding: '1em',
                 borderRadius: '30px',
-                background: 'rgb(5,44,133)',
-                color: 'rgba(255,255,255,.87)'
             },
+            contained: {
+               color: 'rgba(255,255,255,.87)',
+               backgroundColor: 'rgb(5,44,133)',  
+            }
         },
         MuiPaper: {
             root: {

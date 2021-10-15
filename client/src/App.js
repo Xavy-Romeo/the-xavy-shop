@@ -47,6 +47,8 @@ function App() {
               <Route exact path='/' component={Home} />
               <Route exact path='/shop' component={Shop} />
               <Route exact path='/shop/item' component={ProductDetails} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/signup' component={Signup} />
               <Route component={Page404} />
             </Switch>
             <Footer />

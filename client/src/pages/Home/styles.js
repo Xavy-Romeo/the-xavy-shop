@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
     },
     shopHeroBtn_Home: {
         width: '50%', 
-        borderRadius: '30px', 
         marginTop: '20px', 
         background: 'black', 
         '&:hover': {
@@ -55,11 +54,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'rgba(0,0,0,.87)' 
     },
     downloadAppBtn_Home: {
-        borderRadius: '30px', 
         width: '150px', 
-        marginLeft: '20px', 
-        background: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText   
+        marginLeft: '20px',  
     }
 }));
 

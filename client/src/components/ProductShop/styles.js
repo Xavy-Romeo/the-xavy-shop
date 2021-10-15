@@ -18,8 +18,6 @@ const useStyles = makeStyles((theme) => ({
         left: '5%'
     },
     addBtn_ProductShop: {
-        background: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
         '&:hover': {
             background: theme.palette.primary.light,
         }

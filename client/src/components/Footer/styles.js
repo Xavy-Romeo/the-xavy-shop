@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        scrollBehavior: 'smooth',
         '&:hover': {
             background: theme.palette.secondary.light,
             color: 'black',
@@ -60,9 +61,6 @@ const useStyles = makeStyles((theme) => ({
     },
     button_Footer: {
         width: '300px',
-        background: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-        borderRadius: '30px',
         '&:hover': {
             background: theme.palette.primary.light,
         }
