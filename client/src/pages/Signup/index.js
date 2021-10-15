@@ -12,6 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 import useStyles from './styles';
+import Beach from '../../assets/images/beach.jpg';
 
 const SignUp = () => {
     const classes = useStyles();
@@ -38,21 +39,39 @@ const SignUp = () => {
     };
     
     return (
-        <Container maxWidth='xl' style={{marginTop: '150px'}}>
-            <Grid container justifyContent='center'>
+        <Container maxWidth='xl' style={{marginTop: '130px', position: 'relative'}}>
+            <Box>
+                <img src={Beach} width='100%' 
+                    style={{
+                        objectFit: 'cover',
+                        height: '80vh',
+                        zIndex: '-9999',
+                        borderRadius: '4px'
+                    }}
+                />
+            </Box>
+            <Grid container justifyContent='center' alignItems='center'
+                style={{
+                    width: '100%',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0
+                }}
+            >
                 <Paper 
                     style={{
-                        marginBottom: '50px',
+                        margin: '20px 0 50px 0',
                         width: '500px',
-                        padding: '30px',
-                        paddingBottom: '50px'
+                        padding: '10px 30px',
+                        paddingBottom: '50px',
+                        opacity: '90%'
                     }}>
                     <Grid container direction='column'>
                         <Grid container direction='column' alignItems='center'>
-                            <Avatar style={{background:'blue', padding: '35px', marginBottom: '10px'}}>
-                                <PersonAddIcon fontSize='large' />
+                            <Avatar style={{background:'rgb(5,44,133)'}}>
+                                <PersonAddIcon fontSize='small' />
                             </Avatar>
-                            <Typography variant='subtitle1'>
+                            <Typography variant='subtitle2'>
                                 Create your Xavy account
                             </Typography>
                         </Grid>
@@ -67,13 +86,11 @@ const SignUp = () => {
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Last Name'
@@ -84,13 +101,11 @@ const SignUp = () => {
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Username'
@@ -101,13 +116,11 @@ const SignUp = () => {
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Email'
@@ -118,13 +131,11 @@ const SignUp = () => {
                                     required
                                     color='primary'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Password'
@@ -136,13 +147,11 @@ const SignUp = () => {
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Confirm Password'
@@ -154,13 +163,11 @@ const SignUp = () => {
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <Box style={{margin: '20px 0'}}>
                                     <Typography  variant='caption' >
@@ -175,7 +182,7 @@ const SignUp = () => {
                                         .
                                     </Typography>
                                 </Box>
-                                <Button style={{width: '100%'}}>
+                                <Button className={classes.createAccountBtn_Signup}>
                                     <Typography>
                                         Create Account
                                     </Typography>
@@ -187,12 +194,16 @@ const SignUp = () => {
                                 Already have an account?
                             </Typography>
                         </Box>
-                        <Button style={{border: '1px solid black', background: 'none', color: 'black'}}>
-                            <Typography>
-                                Sign In
-                            </Typography>
-                        </Button>
-                        
+                        <Link
+                            href='/login'
+                            underline='none'
+                        >
+                            <Button className={classes.signInBtn_Signup}>
+                                <Typography>
+                                    Sign In
+                                </Typography>
+                            </Button>
+                        </Link>
                     </Grid>
                 </Paper>
             </Grid>
