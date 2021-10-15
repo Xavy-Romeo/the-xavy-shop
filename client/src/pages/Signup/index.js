@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +13,8 @@ import Avatar from '@material-ui/core/Avatar';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 import useStyles from './styles';
+import { ADD_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 import Beach from '../../assets/images/beach.jpg';
 
 const SignUp = () => {
@@ -26,61 +29,76 @@ const SignUp = () => {
         confirmPassword: ''
     };
 
-    const [values, setValues] = useState(initialValues);
+    const [formValues, setFormValues] = useState(initialValues);
+    const [addUser, { error }] = useMutation(ADD_USER);
+
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+    // submit Sign Up form handling
+    const handleFormSubmit = async event => {
+        event.preventDefault();
+
+        if (formValues.password === formValues.confirmPassword) {
+            try {
+                // execute addUser mutation and pass in variable data from form values
+                const mutationResponse = await addUser({
+                    variables: { ...formValues }
+                });
+
+                console.log(mutationResponse);
+                const token = mutationResponse.data.addUser.token;
+                Auth.login(token);
+            }
+            catch (err) {
+                console.error(err)
+            }
+        }
+        else {
+            setPasswordsMatch(false);
+
+            setTimeout(() => {
+                setPasswordsMatch(true);
+            }, 3000);
+        }
+    };
 
     // update state based on form input changes
     const handleChange = event => {
         const { name, value } = event.target;
 
-        setValues({
-            ...values,
+        setFormValues({
+            ...formValues,
             [name]: value
         });
     };
     
     return (
-        <Container maxWidth='xl' style={{marginTop: '130px', position: 'relative'}}>
+        <Container className={classes.signupPageContainer_Signup} maxWidth='xl'>
             <Box>
-                <img src={Beach} width='100%' 
-                    style={{
-                        objectFit: 'cover',
-                        height: '80vh',
-                        zIndex: '-9999',
-                        borderRadius: '4px'
-                    }}
-                />
+                <img src={Beach} className={classes.backgroundImg_Signup} alt='beach background'/>
             </Box>
-            <Grid container justifyContent='center' alignItems='center'
-                style={{
-                    width: '100%',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0
-                }}
+            <Grid 
+                container 
+                className={classes.formPaperContainer_Signup} 
+                justifyContent='center' 
+                alignItems='center'
             >
-                <Paper 
-                    style={{
-                        margin: '20px 0 50px 0',
-                        width: '500px',
-                        padding: '10px 30px',
-                        paddingBottom: '50px',
-                        opacity: '90%'
-                    }}>
+                <Paper className={classes.formPaper_Signup}>
                     <Grid container direction='column'>
                         <Grid container direction='column' alignItems='center'>
-                            <Avatar style={{background:'rgb(5,44,133)'}}>
+                            <Avatar className={classes.avatar_Signup}>
                                 <PersonAddIcon fontSize='small' />
                             </Avatar>
                             <Typography variant='subtitle2'>
                                 Create your Xavy account
                             </Typography>
                         </Grid>
-                        <form type='submit'>
+                        <form onSubmit={handleFormSubmit}>
                             <Grid container direction='column'>
                                 <TextField 
                                     label='First Name'
                                     name='firstName'
-                                    value={values.firstName}
+                                    value={formValues.firstName}
                                     placeholder='First Name'
                                     required
                                     color='primary'
@@ -95,7 +113,7 @@ const SignUp = () => {
                                 <TextField 
                                     label='Last Name'
                                     name='lastName'
-                                    value={values.lastName}
+                                    value={formValues.lastName}
                                     placeholder='Last Name'
                                     required
                                     color='primary'
@@ -110,7 +128,7 @@ const SignUp = () => {
                                 <TextField 
                                     label='Username'
                                     name='username'
-                                    value={values.username}
+                                    value={formValues.username}
                                     placeholder='Username'
                                     required
                                     color='primary'
@@ -125,7 +143,7 @@ const SignUp = () => {
                                 <TextField 
                                     label='Email'
                                     name='email'
-                                    value={values.email}
+                                    value={formValues.email}
                                     placeholder='Email'
                                     type='email'
                                     required
@@ -140,7 +158,7 @@ const SignUp = () => {
                                 <TextField 
                                     label='Password'
                                     name='password'
-                                    value={values.password}
+                                    value={formValues.password}
                                     placeholder='********'
                                     type='password'
                                     required
@@ -156,7 +174,7 @@ const SignUp = () => {
                                 <TextField 
                                     label='Confirm Password'
                                     name='confirmPassword'
-                                    value={values.confirmPassword}
+                                    value={formValues.confirmPassword}
                                     placeholder='********'
                                     type='password'
                                     required
@@ -169,27 +187,37 @@ const SignUp = () => {
                                     } }}
                                     InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
-                                <Box style={{margin: '20px 0'}}>
+                                {!passwordsMatch && 
+                                    <Box>
+                                        Passwords Do Not Match!!! 😞
+                                    </Box>
+                                }
+                                <Box className={classes.termsLinksContent_Signup}>
                                     <Typography  variant='caption' >
                                         By clicking Create Account, you acknowledge you have read and agreed to our
-                                        <Link variant='caption'>
+                                        <Link className={classes.termsLinks_Signup} variant='caption'>
                                             Terms of Use
                                         </Link>
                                         and 
-                                        <Link variant='caption'>
+                                        <Link className={classes.termsLinks_Signup} variant='caption'>
                                             Privacy Policy
                                         </Link>
                                         .
                                     </Typography>
                                 </Box>
-                                <Button className={classes.createAccountBtn_Signup}>
+                                <Button className={classes.createAccountBtn_Signup} type='submit'>
                                     <Typography>
                                         Create Account
                                     </Typography>
                                 </Button>
                             </Grid>
                         </form>
-                        <Box style={{margin: '25px 0 12px 0', display: 'flex', justifyContent: 'center'}}>
+                        {error && 
+                            <Box>
+                                Sign Up Failed 😞
+                            </Box>
+                        }
+                        <Box className={classes.haveAccountBox_Signup}>
                             <Typography variant='body2'>
                                 Already have an account?
                             </Typography>

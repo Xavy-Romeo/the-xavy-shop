@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -9,14 +10,16 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 import useStyles from './styles';
+import { LOGIN } from '../../utils/mutations';
 import Beach from '../../assets/images/beach.jpg';
 
 const Login = () => {
     const classes = useStyles();
     
+    // initial state for values
     const initialValues = {
         username: '',
         password: ''
@@ -35,37 +38,21 @@ const Login = () => {
     };
     
     return (
-        <Container maxWidth='xl' style={{marginTop: '130px', position: 'relative'}}>
+        <Container className={classes.loginPageContainer_Login} maxWidth='xl'>
             <Box>
-                <img src={Beach} width='100%' 
-                    style={{
-                        objectFit: 'cover',
-                        height: '80vh',
-                        zIndex: '-9999',
-                        borderRadius: '4px'
-                    }}
-                />
+                <img src={Beach} className={classes.backgroundImg_Login} alt='beach background'/>
             </Box>
-            <Grid container justifyContent='center' alignItems='center'
-                style={{
-                    width: '100%',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0
-                }}
+            <Grid 
+                container 
+                className={classes.formPaperContainer_Login} 
+                justifyContent='center' 
+                alignItems='center'
             >
-                <Paper 
-                    style={{
-                        margin: '20px 0 50px 0',
-                        width: '500px',
-                        padding: '10px 30px',
-                        paddingBottom: '50px',
-                        opacity: '90%'
-                    }}>
+                <Paper className={classes.formPaper_Login}>
                     <Grid container direction='column'>
                         <Grid container direction='column' alignItems='center'>
-                            <Avatar style={{background:'rgb(5,44,133)'}}>
-                                <PersonAddIcon fontSize='small' />
+                            <Avatar className={classes.avatar_Login}>
+                                <LockOpenIcon fontSize='small' />
                             </Avatar>
                             <Typography variant='subtitle2'>
                                 Sign in to your Xavy account
@@ -111,7 +98,7 @@ const Login = () => {
                                 </Button>
                             </Grid>
                         </form>
-                        <Box style={{margin: '25px 0 12px 0', display: 'flex', justifyContent: 'center'}}>
+                        <Box className={classes.haveAccountBox_Login}>
                             <Typography variant='body2'>
                                 Don't have an account?
                             </Typography>
