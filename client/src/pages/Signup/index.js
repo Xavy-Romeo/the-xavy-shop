@@ -84,7 +84,7 @@ const SignUp = () => {
                 if (value === '') {
                     setErrors({ firstName: 'This field is required.' });
                 }
-                if (!regex) {
+                else if (!regex) {
                     setErrors({ firstName: 'Please only enter letters.' });
                 }
                 setTimeout(() => {
@@ -96,7 +96,7 @@ const SignUp = () => {
                 if (value === '') {
                     setErrors({ lastName: 'This field is required.' });
                 }
-                if (!regex) {
+                else if (!regex) {
                     setErrors({ lastName: 'Please only enter letters.' });
                 }
                 setTimeout(() => {
@@ -118,7 +118,7 @@ const SignUp = () => {
                 if (value === '') {
                     setErrors({ email: 'This field is required.' });
                 }
-                if (!regex) {
+                else if (!regex) {
                     setErrors({ email: 'Please enter a proper email format.' });
                 }
                 setTimeout(() => {
@@ -287,7 +287,7 @@ const SignUp = () => {
                             </Grid>
                         </form>
                         {error && 
-                            <Grid container direction='column' alignItems='center' className={classes.failedContainer_Signup}>
+                            <Grid container className={classes.failedContainer_Signup} direction='column' alignItems='center'>
                                 <Box>
                                     <Typography className={classes.failed_Signup} variant='body2'>
                                         Sign Up Failed 😞

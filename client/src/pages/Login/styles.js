@@ -48,6 +48,14 @@ const useStyles = makeStyles((theme) => ({
             background: theme.palette.primary.light
         }
     },
+    failedContainer_Login: {
+        marginBottom: '-20px'
+    },
+    failed_Login: {
+        color: theme.palette.secondary.main,
+        margin: '5px 0',
+        fontWeight: 'bold'
+    },
     haveAccountBox_Login: {
         display: 'flex', 
         justifyContent: 'center',
