@@ -42,7 +42,6 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: httpLink,
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
@@ -60,6 +59,7 @@ function App() {
               <Route exact path='/shop/item' component={ProductDetails} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
+              <Route exact path='/order-history' component={OrderHistory} />
               <Route component={Page404} />
             </Switch>
             <Footer />
