@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImg_Signup: {
         objectFit: 'cover',
         height: '80vh',
+        width: '100%',
         zIndex: '-9999',
         borderRadius: '4px'
     },
@@ -31,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '20px',
         padding: '5px 10px',
         borderRadius: '4px',
-        height: '35px'
+        height: '35px',
+    
     },
     inputFocused_SignUp: {
         background: 'rgba(240,240,240,.9)',
@@ -51,6 +53,14 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             background: theme.palette.primary.light
         }
+    },
+    failedContainer_Signup: {
+        marginBottom: '-20px'
+    },
+    failed_Signup: {
+        color: theme.palette.secondary.main,
+        margin: '5px 0',
+        fontWeight: 'bold'
     },
     haveAccountBox_Signup: {
         display: 'flex', 

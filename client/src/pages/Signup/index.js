@@ -30,6 +30,7 @@ const SignUp = () => {
     };
 
     const [formValues, setFormValues] = useState(initialValues);
+    const [errors, setErrors] = useState({});
     const [addUser, { error }] = useMutation(ADD_USER);
 
     const [passwordsMatch, setPasswordsMatch] = useState(true);
@@ -45,12 +46,12 @@ const SignUp = () => {
                     variables: { ...formValues }
                 });
 
-                console.log(mutationResponse);
                 const token = mutationResponse.data.addUser.token;
                 Auth.login(token);
             }
             catch (err) {
-                console.error(err)
+                console.error(err);
+                setErrors({duplicate: 'Username or Email already Exists!'})
             }
         }
         else {
@@ -70,6 +71,63 @@ const SignUp = () => {
             ...formValues,
             [name]: value
         });
+    };
+
+    // handle validations on blur
+    const onBlurValidation = event => {
+        const { name, value } = event.target;
+        let regex = '';
+
+        switch (name){
+            case 'firstName':
+                regex = new RegExp(/^[a-zA-Z]+$/).test(value);
+                if (value === '') {
+                    setErrors({ firstName: 'This field is required.' });
+                }
+                if (!regex) {
+                    setErrors({ firstName: 'Please only enter letters.' });
+                }
+                setTimeout(() => {
+                    setErrors({});
+                }, 3000);
+                break;
+            case 'lastName':
+                regex = new RegExp(/^[a-zA-Z]+$/).test(value);
+                if (value === '') {
+                    setErrors({ lastName: 'This field is required.' });
+                }
+                if (!regex) {
+                    setErrors({ lastName: 'Please only enter letters.' });
+                }
+                setTimeout(() => {
+                    setErrors({});
+                }, 3000);
+                break;
+            case 'username':
+                if (value === '') {
+                    setErrors({ username: 'This field is required.' });
+                    
+                    setTimeout(() => {
+                        setErrors({});
+                    }, 3000);
+                }
+                break;
+
+            case 'email': 
+                regex = new RegExp(/^\S+@\S+\.\S+$/).test(value);
+                if (value === '') {
+                    setErrors({ email: 'This field is required.' });
+                }
+                if (!regex) {
+                    setErrors({ email: 'Please enter a proper email format.' });
+                }
+                setTimeout(() => {
+                    setErrors({});
+                }, 3000);
+                break;
+            default: 
+                break;
+        }
     };
     
     return (
@@ -104,6 +162,9 @@ const SignUp = () => {
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
+                                    onBlur={onBlurValidation}
+                                    error={Boolean(errors.firstName)}
+                                    helperText={(errors.firstName)}
                                     InputProps={{classes: {
                                         root: classes.input_SignUp,
                                         focused: classes.inputFocused_SignUp
@@ -119,6 +180,9 @@ const SignUp = () => {
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
+                                    onBlur={onBlurValidation}
+                                    error={Boolean(errors.lastName)}
+                                    helperText={(errors.lastName)}
                                     InputProps={{classes: {
                                         root: classes.input_SignUp,
                                         focused: classes.inputFocused_SignUp
@@ -134,6 +198,9 @@ const SignUp = () => {
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
+                                    onBlur={onBlurValidation}
+                                    error={Boolean(errors.username)}
+                                    helperText={(errors.username)}
                                     InputProps={{classes: {
                                         root: classes.input_SignUp,
                                         focused: classes.inputFocused_SignUp
@@ -149,6 +216,9 @@ const SignUp = () => {
                                     required
                                     color='primary'
                                     onChange={handleChange}
+                                    onBlur={onBlurValidation}
+                                    error={Boolean(errors.email)}
+                                    helperText={(errors.email)}
                                     InputProps={{classes: {
                                         root: classes.input_SignUp,
                                         focused: classes.inputFocused_SignUp
@@ -188,9 +258,13 @@ const SignUp = () => {
                                     InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 {!passwordsMatch && 
-                                    <Box>
-                                        Passwords Do Not Match!!! 😞
-                                    </Box>
+                                    <Grid container justifyContent='center'>
+                                        <Box>
+                                            <Typography className={classes.failed_Signup} variant='body2'>
+                                                Passwords Do Not Match!!! 😞
+                                            </Typography>
+                                        </Box>
+                                    </Grid>
                                 }
                                 <Box className={classes.termsLinksContent_Signup}>
                                     <Typography  variant='caption' >
@@ -213,9 +287,18 @@ const SignUp = () => {
                             </Grid>
                         </form>
                         {error && 
-                            <Box>
-                                Sign Up Failed 😞
-                            </Box>
+                            <Grid container direction='column' alignItems='center' className={classes.failedContainer_Signup}>
+                                <Box>
+                                    <Typography className={classes.failed_Signup} variant='body2'>
+                                        Sign Up Failed 😞
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography className={classes.failed_Signup} variant='body2'>
+                                        {errors.duplicate}
+                                    </Typography>
+                                </Box>
+                            </Grid>
                         }
                         <Box className={classes.haveAccountBox_Signup}>
                             <Typography variant='body2'>

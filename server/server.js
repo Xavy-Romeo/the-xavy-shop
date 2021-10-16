@@ -42,9 +42,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // wildcard GET route
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 
 // Start server after DB connection
 db.once('open', () => {
