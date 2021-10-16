@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +13,9 @@ import Avatar from '@material-ui/core/Avatar';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 import useStyles from './styles';
+import { ADD_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
+import Beach from '../../assets/images/beach.jpg';
 
 const SignUp = () => {
     const classes = useStyles();
@@ -25,174 +29,292 @@ const SignUp = () => {
         confirmPassword: ''
     };
 
-    const [values, setValues] = useState(initialValues);
+    const [formValues, setFormValues] = useState(initialValues);
+    const [errors, setErrors] = useState({});
+    const [addUser, { error }] = useMutation(ADD_USER);
+
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+    // submit Sign Up form handling
+    const handleFormSubmit = async event => {
+        event.preventDefault();
+
+        if (formValues.password === formValues.confirmPassword) {
+            try {
+                // execute addUser mutation and pass in variable data from form values
+                const mutationResponse = await addUser({
+                    variables: { ...formValues }
+                });
+
+                const token = mutationResponse.data.addUser.token;
+                Auth.login(token);
+            }
+            catch (err) {
+                console.error(err);
+                setErrors({duplicate: 'Username or Email already Exists!'})
+            }
+        }
+        else {
+            setPasswordsMatch(false);
+
+            setTimeout(() => {
+                setPasswordsMatch(true);
+            }, 3000);
+        }
+    };
 
     // update state based on form input changes
     const handleChange = event => {
         const { name, value } = event.target;
 
-        setValues({
-            ...values,
+        setFormValues({
+            ...formValues,
             [name]: value
         });
     };
+
+    // handle validations on blur
+    const onBlurValidation = event => {
+        const { name, value } = event.target;
+        let regex = '';
+
+        switch (name){
+            case 'firstName':
+                regex = new RegExp(/^[a-zA-Z]+$/).test(value);
+                if (value === '') {
+                    setErrors({ firstName: 'This field is required.' });
+                }
+                else if (!regex) {
+                    setErrors({ firstName: 'Please only enter letters.' });
+                }
+                setTimeout(() => {
+                    setErrors({});
+                }, 3000);
+                break;
+            case 'lastName':
+                regex = new RegExp(/^[a-zA-Z]+$/).test(value);
+                if (value === '') {
+                    setErrors({ lastName: 'This field is required.' });
+                }
+                else if (!regex) {
+                    setErrors({ lastName: 'Please only enter letters.' });
+                }
+                setTimeout(() => {
+                    setErrors({});
+                }, 3000);
+                break;
+            case 'username':
+                if (value === '') {
+                    setErrors({ username: 'This field is required.' });
+                    
+                    setTimeout(() => {
+                        setErrors({});
+                    }, 3000);
+                }
+                break;
+
+            case 'email': 
+                regex = new RegExp(/^\S+@\S+\.\S+$/).test(value);
+                if (value === '') {
+                    setErrors({ email: 'This field is required.' });
+                }
+                else if (!regex) {
+                    setErrors({ email: 'Please enter a proper email format.' });
+                }
+                setTimeout(() => {
+                    setErrors({});
+                }, 3000);
+                break;
+            default: 
+                break;
+        }
+    };
     
     return (
-        <Container maxWidth='xl' style={{marginTop: '150px'}}>
-            <Grid container justifyContent='center'>
-                <Paper 
-                    style={{
-                        marginBottom: '50px',
-                        width: '500px',
-                        padding: '30px',
-                        paddingBottom: '50px'
-                    }}>
+        <Container className={classes.signupPageContainer_Signup} maxWidth='xl'>
+            <Box>
+                <img src={Beach} className={classes.backgroundImg_Signup} alt='beach background'/>
+            </Box>
+            <Grid 
+                container 
+                className={classes.formPaperContainer_Signup} 
+                justifyContent='center' 
+                alignItems='center'
+            >
+                <Paper className={classes.formPaper_Signup}>
                     <Grid container direction='column'>
                         <Grid container direction='column' alignItems='center'>
-                            <Avatar style={{background:'blue', padding: '35px', marginBottom: '10px'}}>
-                                <PersonAddIcon fontSize='large' />
+                            <Avatar className={classes.avatar_Signup}>
+                                <PersonAddIcon fontSize='small' />
                             </Avatar>
-                            <Typography variant='subtitle1'>
+                            <Typography variant='subtitle2'>
                                 Create your Xavy account
                             </Typography>
                         </Grid>
-                        <form type='submit'>
+                        <form onSubmit={handleFormSubmit}>
                             <Grid container direction='column'>
                                 <TextField 
                                     label='First Name'
                                     name='firstName'
-                                    value={values.firstName}
+                                    value={formValues.firstName}
                                     placeholder='First Name'
                                     required
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    onBlur={onBlurValidation}
+                                    error={Boolean(errors.firstName)}
+                                    helperText={(errors.firstName)}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Last Name'
                                     name='lastName'
-                                    value={values.lastName}
+                                    value={formValues.lastName}
                                     placeholder='Last Name'
                                     required
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    onBlur={onBlurValidation}
+                                    error={Boolean(errors.lastName)}
+                                    helperText={(errors.lastName)}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Username'
                                     name='username'
-                                    value={values.username}
+                                    value={formValues.username}
                                     placeholder='Username'
                                     required
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    onBlur={onBlurValidation}
+                                    error={Boolean(errors.username)}
+                                    helperText={(errors.username)}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Email'
                                     name='email'
-                                    value={values.email}
+                                    value={formValues.email}
                                     placeholder='Email'
                                     type='email'
                                     required
                                     color='primary'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    onBlur={onBlurValidation}
+                                    error={Boolean(errors.email)}
+                                    helperText={(errors.email)}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Password'
                                     name='password'
-                                    value={values.password}
+                                    value={formValues.password}
                                     placeholder='********'
                                     type='password'
                                     required
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
                                 <TextField 
                                     label='Confirm Password'
                                     name='confirmPassword'
-                                    value={values.confirmPassword}
+                                    value={formValues.confirmPassword}
                                     placeholder='********'
                                     type='password'
                                     required
                                     color='primary'
                                     autoComplete='off'
                                     onChange={handleChange}
-                                    InputProps={{classes: {root: classes.input_SignUp} }}
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.inputLabel_SignUp,
-                                            focused: classes.inputLabelFocused_SignUp
-                                        }
-                                    }}
+                                    InputProps={{classes: {
+                                        root: classes.input_SignUp,
+                                        focused: classes.inputFocused_SignUp
+                                    } }}
+                                    InputLabelProps={{ classes: { root: classes.inputLabel_SignUp } }}
                                 />
-                                <Box style={{margin: '20px 0'}}>
+                                {!passwordsMatch && 
+                                    <Grid container justifyContent='center'>
+                                        <Box>
+                                            <Typography className={classes.failed_Signup} variant='body2'>
+                                                Passwords Do Not Match!!! 😞
+                                            </Typography>
+                                        </Box>
+                                    </Grid>
+                                }
+                                <Box className={classes.termsLinksContent_Signup}>
                                     <Typography  variant='caption' >
                                         By clicking Create Account, you acknowledge you have read and agreed to our
-                                        <Link variant='caption'>
+                                        <Link className={classes.termsLinks_Signup} variant='caption'>
                                             Terms of Use
                                         </Link>
                                         and 
-                                        <Link variant='caption'>
+                                        <Link className={classes.termsLinks_Signup} variant='caption'>
                                             Privacy Policy
                                         </Link>
                                         .
                                     </Typography>
                                 </Box>
-                                <Button style={{width: '100%'}}>
+                                <Button className={classes.createAccountBtn_Signup} type='submit'>
                                     <Typography>
                                         Create Account
                                     </Typography>
                                 </Button>
                             </Grid>
                         </form>
-                        <Box style={{margin: '25px 0 12px 0', display: 'flex', justifyContent: 'center'}}>
+                        {error && 
+                            <Grid container className={classes.failedContainer_Signup} direction='column' alignItems='center'>
+                                <Box>
+                                    <Typography className={classes.failed_Signup} variant='body2'>
+                                        Sign Up Failed 😞
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography className={classes.failed_Signup} variant='body2'>
+                                        {errors.duplicate}
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                        }
+                        <Box className={classes.haveAccountBox_Signup}>
                             <Typography variant='body2'>
                                 Already have an account?
                             </Typography>
                         </Box>
-                        <Button style={{border: '1px solid black', background: 'none', color: 'black'}}>
-                            <Typography>
-                                Sign In
-                            </Typography>
-                        </Button>
-                        
+                        <Link
+                            href='/login'
+                            underline='none'
+                        >
+                            <Button className={classes.signInBtn_Signup}>
+                                <Typography>
+                                    Sign In
+                                </Typography>
+                            </Button>
+                        </Link>
                     </Grid>
                 </Paper>
             </Grid>
