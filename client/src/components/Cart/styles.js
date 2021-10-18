@@ -40,7 +40,32 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.05)',
             color: theme.palette.primary.main 
         }
+    },
+    cartTitleContainer_Cart: {
+        borderBottom: '1px solid black', 
+        width: '100%' 
+    },
+    cartTitle_Cart: {
+        fontWeight: 'bold'
+    },
+    checkoutBtnContainer_Cart: {
+        width: '100%', 
+        marginTop: '10px'
+    },
+    checkoutLink_Cart: {
+        color: theme.palette.primary.contrastText, 
+        width: '100%'
+    },
+    checkoutBtn_Cart: {
+        width: '100%'
+    },
+    loginLinkContainer_Cart: {
+        display: 'flex', 
+        justifyContent: 'center', 
+        width: '100%', 
+        marginTop: '10px'
     }
+
 }));
 
 export default useStyles;

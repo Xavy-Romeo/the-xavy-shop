@@ -37,13 +37,12 @@ const Cart = () => {
         <Box className={classes.cartContainer_Cart}>
             <CancelPresentationRoundedIcon 
                 className={classes.closeIcon_Cart}
-                style={{}} 
                 fontSize='large' 
                 onClick={toggleCart}
             />
             <Grid container>
-                <Box style={{borderBottom: '1px solid black', width: '100%'}}>
-                    <Typography variant='subtitle1' style={{fontWeight: 'bold'}}>
+                <Box className={classes.cartTitleContainer_Cart}>
+                    <Typography className={classes.cartTitle_Cart} variant='subtitle1'>
                         Cart
                     </Typography>
                 </Box>
@@ -82,13 +81,13 @@ const Cart = () => {
                 </Grid>
 
                 {Auth.loggedIn()
-                    ?   <Box style={{width: '100%', marginTop: '10px'}}>
+                    ?   <Box className={classes.checkoutBtnContainer_Cart}>
                             <Link 
                                 href='/checkout'
-                                style={{color: 'white', width: '100%'}}
+                                className={classes.checkoutLink_Cart}
                                 underline='none'
                             >
-                                <Button style={{width: '100%'}}>
+                                <Button className={classes.checkoutBtn_Cart}>
                                     <Typography>
                                         Checkout
                                     </Typography>
@@ -96,7 +95,7 @@ const Cart = () => {
                             </Link>
                         </Box>
 
-                    :   <Box style={{display: 'flex', justifyContent: 'center', width: '100%', marginTop: '10px'}}>
+                    :   <Box className={classes.loginLinkContainer_Cart}>
                             <Link 
                                 href='/login'
                                 variant='body2'
