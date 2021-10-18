@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
 import useStyles from './styles';
-import CartItem from '../CartItem';
+import ProductCart from '../ProductCart';
 import Auth from '../../utils/auth';
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 
@@ -26,10 +26,10 @@ const Cart = () => {
 
                 <Grid container>
                     <Grid item>
-                        <CartItem item={{name:'Camera', image:'camera.jpg', price:5, purchaseQuantity:3}} />
+                        <ProductCart item={{name:'Camera', image:'camera.jpg', price:5.99, salePercent: 0, fullPrice: 10.00, purchaseQuantity:3}} />
                     </Grid>
                     <Grid item>                        
-                        <CartItem item={{name:'Soap', image:'soap.jpg', price:6, purchaseQuantity:4}} />
+                        <ProductCart item={{name:'Soap', image:'soap.jpg', price:6.49, salePercent: 30, fullPrice: 10.00, purchaseQuantity:4}} />
                     </Grid>
                 </Grid>
 

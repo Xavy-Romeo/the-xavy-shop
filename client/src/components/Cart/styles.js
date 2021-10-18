@@ -4,8 +4,8 @@ const useStyles = makeStyles((theme) => ({
     cartContainer_Cart: {
         position: 'fixed',
         top: 101,
-        right: '0',
-        width: '340px',
+        right: 0,
+        width: '300px',
         minHeight: '200px', 
         background: 'rgb(218,218,218)',
         overflow: 'auto',
