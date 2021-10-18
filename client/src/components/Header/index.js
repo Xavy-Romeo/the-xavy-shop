@@ -6,7 +6,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import useStyles from './styles';
 import Logo from '../../assets/images/xr-logo.png';
@@ -74,9 +73,16 @@ const Header = () => {
                                     alignItems='center' 
                                 >
                                     <Grid item>
-                                        <Typography className={classes.navItem_Header}>
-                                            Shop
-                                        </Typography>
+                                        <Link
+                                            href='/shop'
+                                            className={classes.fakeClass}
+                                            underline='none'
+                                            variant='body1'   
+                                        >
+                                            <Typography className={classes.navItem_Header}>
+                                                Shop
+                                            </Typography>
+                                        </Link>
                                     </Grid>
                                     <Grid item>
                                         <Link
@@ -85,24 +91,26 @@ const Header = () => {
                                             underline='none'
                                             variant='body1'   
                                         >
-                                        <Typography className={classes.navItem_Header}>
-                                            Account
-                                        </Typography>
+                                            <Typography className={classes.navItem_Header}>
+                                                Account
+                                            </Typography>
                                         </Link>
                                     </Grid>
                                     <Grid item>
-                                        <Typography className={classes.navItem_Header}>
-                                            Order History
-                                        </Typography>
+                                        <Link
+                                            href='/order-history'
+                                            className={classes.fakeClass}
+                                            underline='none'
+                                            variant='body1'   
+                                        >
+                                            <Typography className={classes.navItem_Header}>
+                                                Order History
+                                            </Typography>
+                                        </Link>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Box 
-                                className={classes.cartIcon_Header}
-                                component='span'
-                            >
-                                <ShoppingCartIcon fontSize='large' />
-                            </Box>
+                            
                         </Grid>
                     </Grid>
                 </Grid>

@@ -23,6 +23,7 @@ import Page404 from './pages/Page404';
 import ProductDetails from './pages/ProductDetails';
 import Signup from './pages/Signup';
 import SuccessOrder from './pages/SuccessOrder';
+import Checkout from './pages/Checkout';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import theme from './theme';
@@ -42,7 +43,6 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: httpLink,
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
@@ -60,6 +60,8 @@ function App() {
               <Route exact path='/shop/item' component={ProductDetails} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
+              <Route exact path='/order-history' component={OrderHistory} />
+              <Route exact path='/checkout' component={Checkout} />
               <Route component={Page404} />
             </Switch>
             <Footer />

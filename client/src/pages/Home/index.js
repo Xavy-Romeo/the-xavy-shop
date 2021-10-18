@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link';
 
 import useStyles from './styles';
 import CategoryBar from '../../components/CategoryBar';
+import Cart from '../../components/Cart';
 import hero from '../../assets/images/hero.jpg';
 
 const Home = () => {
@@ -49,6 +50,8 @@ const Home = () => {
                     </Typography>
                 </Button>
             </Box>
+
+            <Cart />
         </Box>
     );
 };

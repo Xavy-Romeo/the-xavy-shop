@@ -8,7 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 import ProductShop from '../../components/ProductShop';
 import HotItems from '../../components/HotItems';
+import Cart from '../../components/Cart';
 import Products from './products';
+
 
 const Shop = () => {
     const classes = useStyles();
@@ -42,6 +44,8 @@ const Shop = () => {
                     </Grid>
                 ))}
             </Grid>
+
+            <Cart />
         </Container>
     );
 };
