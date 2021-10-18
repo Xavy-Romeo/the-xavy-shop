@@ -40,22 +40,6 @@ const useStyles = makeStyles((theme) => ({
     navItem_Header: {
         color: theme.palette.primary.contrastText
     },
-    cartIcon_Header: {
-        position: 'fixed',
-        top: '60px',
-        right: '1%',
-        display: 'flex', 
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: '50%',
-        width: '40px',
-        height: '40px',
-        padding: '30px',
-        backgroundColor: theme.palette.secondary.main,
-        '&:hover': {
-            transform: 'rotate(-15deg)',
-        }
-    }
 }));
 
 export default useStyles;

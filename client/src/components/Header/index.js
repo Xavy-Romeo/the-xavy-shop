@@ -6,7 +6,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import useStyles from './styles';
 import Logo from '../../assets/images/xr-logo.png';
@@ -111,12 +110,7 @@ const Header = () => {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Box 
-                                className={classes.cartIcon_Header}
-                                component='span'
-                            >
-                                <ShoppingCartIcon fontSize='large' />
-                            </Box>
+                            
                         </Grid>
                     </Grid>
                 </Grid>

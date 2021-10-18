@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -10,13 +10,37 @@ import useStyles from './styles';
 import ProductCart from '../ProductCart';
 import Auth from '../../utils/auth';
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const Cart = () => {
     const classes = useStyles();
 
+    const [cartOpen, setCartOpen] = useState(true);
+
+    const toggleCart = () => {
+        setCartOpen(!cartOpen);
+    };
+
+    if (!cartOpen) {
+        return (
+            <Box 
+                className={classes.cartIcon_Cart}
+                onClick={toggleCart}
+                component='span'
+            >
+                <ShoppingCartIcon fontSize='large' />
+            </Box>
+        );
+    }
+
     return (
         <Box className={classes.cartContainer_Cart}>
-            <CancelPresentationRoundedIcon style={{position: 'absolute', right: '2px', top: '2px'}} fontSize='large' />
+            <CancelPresentationRoundedIcon 
+                className={classes.closeIcon_Cart}
+                style={{}} 
+                fontSize='large' 
+                onClick={toggleCart}
+            />
             <Grid container>
                 <Box style={{borderBottom: '1px solid black', width: '100%'}}>
                     <Typography variant='subtitle1' style={{fontWeight: 'bold'}}>

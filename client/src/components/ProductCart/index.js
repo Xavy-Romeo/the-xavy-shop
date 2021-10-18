@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -7,10 +7,24 @@ import Input from '@material-ui/core/Input';
 
 import useStyles from './styles';
 
-
 const CartItem = ({ item }) => {
     const classes = useStyles();
     
+    const [price, setPrice] = useState('');
+    const [fullPrice, setFullPrice] = useState('');
+
+    useEffect(() => {
+        // set full price to 2 decimals
+        let price = item.fullPrice.toFixed(2);
+        setFullPrice(price);
+
+        // calculate total price after sale discount and set to 2 decimals
+        let total = (item.fullPrice*(1 - (item.salePercent/100))).toFixed(2);
+        setPrice(total);
+        
+        
+    }, [item.fullPrice, item.salePercent])
+
     return (
         <Grid container 
             style={{
@@ -92,7 +106,8 @@ const CartItem = ({ item }) => {
                             fontWeight: 'bold'
                         }}
                     >
-                        ${item.price}
+                        {/* {calculateTotal(item.fullPrice, item.salePercent)} */}
+                        ${price}
                     </Typography>
                     
                     {item.salePercent !== 0 && 
@@ -117,7 +132,7 @@ const CartItem = ({ item }) => {
                                     color: 'grey'
                                 }}
                             >
-                                ${item.fullPrice}
+                                ${fullPrice}
                             </Typography>
                         </Grid>
                     }
