@@ -12,7 +12,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import useStyles from './styles';
-import Categories from './categories';
+// import Categories from './categories';
 
 const CategoryBar = () => {
     const classes = useStyles();
@@ -29,12 +29,12 @@ const CategoryBar = () => {
 
     // category slider functions
     const nextCategory = () => {
-        Categories.push(Categories.splice(0, 1)[0]);
+        categories.push(categories.splice(0, 1)[0]);
 
         setSliderIndex(sliderIndex + 1);
     };
     const previousCategory = () => {
-        Categories.unshift(Categories.splice(15, 1)[0]);
+        categories.unshift(categories.splice(15, 1)[0]);
         
         setSliderIndex(sliderIndex - 1);
     };
@@ -60,7 +60,7 @@ const CategoryBar = () => {
                 <KeyboardArrowLeftIcon fontSize='large' />
             </Button>
             <Grid container justifyContent='center'>
-                {Categories.slice(0,4).map((category, index) => (
+                {categories.slice(0,4).map((category, index) => (
                     <Grid 
                         item 
                         className={classes.categoryItemContainer_CatBar}
@@ -68,7 +68,7 @@ const CategoryBar = () => {
                         xs={1} md={3}
                     >
                         <Box className={classes.categories_CatBar}>
-                            <img src={category.image} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
+                            <img src={`/images/categoryImages/${category.image}`} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
                             <Grid container className={classes.categoryContent_CatBar} alignItems='center' justifyContent='center'>
                                 <Typography className={classes.categoryTitle_CatBar} variant='h4'>
                                     {category.name}
