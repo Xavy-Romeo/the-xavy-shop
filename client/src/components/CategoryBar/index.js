@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -7,25 +8,48 @@ import Grid from '@material-ui/core/Grid';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
+import { useStoreContext } from '../../utils/GlobalState';
+import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
+import { QUERY_CATEGORIES } from '../../utils/queries';
 import useStyles from './styles';
 import Categories from './categories';
 
 const CategoryBar = () => {
     const classes = useStyles();
 
+    // category slider state 
     const [sliderIndex, setSliderIndex] = useState(0);
 
+    const [state, dispatch] = useStoreContext();
+
+    const { categories } = state; 
+
+    const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+
+
+    // category slider functions
     const nextCategory = () => {
         Categories.push(Categories.splice(0, 1)[0]);
 
         setSliderIndex(sliderIndex + 1);
     };
-    
     const previousCategory = () => {
         Categories.unshift(Categories.splice(15, 1)[0]);
         
         setSliderIndex(sliderIndex - 1);
     };
+
+    useEffect(() => {
+        // if categoryData exists or has changed from useQuery Response, then run dispatch()
+        if (categoryData) {
+            dispatch({
+                type: UPDATE_CATEGORIES,
+                categories: categoryData.categories
+            }); 
+        }
+
+        console.log('categoryData', categoryData);
+    }, [categoryData, dispatch])
 
     return (
         <Box className={classes.categoryContainer_CatBar}>
