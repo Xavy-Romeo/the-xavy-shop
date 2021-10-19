@@ -15,6 +15,7 @@ import { setContext } from '@apollo/client/link/context';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import { StoreProvider } from './utils/GlobalState';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import Login from './pages/Login';
@@ -53,18 +54,20 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <Router>
-            <Header />
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/shop' component={Shop} />
-              <Route exact path='/shop/item' component={ProductDetails} />
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/signup' component={Signup} />
-              <Route exact path='/order-history' component={OrderHistory} />
-              <Route exact path='/checkout' component={Checkout} />
-              <Route component={Page404} />
-            </Switch>
-            <Footer />
+            <StoreProvider>
+              <Header />
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path='/shop/:categoryId' component={Shop} />
+                <Route exact path='/product/:productId' component={ProductDetails} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/signup' component={Signup} />
+                <Route exact path='/order-history' component={OrderHistory} />
+                <Route exact path='/checkout' component={Checkout} />
+                <Route component={Page404} />
+              </Switch>
+              <Footer />
+            </StoreProvider>
           </Router>
         </CssBaseline>
       </ThemeProvider>

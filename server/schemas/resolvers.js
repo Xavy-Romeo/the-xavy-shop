@@ -30,10 +30,12 @@ const resolvers = {
                 })
             ;
         },
+        category: async (parent, { _id }) => {
+            return await Category.findById({ _id });
+        },
         categories: async () => {
             return await Category.find();
         },
-        
         products: async () => {
             return await Product.find()
                 .populate('category')

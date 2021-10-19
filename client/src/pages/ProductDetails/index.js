@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 
-import Soccer from '../../assets/catImages/soccer.jpg';
+// import Soccer from '../../assets/catImages/soccer.jpg';
 import useStyles from './styles';
 
 const ProductDetails = () => {
@@ -24,7 +24,7 @@ const ProductDetails = () => {
                             className={classes.productImage_ProductDetails} 
                             xs={4}
                         >
-                            <img src={Soccer} height='300px' width='200px' />
+                            <img src='' height='300px' width='200px' />
                         </Grid>
                         <Grid item xs={8}>
                             <Typography variant='subtitle2' className={classes.aboutTitle_ProductDetails}>
@@ -81,11 +81,11 @@ const ProductDetails = () => {
                 </Box>
                 <Box>
                     <Grid container alignItems='center'>
-                        <img src={Soccer} height='200px' width='200px' />
+                        <img src='' height='200px' width='200px' />
                         <Typography variant='h3' style={{margin: '10px'}}>
                             +
                         </Typography>
-                        <img src={Soccer} height='200px' width='200px' />
+                        <img src='' height='200px' width='200px' />
                         <Box style={{margin: '10px'}}>
                             <Grid container direction='column'>
                                 <Grid container>

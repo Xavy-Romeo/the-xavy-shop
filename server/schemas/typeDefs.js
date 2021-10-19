@@ -4,6 +4,7 @@ const typeDefs = gql`
     type Category {
         _id: ID
         name: String
+        image: String
     }
 
     type Product {
@@ -44,6 +45,7 @@ const typeDefs = gql`
     type Query {
         user: User
         users: [User]
+        category(_id: ID!): Category
         categories: [Category]
         products: [Product]
         product(_id: ID!): Product

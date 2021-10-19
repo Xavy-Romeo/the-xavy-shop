@@ -5,26 +5,26 @@ db.once('open', async () => {
   await Category.deleteMany();
 
   const categories = await Category.insertMany([
-    {name: "Men's", image:''},
-    {name: "Women's", image:''},
-    {name: 'Kids', image:''},
-    {name: 'Running', image:''},
-    {name: 'Weights', image:''},
-    {name: 'Baseball', image:''},
-    {name: 'Soccer', image:''},
-    {name: 'Football', image:''},
-    {name: 'Hockey', image:''},
-    {name: 'Tennis', image:''},
-    {name: 'Basketball', image:''},
-    {name: 'Fishing', image:''},
-    {name: 'Volleyball', image:''},
-    {name: 'Swimming', image:''},
-    {name: 'Yoga', image:''},
-    {name: 'Hiking', image:''},
-    {name: 'Boxing', image:''},
-    {name: 'Snow', image:''},
-    {name: 'Shoes', image:''},
-    {name: 'Nutrition', image:''}
+    {name: "Men's", image:'mens.jpg'},
+    {name: "Women's", image:'womens.jpg'},
+    {name: 'Kids', image:'kids.jpg'},
+    {name: 'Running', image:'running.jpg'},
+    {name: 'Weights', image:'weights.jpg'},
+    {name: 'Baseball', image:'baseball.jpg'},
+    {name: 'Soccer', image:'soccer.jpg'},
+    {name: 'Football', image:'football.jpg'},
+    {name: 'Hockey', image:'hockey.jpg'},
+    {name: 'Tennis', image:'tennis.jpg'},
+    {name: 'Basketball', image:'basketball.jpg'},
+    {name: 'Fishing', image:'fishing.jpg'},
+    {name: 'Volleyball', image:'volleyball.jpg'},
+    {name: 'Swimming', image:'swimming.jpg'},
+    {name: 'Yoga', image:'yoga.jpg'},
+    {name: 'Hiking', image:'hiking.jpg'},
+    {name: 'Boxing', image:'boxing.jpg'},
+    {name: 'Snow', image:'snow.jpg'},
+    {name: 'Shoes', image:'shoes.jpg'},
+    {name: 'Nutrition', image:'nutrition.jpg'}
   ]);
 
   console.log('categories seeded');
