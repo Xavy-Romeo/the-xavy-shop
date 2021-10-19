@@ -38,6 +38,216 @@ db.once('open', async () => {
 
   const products = await Product.insertMany([
     {
+        name: 'Golf Shirt',
+        description: description,
+        image: 'mens-golf-shirt.jpg',
+        fullPrice: 44.49,
+        new: true,
+        options: [
+            {name: 'XS', price: 44.49},
+            {name: 'S', price: 44.49},
+            {name: 'M', price: 44.49},
+            {name: 'L', price: 44.49},
+            {name: 'XL', price: 44.49},
+        ], 
+        category: categories[0]._id,
+        subCategory: categories[10]._id
+    },
+    {
+        name: 'Jacket' ,
+        description: description,
+        image: 'mens-jacket.png',
+        fullPrice: 49.99,
+        new: true,
+        options: [
+            {name: 'XS', price: 49.99},
+            {name: 'S', price: 49.99},
+            {name: 'M', price: 49.99},
+            {name: 'L', price: 49.99},
+            {name: 'XL', price: 49.99},
+        ],
+        category: categories[0]._id,
+        subCategory: categories[3]._id
+    },
+    {
+        name: 'Joggers',
+        description: description,
+        image: 'mens-joggers.jpeg',
+        salePercent: 30,
+        fullPrice: 22.49,
+        inStock: false,
+        options: [
+            {name: 'XS', price: 22.49},
+            {name: 'S', price: 22.49},
+            {name: 'M', price: 22.49},
+            {name: 'L', price: 22.49},
+            {name: 'XL', price: 22.49},
+        ],
+        category: categories[0]._id,
+        subCategory: categories[3]._id
+    },
+    {
+        name: 'Pants',
+        description: description,
+        image: 'mens-pants.jpg',
+        salePercent: 20,
+        fullPrice: 29.99,
+        options: [
+            {name: 'XS', price: 29.99},
+            {name: 'S', price: 29.99},
+            {name: 'M', price: 29.99},
+            {name: 'L', price: 29.99},
+            {name: 'XL', price: 29.99},
+        ],
+        category: categories[0]._id,
+        subCategory: categories[16]._id
+    },
+    {
+        name: 'Compression Long Sleeve',
+        description: description,
+        image: 'mens-shirt.jpg',
+        salePercent: 10,
+        fullPrice: 24.99,
+        options: [
+            {name: 'XS', price: 24.99},
+            {name: 'S', price: 24.99},
+            {name: 'M', price: 24.99},
+            {name: 'L', price: 24.99},
+            {name: 'XL', price: 24.99},
+        ],
+        category: categories[0]._id,
+        subCategory: categories[7]._id
+    },
+    {
+        name: 'Sleeveless Hoodie',
+        description: description,
+        image: 'mens-sleeveless.jpg',
+        fullPrice: 44.49,
+        new: true,
+        options: [
+            {name: 'XS', price: 44.49},
+            {name: 'S', price: 44.49},
+            {name: 'M', price: 44.49},
+            {name: 'L', price: 44.49},
+            {name: 'XL', price: 44.49},
+        ],
+        category: categories[0]._id,
+        subCategory: categories[4]._id
+    },
+    {
+        name: 'Speed Chute',
+        description: description,
+        image: 'running-chute.jpg',
+        salePercent: 10,
+        fullPrice: 29.99,
+        category: categories[3]._id,
+        subCategory: categories[7]._id
+    },
+    {
+        name: 'Agility Ladder',
+        description: description,
+        image: 'running-ladder.jpg',
+        salePercent: 10,
+        fullPrice: 29.99,
+        category: categories[3]._id,
+        subCategory: categories[6]._id
+    },
+    {
+        name: 'Golf Shirt',
+        description: description,
+        image: 'women-golf-shirt.jpg',
+        fullPrice: 64.99,
+        options: [
+            {name: 'XS', price: 64.99},
+            {name: 'S', price: 64.99},
+            {name: 'M', price: 64.99},
+            {name: 'L', price: 64.99},
+            {name: 'XL', price: 64.99},
+        ],
+        category: categories[1]._id,
+        subCategory: categories[10]._id
+    },
+    {
+        name: 'Jacket',
+        description: description,
+        image: 'women-jacket.jpeg',
+        salePercent: 20,
+        fullPrice: 29.99,
+        inStock: false,
+        options: [
+            {name: 'XS', price: 29.99},
+            {name: 'S', price: 29.99},
+            {name: 'M', price: 29.99},
+            {name: 'L', price: 29.99},
+            {name: 'XL', price: 29.99},
+        ],
+        category: categories[1]._id,
+        subCategory: categories[3]._id
+    },
+    {
+        name: 'Leggings',
+        description: description,
+        image: 'women-leggings.jpg',
+        salePercent: 10,
+        fullPrice: 37.99,
+        options: [
+            {name: 'XS', price: 37.99},
+            {name: 'S', price: 37.99},
+            {name: 'M', price: 37.99},
+            {name: 'L', price: 37.99},
+            {name: 'XL', price: 37.99},
+        ],
+        category: categories[1]._id,
+        subCategory: categories[15]._id
+    },
+    {
+        name: 'Shorts',
+        description: description,
+        image: 'women-shorts.jpg',
+        salePercent: 10,
+        fullPrice: 19.99,
+        options: [
+            {name: 'XS', price: 19.99},
+            {name: 'S', price: 19.99},
+            {name: 'M', price: 19.99},
+            {name: 'L', price: 23.99},
+            {name: 'XL', price: 23.99},
+        ],
+        category: categories[1]._id,
+        subCategory: categories[3]._id
+    },
+    {
+        name: 'Tennis Skort',
+        description: description,
+        image: 'women-skirt-tennis.jpg',
+        fullPrice: 39.99,
+        options: [
+            {name: 'XS', price: 39.99},
+            {name: 'S', price: 39.99},
+            {name: 'M', price: 39.99},
+            {name: 'L', price: 44.99},
+            {name: 'XL', price: 44.99},
+        ],
+        category: categories[1]._id,
+        subCategory: categories[9]._id
+    },
+    {
+        name: 'Sweater',
+        description: description,
+        image: 'women-sweater.png',
+        fullPrice: 39.99,
+        new: true,
+        options: [
+            {name: 'XS', price: 39.99},
+            {name: 'S', price: 39.99},
+            {name: 'M', price: 39.99},
+            {name: 'L', price: 39.99},
+            {name: 'XL', price: 39.99},
+        ],
+        category: categories[1]._id,
+        subCategory: categories[3]._id
+    },
+    {
         name: 'Baseballs',
         description: 'Mattis nunc sed blandit libero volutpat. Semper viverra nam libero justo laoreet sit amet. Tellus in hac habitasse platea dictumst. Risus feugiat in ante metus dictum. ',
         image: 'baseball-balls.jpg',
@@ -312,103 +522,7 @@ db.once('open', async () => {
         category: categories[2]._id,
         subCategory: categories[6]._id
     },
-    {
-        name: 'Golf Shirt',
-        description: description,
-        image: 'mens-golf-shirt.jpg',
-        fullPrice: 44.49,
-        new: true,
-        options: [
-            {name: 'XS', price: 44.49},
-            {name: 'S', price: 44.49},
-            {name: 'M', price: 44.49},
-            {name: 'L', price: 44.49},
-            {name: 'XL', price: 44.49},
-        ], 
-        category: categories[0]._id,
-        subCategory: categories[10]._id
-    },
-    {
-        name: 'Jacket' ,
-        description: description,
-        image: 'mens-jacket.png',
-        fullPrice: 49.99,
-        new: true,
-        options: [
-            {name: 'XS', price: 49.99},
-            {name: 'S', price: 49.99},
-            {name: 'M', price: 49.99},
-            {name: 'L', price: 49.99},
-            {name: 'XL', price: 49.99},
-        ],
-        category: categories[0]._id,
-        subCategory: categories[3]._id
-    },
-    {
-        name: 'Joggers',
-        description: description,
-        image: 'mens-joggers.jpeg',
-        salePercent: 30,
-        fullPrice: 22.49,
-        inStock: false,
-        options: [
-            {name: 'XS', price: 22.49},
-            {name: 'S', price: 22.49},
-            {name: 'M', price: 22.49},
-            {name: 'L', price: 22.49},
-            {name: 'XL', price: 22.49},
-        ],
-        category: categories[0]._id,
-        subCategory: categories[3]._id
-    },
-    {
-        name: 'Pants',
-        description: description,
-        image: 'mens-pants.jpg',
-        salePercent: 20,
-        fullPrice: 29.99,
-        options: [
-            {name: 'XS', price: 29.99},
-            {name: 'S', price: 29.99},
-            {name: 'M', price: 29.99},
-            {name: 'L', price: 29.99},
-            {name: 'XL', price: 29.99},
-        ],
-        category: categories[0]._id,
-        subCategory: categories[16]._id
-    },
-    {
-        name: 'Compression Long Sleeve',
-        description: description,
-        image: 'mens-shirt.jpg',
-        salePercent: 10,
-        fullPrice: 24.99,
-        options: [
-            {name: 'XS', price: 24.99},
-            {name: 'S', price: 24.99},
-            {name: 'M', price: 24.99},
-            {name: 'L', price: 24.99},
-            {name: 'XL', price: 24.99},
-        ],
-        category: categories[0]._id,
-        subCategory: categories[7]._id
-    },
-    {
-        name: 'Sleeveless Hoodie',
-        description: description,
-        image: 'mens-sleeveless.jpg',
-        fullPrice: 44.49,
-        new: true,
-        options: [
-            {name: 'XS', price: 44.49},
-            {name: 'S', price: 44.49},
-            {name: 'M', price: 44.49},
-            {name: 'L', price: 44.49},
-            {name: 'XL', price: 44.49},
-        ],
-        category: categories[0]._id,
-        subCategory: categories[4]._id
-    },
+    
     {
         name: 'Pre-Workout',
         description: description,
@@ -424,24 +538,6 @@ db.once('open', async () => {
         fullPrice: 9.99,
         category: categories[20]._id,
         subCategory: categories[16]._id
-    },
-    {
-        name: 'Speed Chute',
-        description: description,
-        image: 'running-chute.jpg',
-        salePercent: 10,
-        fullPrice: 29.99,
-        category: categories[3]._id,
-        subCategory: categories[7]._id
-    },
-    {
-        name: 'Agility Ladder',
-        description: description,
-        image: 'running-ladder.jpg',
-        salePercent: 10,
-        fullPrice: 29.99,
-        category: categories[3]._id,
-        subCategory: categories[6]._id
     },
     {
         name: 'Cleats',
@@ -624,101 +720,6 @@ db.once('open', async () => {
         salePercent: 15,
         fullPrice: 444.49,
         category: categories[4]._id
-    },
-    {
-        name: 'Golf Shirt',
-        description: description,
-        image: 'women-golf-shirt.jpg',
-        fullPrice: 64.99,
-        options: [
-            {name: 'XS', price: 64.99},
-            {name: 'S', price: 64.99},
-            {name: 'M', price: 64.99},
-            {name: 'L', price: 64.99},
-            {name: 'XL', price: 64.99},
-        ],
-        category: categories[1]._id,
-        subCategory: categories[10]._id
-    },
-    {
-        name: 'Jacket',
-        description: description,
-        image: 'women-jacket.jpeg',
-        salePercent: 20,
-        fullPrice: 29.99,
-        inStock: false,
-        options: [
-            {name: 'XS', price: 29.99},
-            {name: 'S', price: 29.99},
-            {name: 'M', price: 29.99},
-            {name: 'L', price: 29.99},
-            {name: 'XL', price: 29.99},
-        ],
-        category: categories[1]._id,
-        subCategory: categories[3]._id
-    },
-    {
-        name: 'Leggings',
-        description: description,
-        image: 'women-leggings.jpg',
-        salePercent: 10,
-        fullPrice: 37.99,
-        options: [
-            {name: 'XS', price: 37.99},
-            {name: 'S', price: 37.99},
-            {name: 'M', price: 37.99},
-            {name: 'L', price: 37.99},
-            {name: 'XL', price: 37.99},
-        ],
-        category: categories[1]._id,
-        subCategory: categories[15]._id
-    },
-    {
-        name: 'Shorts',
-        description: description,
-        image: 'women-shorts.jpg',
-        salePercent: 10,
-        fullPrice: 19.99,
-        options: [
-            {name: 'XS', price: 19.99},
-            {name: 'S', price: 19.99},
-            {name: 'M', price: 19.99},
-            {name: 'L', price: 23.99},
-            {name: 'XL', price: 23.99},
-        ],
-        category: categories[1]._id,
-        subCategory: categories[3]._id
-    },
-    {
-        name: 'Tennis Skort',
-        description: description,
-        image: 'women-skirt-tennis.jpg',
-        fullPrice: 39.99,
-        options: [
-            {name: 'XS', price: 39.99},
-            {name: 'S', price: 39.99},
-            {name: 'M', price: 39.99},
-            {name: 'L', price: 44.99},
-            {name: 'XL', price: 44.99},
-        ],
-        category: categories[1]._id,
-        subCategory: categories[9]._id
-    },
-    {
-        name: 'Sweater',
-        description: description,
-        image: 'women-sweater.png',
-        fullPrice: 39.99,
-        new: true,
-        options: [
-            {name: 'XS', price: 39.99},
-            {name: 'S', price: 39.99},
-            {name: 'M', price: 39.99},
-            {name: 'L', price: 39.99},
-            {name: 'XL', price: 39.99},
-        ],
-        category: categories[1]._id,
-        subCategory: categories[3]._id
     },
     {
         name: 'Yoga Mat Bag',

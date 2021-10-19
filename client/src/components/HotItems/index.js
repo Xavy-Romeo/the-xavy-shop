@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 import useStyles from './styles';
-import Products from '../../pages/Shop/products';
+// import Products from '../../pages/Shop/products';
 
 const HotItems = () => {
     const classes = useStyles();
@@ -30,7 +30,7 @@ const HotItems = () => {
                         </Button>
                     </Grid>
                     <Grid container>
-                        {Products.filter(product => product.new === true).map((product, index) => ( 
+                        {/* {Products.filter(product => product.new === true).map((product, index) => ( 
                             <Grid 
                                 item 
                                 className={classes.newProductContainer_HotItem}
@@ -44,7 +44,7 @@ const HotItems = () => {
                                     alt={product.name}
                                 />
                             </Grid>
-                        ))}
+                        ))} */}
                     </Grid>
                 </Grid>
             </Paper>

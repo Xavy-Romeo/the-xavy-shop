@@ -24,7 +24,7 @@ const CategoryBar = () => {
 
     const { categories, currentCategory } = state; 
 
-    const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+    const { data: categoryData } = useQuery(QUERY_CATEGORIES);
 
 
     // category slider functions

@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -18,7 +17,6 @@ import { QUERY_CATEGORIES, QUERY_GET_CATEGORY } from '../../utils/queries';
 import ProductShop from '../../components/ProductShop';
 import HotItems from '../../components/HotItems';
 import Cart from '../../components/Cart';
-import Products from './products';
 import { UPDATE_CATEGORIES } from '../../utils/actions';
 
 const Shop = () => {
@@ -125,16 +123,9 @@ const Shop = () => {
             </Box>
 
             <HotItems />
-
-            <Grid container>
-                {Products.map((product, index) => (
-                    <Grid item className={classes.productContainer_Shop} key={index} xs={2}>
-                        <ProductShop product={product} />
-                    </Grid>
-                ))}
-            </Grid>
-
+            <ProductShop /> 
             <Cart />
+
         </Container>
     );
 };

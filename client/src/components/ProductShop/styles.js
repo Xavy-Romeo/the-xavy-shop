@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
+    productContainer_ProductShop: {
+        marginBottom: '20px'
+    },
     productLink_ProductShop: {
         color: theme.palette.text.primary
     },
