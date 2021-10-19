@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+// import { Link } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
@@ -22,7 +24,7 @@ const CategoryBar = () => {
 
     const [state, dispatch] = useStoreContext();
 
-    const { categories } = state; 
+    const { categories, currentCategory } = state; 
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
@@ -49,7 +51,15 @@ const CategoryBar = () => {
         }
 
         console.log('categoryData', categoryData);
-    }, [categoryData, dispatch])
+        console.log('currentCategory', currentCategory);
+    }, [categoryData, currentCategory, dispatch]);
+
+    const changeCategory = id => {
+        dispatch({
+            type: UPDATE_CURRENT_CATEGORY, 
+            currentCategory: id
+        });
+    };
 
     return (
         <Box className={classes.categoryContainer_CatBar}>
@@ -64,17 +74,21 @@ const CategoryBar = () => {
                     <Grid 
                         item 
                         className={classes.categoryItemContainer_CatBar}
+                        onClick={() => changeCategory(category._id)}
                         key={index} 
                         xs={1} md={3}
                     >
-                        <Box className={classes.categories_CatBar}>
+                        <Link 
+                            href={`/shop/${category._id}`}
+                            className={classes.categories_CatBar}
+                        >
                             <img src={`/images/categoryImages/${category.image}`} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
                             <Grid container className={classes.categoryContent_CatBar} alignItems='center' justifyContent='center'>
                                 <Typography className={classes.categoryTitle_CatBar} variant='h4'>
                                     {category.name}
                                 </Typography>
                             </Grid>
-                        </Box>
+                        </Link>
                     </Grid> 
                 ))}
             </Grid>
