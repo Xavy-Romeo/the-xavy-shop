@@ -6,6 +6,14 @@ const useStyles = makeStyles((theme) => ({
     },
     productContainer_Shop: {
         marginBottom: '20px'
+    },
+    menuItem_Shop: {
+        color: theme.palette.primary.main,
+    },
+    menuItemLink_Shop: {
+        '&:hover': {
+            color: theme.palette.secondary.main
+        }
     }
 }));
 

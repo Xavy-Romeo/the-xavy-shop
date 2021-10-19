@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-// import { Link } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -14,7 +13,6 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import useStyles from './styles';
-// import Categories from './categories';
 
 const CategoryBar = () => {
     const classes = useStyles();
@@ -49,9 +47,6 @@ const CategoryBar = () => {
                 categories: categoryData.categories
             }); 
         }
-
-        console.log('categoryData', categoryData);
-        console.log('currentCategory', currentCategory);
     }, [categoryData, currentCategory, dispatch]);
 
     const changeCategory = id => {
