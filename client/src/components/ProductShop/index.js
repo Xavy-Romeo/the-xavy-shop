@@ -13,7 +13,7 @@ const ProductShop = ({ product }) => {
 
     return (
         <Link
-            href='/shop/item'
+            href={`/product/${product._id}`}
             className={classes.productLink_ProductShop}
             underline='none'
         >
@@ -36,10 +36,10 @@ const ProductShop = ({ product }) => {
                     <Typography className={classes.productPrice_ProductShop}>
                         $ 99.99
                     </Typography>
-                    <Typography className={classes.productSale_ProductShop}>
+                    <Typography className={classes.productSale_ProductShop} variant='caption'>
                         30% off
                     </Typography>
-                    <Typography className={classes.productStrikePrice_ProductShop}>
+                    <Typography className={classes.productStrikePrice_ProductShop} variant='caption'>
                         $ 130.00
                     </Typography>   
                 </Grid>

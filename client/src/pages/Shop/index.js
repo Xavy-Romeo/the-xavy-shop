@@ -49,7 +49,6 @@ const Shop = () => {
                     type: UPDATE_CATEGORIES,
                     categories: categoryData.categories
                 }); 
-
             }
         };
 
@@ -58,25 +57,45 @@ const Shop = () => {
 
     return (
         <Container className={classes.shopContainer_Shop} maxWidth='xl'>
-            <Grid container direction='column'>
-                <Typography variant='h4'>
-                    Category: {currentCat[0].name}
-                </Typography>
-                <Grid container>
-                    <Box>
-                        <FormControl style={{width: '150px'}}>
-                            <InputLabel
-                                style={{color: 'blue', paddingLeft: '10px'}}
-                                
-                            >
-                                <Typography variant='caption'>
-                                    Select Category
-                                </Typography>
-                            </InputLabel>
-                            <Select 
-                                variant='outlined'
-                            >
-                                {categories.map((category, index) => (
+            <Box className={classes.categoryMenuContainer_Shop}>
+                
+                
+                <Box className={classes.dropdownContainer_Shop}>
+                    <FormControl className={classes.formControlDropdown_Shop}>
+                        <InputLabel className={classes.inputLabelDropdown_Shop}>
+                            <Typography variant='caption'>
+                                Select Category
+                            </Typography>
+                        </InputLabel>
+                        <Select 
+                            MenuProps={{
+                                PaperProps: { 
+                                    style: {background: 'rgb(5,44,133)', width: '250px', paddingLeft: '10px'}
+                                }
+                            }}
+                            variant='outlined'
+                        >
+                            <MenuItem className={classes.menuItem_Shop}>
+                                <Link
+                                    href='/shop'
+                                    className={classes.menuItemLink_Shop}
+                                    underline='none'
+                                >
+                                    All
+                                </Link>
+                            </MenuItem>
+                            <MenuItem className={classes.menuItem_Shop}>
+                                <Link
+                                    href='/shop'
+                                    className={classes.menuItemLink_Shop}
+                                    underline='none'
+                                >
+                                    New
+                                </Link>
+                            </MenuItem>
+                        
+                            {!loading && 
+                                categoryData.categories.map((category, index) => (
                                     <MenuItem
                                         key={index}
                                         className={classes.menuItem_Shop}
@@ -89,21 +108,23 @@ const Shop = () => {
                                             {category.name}
                                         </Link>
                                     </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Box>
-                    
-                    {Products.map((category, index) => (
-                        <Box key={index} style={{border: '1px solid black', margin: '5px', background: 'rgb(5,44,133)', color: 'white'}}>
-                            {category.name}
-                        </Box>
-                    ))}
+                                ))
+                            }
+                        </Select>
+                    </FormControl>
+                </Box>
 
-                    <HotItems />
+                <Box className={classes.categoryTitleContainer_Shop}>
+                    <Typography className={classes.categoryTitle_Shop} variant='h5'>
+                        Category: 
+                    </Typography>
+                    <Typography className={classes.categoryName_Shop} variant='subtitle1'>
+                        {currentCat[0].name}
+                    </Typography>
+                </Box>
+            </Box>
 
-                </Grid>
-            </Grid>
+            <HotItems />
 
             <Grid container>
                 {Products.map((product, index) => (
