@@ -20,7 +20,7 @@ const HotItems = () => {
                     direction='column'
                 >
                     <Grid container>
-                        <Typography className={classes.hotTitle_HotItem} variant='subtitle1'>
+                        <Typography className={classes.hotTitle_HotItem} variant='h5'>
                             Hot new items!!!
                         </Typography>
                         <Button className={classes.exploreNewBtn_HotItem}>

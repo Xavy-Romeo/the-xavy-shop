@@ -26,17 +26,24 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '30px'
     },
     productPrice_ProductShop: {
+        fontFamily: 'serif',
         fontWeight: 'bold', 
         marginRight: '15px'
     },
     productSale_ProductShop: {
+        fontFamily: 'serif',
         color: theme.palette.secondary.main, 
-        marginRight: '15px'
+        marginRight: '15px',
+        display: 'flex',
+        alignItems: 'flex-end'
     },
     productStrikePrice_ProductShop: {
+        fontFamily: 'serif',
         color: theme.palette.text.disabled, 
         textDecoration: 'line-through', 
-        textDecorationStyle: 'double'
+        textDecorationStyle: 'double',
+        display: 'flex',
+        alignItems: 'flex-end'
     }
 }));
 
