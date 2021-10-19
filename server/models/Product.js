@@ -15,15 +15,6 @@ const productSchema = new Schema({
     image: {
         type: String
     },
-    price: {
-        type: Number,
-        required: true,
-        min: 3.00
-    },
-    sale: {
-        type: Boolean,
-        default: false
-    },
     salePercent: {
         type: Number,
         max: 30,
@@ -42,6 +33,10 @@ const productSchema = new Schema({
     inStock: {
         type: Boolean,
         default: true
+    },
+    options: {
+        type: Array,
+        default: []
     },
     category: {
         type: Schema.Types.ObjectId,

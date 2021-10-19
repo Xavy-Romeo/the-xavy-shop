@@ -59,7 +59,6 @@ const Shop = () => {
         <Container className={classes.shopContainer_Shop} maxWidth='xl'>
             <Box className={classes.categoryMenuContainer_Shop}>
                 
-                
                 <Box className={classes.dropdownContainer_Shop}>
                     <FormControl className={classes.formControlDropdown_Shop}>
                         <InputLabel className={classes.inputLabelDropdown_Shop}>
@@ -122,6 +121,7 @@ const Shop = () => {
                         {currentCat[0].name}
                     </Typography>
                 </Box>
+
             </Box>
 
             <HotItems />

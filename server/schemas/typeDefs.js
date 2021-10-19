@@ -12,8 +12,6 @@ const typeDefs = gql`
         name: String
         description: String
         image: String
-        price: Float
-        sale: Boolean
         salePercent: Int
         fullPrice: Float
         new: Boolean
