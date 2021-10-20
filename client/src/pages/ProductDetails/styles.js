@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent:'center'
     },
     aboutItemContainer_ProductDetails: {
-        paddingRight: '15px'
+        paddingLeft: '20px'
     },
     aboutTitle_ProductDetails: {
         fontWeight: 'bold'

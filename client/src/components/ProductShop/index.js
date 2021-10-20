@@ -29,7 +29,7 @@ const ProductShop = () => {
                 products: productData.products
             });
         }
-    }, [loading, productData, dispatch, state, products]);
+    }, [loading, productData, dispatch]);
 
     // calculate total price after sale discount and set to 2 decimals
     const twoDecimals = (fullPrice, salePercent) => {

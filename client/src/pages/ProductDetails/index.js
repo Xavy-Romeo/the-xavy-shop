@@ -21,7 +21,8 @@ const ProductDetails = () => {
     const [state, dispatch] = useStoreContext();
     const { productId } = useParams();
     
-    const [currentProduct, setCurrentProduct] = useState({});
+    const [currentProduct, setCurrentProduct] = useState({image: '', category: {name: ''}});
+    const [similarPic, setSimilarPic] = useState('');
 
     const { loading, data: productData } = useQuery(QUERY_ALL_PRODUCTS);
 
@@ -29,7 +30,7 @@ const ProductDetails = () => {
 
     useEffect(() => {
         if (products.length) {
-            setCurrentProduct(products.find(product => product._id === productId))
+            setCurrentProduct(products.find(product => product._id === productId));
         }
         else if (productData) {
             dispatch({
@@ -37,8 +38,17 @@ const ProductDetails = () => {
                 products: productData.products
             });
         }
-    }, [products, productData, loading, dispatch, productId, currentProduct])
 
+        if (currentProduct.category.name === '') {
+            return;
+        }
+        else {
+            console.log('currentProductImage', currentProduct.image)
+            let similarProduct = products.filter(product=> product.category.name === currentProduct.category.name);
+            setSimilarPic(similarProduct[1].image);
+        }
+       
+    }, [productData, loading, dispatch, productId, currentProduct, products]);
 
     if (loading) {
         return(
@@ -57,21 +67,21 @@ const ProductDetails = () => {
                     
                     <Grid container>
                         <Grid item xs={9}>
-                            <Paper>
+                            <Paper style={{padding: '15px 20px'}}>
                             <Grid container>
                                 <Grid 
                                     item  
                                     className={classes.productImage_ProductDetails} 
-                                    xs={4}
+                                    xs={3}
                                 >
                                     <img 
                                         src={`/images/productImages/${currentProduct.image}`} 
-                                        height='300px' 
-                                        width='200px' 
+                                        
+                                        width='100%' 
                                         alt={currentProduct.name} 
                                     />
                                 </Grid>
-                                <Grid item className={classes.aboutItemContainer_ProductDetails} xs={8} >
+                                <Grid item className={classes.aboutItemContainer_ProductDetails} xs={9} >
                                     <Typography variant='subtitle2' className={classes.aboutTitle_ProductDetails}>
                                         About this item
                                     </Typography>
@@ -114,7 +124,7 @@ const ProductDetails = () => {
                             </Grid>
                         </Grid>          
                     </Grid>
-                    <Grid container direction='column' style={{borderTop: '1px solid rgba(0,0,0,.05)', margin: '20px 0'}}>
+                    <Grid container direction='column' style={{borderTop: '1px solid rgba(0,0,0,.05)', margin: '50px 0 20px 0'}}>
                         <Box>
                             <Typography className={classes.frequentTitle_ProductDetails} variant='subtitle2'>
                                 Frequently bought together
@@ -122,11 +132,13 @@ const ProductDetails = () => {
                         </Box>
                         <Box>
                             <Grid container alignItems='center'>
-                                <img src={`/images/productImages/${currentProduct.image}`} height='200px' width='200px' alt={currentProduct.name} />
+                                <img src={`/images/productImages/${currentProduct.image}`} width='200px' alt={currentProduct.name} />
                                 <Typography variant='h3' style={{margin: '10px'}}>
                                     +
                                 </Typography>
-                                <img src='' height='200px' width='200px' />
+                                <img src={
+                                    `/images/productImages/${similarPic}`
+                                    }  width='200px'/>
                                 <Box style={{margin: '10px'}}>
                                     <Grid container direction='column'>
                                         <Grid container>
