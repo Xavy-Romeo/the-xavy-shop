@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent:'center'
     },
+    aboutItemContainer_ProductDetails: {
+        paddingRight: '15px'
+    },
     aboutTitle_ProductDetails: {
         fontWeight: 'bold'
     },

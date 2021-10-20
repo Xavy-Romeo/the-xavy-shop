@@ -29,7 +29,7 @@ const ProductShop = () => {
                 products: productData.products
             });
         }
-    }, [loading, productData]);
+    }, [loading, productData, dispatch, state, products]);
 
     // calculate total price after sale discount and set to 2 decimals
     const twoDecimals = (fullPrice, salePercent) => {
@@ -49,7 +49,7 @@ const ProductShop = () => {
 
     return (
         <Grid container>
-            {productData.products.map((product, index) => (
+            {products.map((product, index) => (
                 <Grid item className={classes.productContainer_ProductShop} xs={2} key={index}>
                     <Link
                         href={`/product/${product._id}`}
@@ -75,12 +75,17 @@ const ProductShop = () => {
                                 <Typography className={classes.productPrice_ProductShop}>
                                     $ {twoDecimals(product.fullPrice, product.salePercent)}
                                 </Typography>
-                                <Typography className={classes.productSale_ProductShop} variant='caption'>
-                                    {product.salePercent}% off
-                                </Typography>
-                                <Typography className={classes.productStrikePrice_ProductShop} variant='caption'>
-                                    $ {product.fullPrice}
-                                </Typography>   
+
+                                {product.salePercent !== 0 &&
+                                    <Box style={{display: 'flex'}}>
+                                        <Typography className={classes.productSale_ProductShop} variant='caption'>
+                                            {product.salePercent}% off
+                                        </Typography>
+                                        <Typography className={classes.productStrikePrice_ProductShop} variant='caption'>
+                                            $ {product.fullPrice}
+                                        </Typography>
+                                    </Box>
+                                }   
                             </Grid>
                             <Box>
                                 <Typography >
