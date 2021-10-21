@@ -29,8 +29,6 @@ const Shop = () => {
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
-    const { categories } = state;
-
     useEffect(() => {
         const getCategory = async () => {
             if (categoryData) {
@@ -88,15 +86,6 @@ const Shop = () => {
                                     underline='none'
                                 >
                                     All
-                                </Link>
-                            </MenuItem>
-                            <MenuItem className={classes.menuItem_Shop}>
-                                <Link
-                                    href='/shop'
-                                    className={classes.menuItemLink_Shop}
-                                    underline='none'
-                                >
-                                    New
                                 </Link>
                             </MenuItem>
                         

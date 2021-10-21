@@ -1,53 +1,90 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
 
+import { useStoreContext } from '../../utils/GlobalState';
+import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
+import { UPDATE_PRODUCTS } from '../../utils/actions';
 import useStyles from './styles';
-// import Products from '../../pages/Shop/products';
 
 const HotItems = () => {
     const classes = useStyles();
     
+    const [state, dispatch] = useStoreContext();
+
+    const { loading, data: productData } = useQuery(QUERY_ALL_PRODUCTS);
+
+    const { products, currentCategory } = state;
+
+    useEffect(() => {
+        if(productData) {
+            dispatch({
+                type: UPDATE_PRODUCTS,
+                products: productData.products
+            });
+        }
+
+    }, [productData, dispatch, loading, currentCategory]);
+
+    const filterProductsByCategory = () => {
+        if (!currentCategory || currentCategory === '') {
+            return products;
+        }
+
+        return products.filter(product => product.category._id === currentCategory);  
+    };
+
     return (
         <Grid item xs={12}>
+            {currentCategory === '' && 
             <Paper>
                 <Grid 
                     container 
                     className={classes.newItemsContainer_HotItem}
                     direction='column'
                 >
-                    <Grid container>
+                    <Grid container className={classes.hotTitleContainer_HotItem}>
                         <Typography className={classes.hotTitle_HotItem} variant='h5'>
                             Hot new items!!!
                         </Typography>
-                        <Button className={classes.exploreNewBtn_HotItem}>
-                            <Typography variant='body1' >
-                                Explore New
-                            </Typography>
-                        </Button>
                     </Grid>
-                    <Grid container>
-                        {/* {Products.filter(product => product.new === true).map((product, index) => ( 
-                            <Grid 
-                                item 
-                                className={classes.newProductContainer_HotItem}
-                                key={index}
-                            >
-                                <img 
-                                    src={product.image} 
-                                    className={classes.newImage_HotItem}
-                                    height='100%' 
-                                    width='100%'
-                                    alt={product.name}
-                                />
+                    <Box>
+                        {products.length &&
+                            <Grid container className={classes.newProductsGridContainer_HotItem}>
+                                {filterProductsByCategory().filter(product => product.new === true).slice(0,6).map((product, index) => ( 
+                                    <Grid 
+                                        item 
+                                        className={classes.newProductContainer_HotItem}
+                                        xs={2}
+                                        key={index}
+                                    >
+                                        <Link
+                                            href={`/product/${product._id}`}
+                                            className={classes.productLink_HotItem}
+                                            underline='none'
+                                        >
+                                            <img 
+                                                src={`/images/productImages/${product.image}`} 
+                                                className={classes.newImage_HotItem}
+                                                height='100%' 
+                                                width='100%'
+                                                alt={product.name}
+                                            />
+                                        </Link>
+                                    </Grid>
+                                ))}
                             </Grid>
-                        ))} */}
-                    </Grid>
+                        }
+                    </Box>
                 </Grid>
             </Paper>
+            }
         </Grid>
     );
 };

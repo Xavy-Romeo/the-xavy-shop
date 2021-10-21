@@ -42,7 +42,6 @@ db.once('open', async () => {
         description: description,
         image: 'mens-golf-shirt.jpg',
         fullPrice: 44.49,
-        new: true,
         options: [
             {name: 'XS', price: 44.49},
             {name: 'S', price: 44.49},
