@@ -17,7 +17,7 @@ import { QUERY_CATEGORIES, QUERY_GET_CATEGORY } from '../../utils/queries';
 import ProductShop from '../../components/ProductShop';
 import HotItems from '../../components/HotItems';
 import Cart from '../../components/Cart';
-import { UPDATE_CATEGORIES } from '../../utils/actions';
+import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 
 const Shop = () => {
     const classes = useStyles();
@@ -47,10 +47,19 @@ const Shop = () => {
                     type: UPDATE_CATEGORIES,
                     categories: categoryData.categories
                 }); 
+
             }
         };
 
         getCategory();
+        
+        if (categoryId) {
+            dispatch({
+                type: UPDATE_CURRENT_CATEGORY,
+                currentCategory: categoryId
+            });
+        }
+
     }, [categoryData, categoryId, dispatch]);
 
     return (

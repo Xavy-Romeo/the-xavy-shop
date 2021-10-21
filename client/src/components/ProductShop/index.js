@@ -18,18 +18,27 @@ const ProductShop = () => {
 
     const [state, dispatch] = useStoreContext();
 
-    const { products } = state;
+    const { products, currentCategory } = state;
 
     const { loading, data: productData } = useQuery(QUERY_ALL_PRODUCTS);
 
     useEffect(() => {
-        if(productData) {
-            dispatch({
-                type: UPDATE_PRODUCTS,
-                products: productData.products
-            });
-        }
+            if(productData) {
+                dispatch({
+                    type: UPDATE_PRODUCTS,
+                    products: productData.products
+                });
+            }
+
     }, [loading, productData, dispatch]);
+
+    const filterProductsByCategory = () => {
+        if (!currentCategory || currentCategory === '') {
+            return products;
+        }
+
+        return products.filter(product => product.category._id === currentCategory); 
+    };
 
     // calculate total price after sale discount and set to 2 decimals
     const calcTotal = (fullPrice, salePercent) => {
@@ -48,55 +57,59 @@ const ProductShop = () => {
     }
 
     return (
-        <Grid container>
-            {products.map((product, index) => (
-                <Grid item className={classes.productContainer_ProductShop} xs={2} key={index}>
-                    <Link
-                        href={`/product/${product._id}`}
-                        className={classes.productLink_ProductShop}
-                        underline='none'  
-                    >
-                        <Grid container direction='column'>
-                            <Box className={classes.productImageContainer_ProductShop}>
-                                <img 
-                                    src={`/images/productImages/${product.image}`} 
-                                    className={classes.productImage_ProductShop} 
-                                    alt={product.name} 
-                                />
-                                <Box className={classes.addBtnContainer_ProductShop}>
-                                    <Button className={classes.addBtn_ProductShop}>
-                                        <Typography>
-                                            + Add to Cart
+        <Box>
+            {products.length && 
+                <Grid container>
+                    {filterProductsByCategory().map((product, index) => (
+                        <Grid item className={classes.productContainer_ProductShop} xs={2} key={index}>
+                            <Link
+                                href={`/product/${product._id}`}
+                                className={classes.productLink_ProductShop}
+                                underline='none'  
+                            >
+                                <Grid container direction='column'>
+                                    <Box className={classes.productImageContainer_ProductShop}>
+                                        <img 
+                                            src={`/images/productImages/${product.image}`} 
+                                            className={classes.productImage_ProductShop} 
+                                            alt={product.name} 
+                                        />
+                                        <Box className={classes.addBtnContainer_ProductShop}>
+                                            <Button className={classes.addBtn_ProductShop}>
+                                                <Typography>
+                                                    + Add to Cart
+                                                </Typography>
+                                            </Button>
+                                        </Box>
+                                    </Box>
+                                    <Grid container className={classes.productPriceContainer_ProductShop}>
+                                        <Typography className={classes.productPrice_ProductShop}>
+                                            $ {calcTotal(product.fullPrice, product.salePercent)}
                                         </Typography>
-                                    </Button>
-                                </Box>
-                            </Box>
-                            <Grid container className={classes.productPriceContainer_ProductShop}>
-                                <Typography className={classes.productPrice_ProductShop}>
-                                    $ {calcTotal(product.fullPrice, product.salePercent)}
-                                </Typography>
 
-                                {product.salePercent !== 0 &&
-                                    <Box style={{display: 'flex'}}>
-                                        <Typography className={classes.productSale_ProductShop} variant='caption'>
-                                            {product.salePercent}% off
-                                        </Typography>
-                                        <Typography className={classes.productStrikePrice_ProductShop} variant='caption'>
-                                            $ {product.fullPrice}
+                                        {product.salePercent !== 0 &&
+                                            <Box style={{display: 'flex'}}>
+                                                <Typography className={classes.productSale_ProductShop} variant='caption'>
+                                                    {product.salePercent}% off
+                                                </Typography>
+                                                <Typography className={classes.productStrikePrice_ProductShop} variant='caption'>
+                                                    $ {product.fullPrice}
+                                                </Typography>
+                                            </Box>
+                                        }   
+                                    </Grid>
+                                    <Box>
+                                        <Typography >
+                                            {product.name}
                                         </Typography>
                                     </Box>
-                                }   
-                            </Grid>
-                            <Box>
-                                <Typography >
-                                    {product.name}
-                                </Typography>
-                            </Box>
+                                </Grid>
+                            </Link>
                         </Grid>
-                    </Link>
+                    ))}
                 </Grid>
-            ))}
-        </Grid>
+            }
+        </Box>
     );
 };
 

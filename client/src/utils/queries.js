@@ -32,6 +32,7 @@ export const QUERY_ALL_PRODUCTS = gql`
             new
             inStock
             category {
+                _id
                 name
             }
             subCategory {
