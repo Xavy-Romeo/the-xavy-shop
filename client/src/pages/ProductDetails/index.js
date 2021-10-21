@@ -69,7 +69,7 @@ const ProductDetails = () => {
 
     if (loading) {
         return(
-            <Box style={{marginTop: '200px'}}>
+            <Box className={classes.loadingContainer_ProductDetails}>
                 <Typography variant='h1'>
                     LOADING...
                 </Typography>
@@ -84,29 +84,28 @@ const ProductDetails = () => {
                     
                     <Grid container>
                         <Grid item xs={9}>
-                            <Paper style={{padding: '15px 20px'}}>
-                            <Grid container>
-                                <Grid 
-                                    item  
-                                    className={classes.productImage_ProductDetails} 
-                                    xs={3}
-                                >
-                                    <img 
-                                        src={`/images/productImages/${currentProduct.image}`} 
-                                        
-                                        width='100%' 
-                                        alt={currentProduct.name} 
-                                    />
+                            <Paper className={classes.aboutPaper_ProductDetails}>
+                                <Grid container>
+                                    <Grid 
+                                        item  
+                                        className={classes.productImage_ProductDetails} 
+                                        xs={3}
+                                    >
+                                        <img 
+                                            src={`/images/productImages/${currentProduct.image}`} 
+                                            width='100%' 
+                                            alt={currentProduct.name} 
+                                        />
+                                    </Grid>
+                                    <Grid item className={classes.aboutItemContainer_ProductDetails} xs={9} >
+                                        <Typography variant='subtitle2' className={classes.aboutTitle_ProductDetails}>
+                                            About this item
+                                        </Typography>
+                                        <Typography variant='body2'>
+                                            {currentProduct.description}
+                                        </Typography>
+                                    </Grid>
                                 </Grid>
-                                <Grid item className={classes.aboutItemContainer_ProductDetails} xs={9} >
-                                    <Typography variant='subtitle2' className={classes.aboutTitle_ProductDetails}>
-                                        About this item
-                                    </Typography>
-                                    <Typography variant='body2'>
-                                        {currentProduct.description}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
                             </Paper>
                         </Grid>
                         <Grid item className={classes.addContainer_ProductDetails} xs={3}>
@@ -115,37 +114,29 @@ const ProductDetails = () => {
                                     <Typography variant='h5'>
                                         {currentProduct.name}
                                     </Typography>
-                                    <Grid container style={{marginTop: '20px'}}>
-                                        <Typography style={{fontWeight: 'bold', marginRight: '15px', fontFamily: 'serif'}}>
+                                    <Grid container className={classes.pricesContainer_ProductDetails}>
+                                        <Typography className={classes.price_ProductDetails}>
                                             $ {calcTotal(currentProduct.fullPrice, currentProduct.salePercent)}
                                         </Typography>
 
                                         {currentProduct.salePercent !== 0 &&
-                                            <Box style={{display: 'flex'}}>
-                                                <Typography style={{color: 'red', marginRight: '15px', fontFamily: 'serif'}}>
+                                            <Box className={classes.discountContainer_ProductDetails}>
+                                                <Typography className={classes.salePercent_ProductDetails}>
                                                     {currentProduct.salePercent}% off
                                                 </Typography>
-                                                <Typography style={{color: 'grey', textDecoration: 'line-through', textDecorationStyle: 'double', fontFamily: 'serif'}}>
+                                                <Typography className={classes.fullPrice_ProductDetails}>
                                                     $ {currentProduct.fullPrice}
                                                 </Typography>
                                             </Box>
                                         }   
                                     </Grid>
                                 </Box>
-                                <Box style={{display: 'flex'}}>
+                                <Box className={classes.quantityContainer_ProductDetails}>
                                     <Typography>
                                         Qty: 
                                     </Typography>
                                     <Input
-                                        style={{
-                                            paddingLeft: '5px',
-                                            marginLeft: '15px', 
-                                            border: '1px solid black', 
-                                            borderRadius: '4px',
-                                            fontFamily: 'serif',
-                                            width: '45px'
-                                            
-                                        }}
+                                        className={classes.quantityInput_ProductDetails}
                                         disableUnderline
                                         type='number'
                                         value='1'
@@ -160,31 +151,37 @@ const ProductDetails = () => {
                             </Grid>
                         </Grid>          
                     </Grid>
-                    <Grid container direction='column' style={{borderTop: '1px solid rgba(0,0,0,.05)', margin: '50px 0 20px 0'}}>
-                        <Box style={{margin: '5px 0 15px 0'}}>
-                            <Typography className={classes.frequentTitle_ProductDetails} variant='subtitle2'>
+                    <Grid container className={classes.boughtTogetherContainer_ProductDetails} direction='column'>
+                        <Box className={classes.boughtTogetherTitleContainer_ProductDetails}>
+                            <Typography className={classes.boughtTogetherTitle_ProductDetails} variant='subtitle2'>
                                 Frequently bought together
                             </Typography>
                         </Box>
                         <Box>
                             <Grid container alignItems='center'>
                                 <img src={`/images/productImages/${currentProduct.image}`} width='200px' alt={currentProduct.name} />
-                                <Typography variant='h3' style={{margin: '10px'}}>
+                                <Typography variant='h3' className={classes.boughtTogetherPlusSign_ProductDetails}>
                                     +
                                 </Typography>
                                 <Link 
-                                    style={{width: '200px'}} 
                                     href={`/product/${similarProduct._id}`}
+                                    className={classes.similarLink_ProductDetails}
+                                    underline='none'
                                 >
-                                    <img src={`/images/productImages/${similarProduct.image}`}  width='100%' height='100%' alt={similarProduct.name}/>
+                                    <img 
+                                        src={`/images/productImages/${similarProduct.image}`}  
+                                        width='100%' 
+                                        height='100%' 
+                                        alt={similarProduct.name}
+                                    />
                                 </Link>
-                                <Box style={{margin: '10px'}}>
+                                <Box className={classes.totalPriceContainer_ProductDetails}>
                                     <Grid container direction='column'>
                                         <Grid container>
                                             <Typography>
                                                 Total Price: 
                                             </Typography>
-                                            <Typography style={{margin: '0 10px', fontFamily: 'serif'}}>
+                                            <Typography className={classes.totalPrice_ProductDetails}>
                                                 $ {add(similarProduct.fullPrice, currentProduct.fullPrice)}
                                             </Typography>
                                         </Grid>
