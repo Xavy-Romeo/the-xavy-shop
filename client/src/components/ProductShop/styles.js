@@ -1,6 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
+    productContainer_ProductShop: {
+        marginBottom: '20px',
+        padding: '5px',
+        '&:hover': {
+            border: `2px solid ${theme.palette.primary.main}`,
+            boxShadow: '5px 5px 5px black',
+            borderRadius: '4px'
+        }
+    },
     productLink_ProductShop: {
         color: theme.palette.text.primary
     },

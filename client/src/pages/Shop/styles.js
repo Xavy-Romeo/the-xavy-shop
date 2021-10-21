@@ -40,9 +40,6 @@ const useStyles = makeStyles((theme) => ({
             color: theme.palette.secondary.main,
         }
     },
-    productContainer_Shop: {
-        marginBottom: '20px'
-    },
     PaperProps: {
         background: 'yellow',
         '&:hover': {

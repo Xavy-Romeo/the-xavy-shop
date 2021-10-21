@@ -23,7 +23,7 @@ const CartItem = ({ item }) => {
         setPrice(total);
         
         
-    }, [item.fullPrice, item.salePercent])
+    }, [item.fullPrice, item.salePercent]);
 
     return (
         <Grid container className={classes.productContainer_ProductCart}>

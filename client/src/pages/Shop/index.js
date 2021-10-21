@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -18,8 +17,7 @@ import { QUERY_CATEGORIES, QUERY_GET_CATEGORY } from '../../utils/queries';
 import ProductShop from '../../components/ProductShop';
 import HotItems from '../../components/HotItems';
 import Cart from '../../components/Cart';
-import Products from './products';
-import { UPDATE_CATEGORIES } from '../../utils/actions';
+import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 
 const Shop = () => {
     const classes = useStyles();
@@ -30,8 +28,6 @@ const Shop = () => {
     const [currentCat, setCurrentCat] = useState([{name: 'All'}]);
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
-
-    const { categories } = state;
 
     useEffect(() => {
         const getCategory = async () => {
@@ -49,16 +45,24 @@ const Shop = () => {
                     type: UPDATE_CATEGORIES,
                     categories: categoryData.categories
                 }); 
+
             }
         };
 
         getCategory();
+        
+        if (categoryId) {
+            dispatch({
+                type: UPDATE_CURRENT_CATEGORY,
+                currentCategory: categoryId
+            });
+        }
+
     }, [categoryData, categoryId, dispatch]);
 
     return (
         <Container className={classes.shopContainer_Shop} maxWidth='xl'>
             <Box className={classes.categoryMenuContainer_Shop}>
-                
                 
                 <Box className={classes.dropdownContainer_Shop}>
                     <FormControl className={classes.formControlDropdown_Shop}>
@@ -82,15 +86,6 @@ const Shop = () => {
                                     underline='none'
                                 >
                                     All
-                                </Link>
-                            </MenuItem>
-                            <MenuItem className={classes.menuItem_Shop}>
-                                <Link
-                                    href='/shop'
-                                    className={classes.menuItemLink_Shop}
-                                    underline='none'
-                                >
-                                    New
                                 </Link>
                             </MenuItem>
                         
@@ -122,19 +117,13 @@ const Shop = () => {
                         {currentCat[0].name}
                     </Typography>
                 </Box>
+
             </Box>
 
             <HotItems />
-
-            <Grid container>
-                {Products.map((product, index) => (
-                    <Grid item className={classes.productContainer_Shop} key={index} xs={2}>
-                        <ProductShop product={product} />
-                    </Grid>
-                ))}
-            </Grid>
-
+            <ProductShop /> 
             <Cart />
+
         </Container>
     );
 };
