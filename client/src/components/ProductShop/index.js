@@ -32,7 +32,7 @@ const ProductShop = () => {
     }, [loading, productData, dispatch]);
 
     // calculate total price after sale discount and set to 2 decimals
-    const twoDecimals = (fullPrice, salePercent) => {
+    const calcTotal = (fullPrice, salePercent) => {
         let total = (fullPrice*(1 - (salePercent/100))).toFixed(2);
         return total;
     };
@@ -73,7 +73,7 @@ const ProductShop = () => {
                             </Box>
                             <Grid container className={classes.productPriceContainer_ProductShop}>
                                 <Typography className={classes.productPrice_ProductShop}>
-                                    $ {twoDecimals(product.fullPrice, product.salePercent)}
+                                    $ {calcTotal(product.fullPrice, product.salePercent)}
                                 </Typography>
 
                                 {product.salePercent !== 0 &&

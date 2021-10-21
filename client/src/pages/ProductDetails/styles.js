@@ -20,8 +20,14 @@ const useStyles = makeStyles((theme) => ({
         border: '1px solid black',
         borderRadius: '5px',
         boxShadow: '0px 3px 5px -1px rgba(0,0,0,.2), 0px 6px 10px 6px rgba(0,0,0,.14), 0px 1px 18px 0px rgba(0,0,0,.12)',
+        position: 'relative'
     },
     addBtn_ProductDetails: {
+        // position: 'absolute',
+        // bottom: 10,
+        // left: '5%',
+        // width: '90%',
+        marginTop: '15px',
         '&:hover': {
             background: theme.palette.primary.light,
         }

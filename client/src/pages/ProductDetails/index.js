@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
+import Link from '@material-ui/core/Link';
+import Input from '@material-ui/core/Input';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS, QUERY_GET_PRODUCT } from '../../utils/queries';
@@ -22,7 +24,7 @@ const ProductDetails = () => {
     const { productId } = useParams();
     
     const [currentProduct, setCurrentProduct] = useState({image: '', category: {name: ''}});
-    const [similarPic, setSimilarPic] = useState('');
+    const [similarProduct, setSimilarProduct] = useState('');
 
     const { loading, data: productData } = useQuery(QUERY_ALL_PRODUCTS);
 
@@ -43,12 +45,27 @@ const ProductDetails = () => {
             return;
         }
         else {
-            console.log('currentProductImage', currentProduct.image)
-            let similarProduct = products.filter(product=> product.category.name === currentProduct.category.name);
-            setSimilarPic(similarProduct[1].image);
+            let similarPdt = products.filter(product=> product.category.name === currentProduct.category.name);
+            
+            if (similarPdt[0]._id === currentProduct._id) {
+                setSimilarProduct(similarPdt[1]);
+            }
+            else {
+                setSimilarProduct(similarPdt[0]);
+            }
         }
        
     }, [productData, loading, dispatch, productId, currentProduct, products]);
+
+    const add = (x, y) => {
+        return (x + y).toFixed(2);
+    };
+
+    // calculate total price after sale discount and set to 2 decimals
+    const calcTotal = (fullPrice, salePercent) => {
+        let total = (fullPrice*(1 - (salePercent/100))).toFixed(2);
+        return total;
+    };
 
     if (loading) {
         return(
@@ -99,22 +116,41 @@ const ProductDetails = () => {
                                         {currentProduct.name}
                                     </Typography>
                                     <Grid container style={{marginTop: '20px'}}>
-                                        <Typography style={{fontWeight: 'bold', marginRight: '15px'}}>
-                                            $ {currentProduct.fullPrice}
+                                        <Typography style={{fontWeight: 'bold', marginRight: '15px', fontFamily: 'serif'}}>
+                                            $ {calcTotal(currentProduct.fullPrice, currentProduct.salePercent)}
                                         </Typography>
-                                        <Typography style={{color: 'red', marginRight: '15px'}}>
-                                            {currentProduct.salePercent}% off
-                                        </Typography>
-                                        <Typography style={{color: 'grey', textDecoration: 'line-through', textDecorationStyle: 'double'}}>
-                                            $ {currentProduct.fullPrice}
-                                        </Typography>   
+
+                                        {currentProduct.salePercent !== 0 &&
+                                            <Box style={{display: 'flex'}}>
+                                                <Typography style={{color: 'red', marginRight: '15px', fontFamily: 'serif'}}>
+                                                    {currentProduct.salePercent}% off
+                                                </Typography>
+                                                <Typography style={{color: 'grey', textDecoration: 'line-through', textDecorationStyle: 'double', fontFamily: 'serif'}}>
+                                                    $ {currentProduct.fullPrice}
+                                                </Typography>
+                                            </Box>
+                                        }   
                                     </Grid>
                                 </Box>
-                                <Box>
-                                    Size dropdown
-                                </Box>
-                                <Box>
-                                    Quantity dropdown
+                                <Box style={{display: 'flex'}}>
+                                    <Typography>
+                                        Qty: 
+                                    </Typography>
+                                    <Input
+                                        style={{
+                                            paddingLeft: '5px',
+                                            marginLeft: '15px', 
+                                            border: '1px solid black', 
+                                            borderRadius: '4px',
+                                            fontFamily: 'serif',
+                                            width: '45px'
+                                            
+                                        }}
+                                        disableUnderline
+                                        type='number'
+                                        value='1'
+                                    >
+                                    </Input>
                                 </Box>
                                 <Button className={classes.addBtn_ProductDetails}>
                                     <Typography>
@@ -125,7 +161,7 @@ const ProductDetails = () => {
                         </Grid>          
                     </Grid>
                     <Grid container direction='column' style={{borderTop: '1px solid rgba(0,0,0,.05)', margin: '50px 0 20px 0'}}>
-                        <Box>
+                        <Box style={{margin: '5px 0 15px 0'}}>
                             <Typography className={classes.frequentTitle_ProductDetails} variant='subtitle2'>
                                 Frequently bought together
                             </Typography>
@@ -136,17 +172,20 @@ const ProductDetails = () => {
                                 <Typography variant='h3' style={{margin: '10px'}}>
                                     +
                                 </Typography>
-                                <img src={
-                                    `/images/productImages/${similarPic}`
-                                    }  width='200px'/>
+                                <Link 
+                                    style={{width: '200px'}} 
+                                    href={`/product/${similarProduct._id}`}
+                                >
+                                    <img src={`/images/productImages/${similarProduct.image}`}  width='100%' height='100%' alt={similarProduct.name}/>
+                                </Link>
                                 <Box style={{margin: '10px'}}>
                                     <Grid container direction='column'>
                                         <Grid container>
                                             <Typography>
                                                 Total Price: 
                                             </Typography>
-                                            <Typography style={{margin: '0 10px'}}>
-                                                $ X.XX
+                                            <Typography style={{margin: '0 10px', fontFamily: 'serif'}}>
+                                                $ {add(similarProduct.fullPrice, currentProduct.fullPrice)}
                                             </Typography>
                                         </Grid>
                                         <Button className={classes.buyTogetherBtn_ProductDetails}>
