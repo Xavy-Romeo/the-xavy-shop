@@ -22,7 +22,7 @@ import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions'
 const Shop = () => {
     const classes = useStyles();
 
-    const [state, dispatch] = useStoreContext();
+    const [, dispatch] = useStoreContext();
     const { categoryId } = useParams();
 
     const [currentCat, setCurrentCat] = useState([{name: 'All'}]);

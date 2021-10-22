@@ -13,8 +13,9 @@ import Input from '@material-ui/core/Input';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS, QUERY_GET_PRODUCT } from '../../utils/queries';
-import { UPDATE_PRODUCTS } from '../../utils/actions';
+import { ADD_TO_CART, UPDATE_PRODUCTS, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import useStyles from './styles';
+import Cart from '../../components/Cart';
 
 
 const ProductDetails = () => {
@@ -28,7 +29,7 @@ const ProductDetails = () => {
 
     const { loading, data: productData } = useQuery(QUERY_ALL_PRODUCTS);
 
-    const { products } = state;
+    const { products, cart } = state;
 
     useEffect(() => {
         if (products.length) {
@@ -56,6 +57,25 @@ const ProductDetails = () => {
         }
        
     }, [productData, loading, dispatch, productId, currentProduct, products]);
+
+    const addToCart = () => {
+        // check to see if item is already in cart
+        const itemInCart = cart.find((cartItem) => cartItem._id === currentProduct._id);
+
+        if (itemInCart) {
+            dispatch({
+                type: UPDATE_CART_QUANTITY,
+                _id: currentProduct._id,
+                purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+            });
+        }
+        else {
+            dispatch({
+                type: ADD_TO_CART,
+                product: { ...currentProduct, purchaseQuantity: 1}
+            });
+        }
+    };
 
     const add = (x, y) => {
         return (x + y).toFixed(2);
@@ -143,7 +163,10 @@ const ProductDetails = () => {
                                     >
                                     </Input>
                                 </Box>
-                                <Button className={classes.addBtn_ProductDetails}>
+                                <Button 
+                                    className={classes.addBtn_ProductDetails}
+                                    onClick={addToCart}
+                                >
                                     <Typography>
                                         Add to Cart
                                     </Typography>
@@ -195,6 +218,8 @@ const ProductDetails = () => {
                             </Grid>
                         </Box>
                     </Grid>
+                    
+                    <Cart />
                     
                 </Container>
             }

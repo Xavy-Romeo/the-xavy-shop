@@ -5,10 +5,14 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 
+import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
+import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 
 const CartItem = ({ item }) => {
     const classes = useStyles();
+
+    const [, dispatch] = useStoreContext();
     
     const [price, setPrice] = useState('');
     const [fullPrice, setFullPrice] = useState('');
@@ -21,21 +25,45 @@ const CartItem = ({ item }) => {
         // calculate total price after sale discount and set to 2 decimals
         let total = (item.fullPrice*(1 - (item.salePercent/100))).toFixed(2);
         setPrice(total);
-        
-        
+
     }, [item.fullPrice, item.salePercent]);
+
+    const removeFromCart = () => {
+        dispatch({
+            type: REMOVE_FROM_CART,
+            _id: item._id
+        });
+    };
+
+    const updateQuantity = e => {
+        const value = e.target.value;
+
+        if (value === '0') {
+            dispatch({
+                type: REMOVE_FROM_CART,
+                _id: item._id
+            });
+        }
+        else {
+            dispatch({
+                type: UPDATE_CART_QUANTITY,
+                _id: item._id,
+                purchaseQuantity: parseInt(value)
+            });
+        }
+    };
 
     return (
         <Grid container className={classes.productContainer_ProductCart}>
-            <Grid item className={classes.imgContainer_ProductCart} xs={3}>
+            <Grid item className={classes.imgContainer_ProductCart} xs={2}>
                 <img
-                    src={`/images/${item.image}`}
+                    src={`/images/productImages/${item.image}`}
                     className={classes.cartItemImage_ProductCart}
                     alt={item.name}
                 />
             </Grid>
 
-            <Grid item xs={7}>
+            <Grid item xs={8}>
                 <Grid 
                     container 
                     className={classes.middleContainer_ProductCart}
@@ -56,9 +84,11 @@ const CartItem = ({ item }) => {
                             disableUnderline
                             type='number'
                             value={item.purchaseQuantity}
+                            onChange={updateQuantity}
                         />
                         <Typography 
                             className={classes.trash_ProductCart}
+                            onClick={removeFromCart}
                             component='span'
                             role='img'
                             aria-label='trash'

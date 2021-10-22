@@ -50,13 +50,18 @@ const Header = () => {
                                 className={classes.xrLogo_Header}
                                 alt='site logo'
                             />
-                            <Typography 
-                                className={classes.title_Header}
-                                variant='h1'
-                                color='secondary' 
+                            <Link
+                                href='/'
+                                underline='none'
                             >
-                                The Xavy Shop
-                            </Typography>
+                                <Typography 
+                                    className={classes.title_Header}
+                                    variant='h1'
+                                    color='secondary' 
+                                >
+                                    The Xavy Shop
+                                </Typography>
+                            </Link>
                         </Grid>
                     </Box>
                     <Grid item xs={5}>

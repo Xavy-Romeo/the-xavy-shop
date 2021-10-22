@@ -29,7 +29,11 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold', 
         textShadow: '1px 1px 3px rgba(100,100,100,.87)',
         padding: '10px 0 0 20px', 
-        opacity: '.87'
+        opacity: '.87',
+        '&:hover': {
+            textShadow: '5px 5px 10px rgba(150,150,150,.87)',
+            transform: 'scale(1.03)'
+        }
     },
     navContainer_Header: {
         height: '100%'

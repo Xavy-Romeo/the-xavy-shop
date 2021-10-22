@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
     productContainer_ProductShop: {
+        position: 'relative',
         marginBottom: '20px',
         padding: '5px',
         '&:hover': {
@@ -13,9 +14,6 @@ const useStyles = makeStyles((theme) => ({
     productLink_ProductShop: {
         color: theme.palette.text.primary
     },
-    productImageContainer_ProductShop: {
-        position: 'relative',
-    },
     productImage_ProductShop: {
         width: '95%',
         height: '100%',
@@ -23,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     addBtnContainer_ProductShop: {
         position: 'absolute', 
-        bottom: '-8%', 
+        bottom: '35%', 
         left: '5%'
     },
     addBtn_ProductShop: {
