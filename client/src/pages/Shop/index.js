@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import { useParams, Link as RouterLink } from 'react-router-dom';
 
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Link from '@material-ui/core/Link';
+import {
+    Container,
+    Box,
+    Typography,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    Link as MaterialLink
+} from '@material-ui/core';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
@@ -80,13 +82,14 @@ const Shop = () => {
                             variant='outlined'
                         >
                             <MenuItem className={classes.menuItem_Shop}>
-                                <Link
-                                    href='/shop'
+                                <MaterialLink
+                                    to='/shop'
                                     className={classes.menuItemLink_Shop}
+                                    component={RouterLink}
                                     underline='none'
                                 >
                                     All
-                                </Link>
+                                </MaterialLink>
                             </MenuItem>
                         
                             {!loading && 
@@ -95,13 +98,14 @@ const Shop = () => {
                                         key={index}
                                         className={classes.menuItem_Shop}
                                     >
-                                        <Link
-                                            href={`/shop/${category._id}`}
+                                        <MaterialLink
+                                            to={`/shop/${category._id}`}
                                             className={classes.menuItemLink_Shop}
+                                            component={RouterLink}
                                             underline='none'
                                         >
                                             {category.name}
-                                        </Link>
+                                        </MaterialLink>
                                     </MenuItem>
                                 ))
                             }

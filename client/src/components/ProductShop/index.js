@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import { Link as RouterLink } from 'react-router-dom';
 
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
+import { 
+    Grid,
+    Box,
+    Typography,
+    Button,
+    Link as MaterialLink 
+} from '@material-ui/core';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
@@ -81,9 +84,10 @@ const ProductShop = () => {
                 <Grid container>
                     {filterProductsByCategory().map((product, index) => (
                         <Grid item className={classes.productContainer_ProductShop} xs={2} key={index}>
-                            <Link
-                                href={`/product/${product._id}`}
+                            <MaterialLink
+                                to={`/product/${product._id}`}
                                 className={classes.productLink_ProductShop}
+                                component={RouterLink}
                                 underline='none'  
                             >
                                 <Grid container direction='column'>
@@ -116,7 +120,7 @@ const ProductShop = () => {
                                         </Typography>
                                     </Box>
                                 </Grid>
-                            </Link>
+                            </MaterialLink>
                             <Box className={classes.addBtnContainer_ProductShop}>
                                 <Button 
                                     className={classes.addBtn_ProductShop}

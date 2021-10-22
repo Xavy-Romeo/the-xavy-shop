@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link as RouterLink } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
-import Input from '@material-ui/core/Input';
+import {
+    Grid,
+    Typography,
+    Button,
+    Container,
+    Box,
+    Paper,
+    Link as MaterialLink,
+    Input 
+} from '@material-ui/core';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS, QUERY_GET_PRODUCT } from '../../utils/queries';
@@ -186,9 +188,10 @@ const ProductDetails = () => {
                                 <Typography variant='h3' className={classes.boughtTogetherPlusSign_ProductDetails}>
                                     +
                                 </Typography>
-                                <Link 
-                                    href={`/product/${similarProduct._id}`}
+                                <MaterialLink 
+                                    to={`/product/${similarProduct._id}`}
                                     className={classes.similarLink_ProductDetails}
+                                    component={RouterLink}
                                     underline='none'
                                 >
                                     <img 
@@ -197,7 +200,7 @@ const ProductDetails = () => {
                                         height='100%' 
                                         alt={similarProduct.name}
                                     />
-                                </Link>
+                                </MaterialLink>
                                 <Box className={classes.totalPriceContainer_ProductDetails}>
                                     <Grid container direction='column'>
                                         <Grid container>
