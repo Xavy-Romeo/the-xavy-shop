@@ -12,7 +12,7 @@ import ProductCart from '../ProductCart';
 import Auth from '../../utils/auth';
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { TOGGLE_CART } from '../../utils/actions';
+import { TOGGLE_CART} from '../../utils/actions';
 
 const Cart = () => {
     const classes = useStyles();
@@ -27,7 +27,7 @@ const Cart = () => {
 
     useEffect(() => {
         console.log('cart', cart);
-    }, [cart.length, dispatch])
+    }, [cart.length, dispatch]);
 
     if (!cartOpen) {
         return (
@@ -107,13 +107,15 @@ const Cart = () => {
                         </Box>
 
                     :   <Box className={classes.loginLinkContainer_Cart}>
-                            <Link 
-                                href='/login'
-                                variant='body2'
-                                underline='none'
-                            >
-                                Login to checkout
-                            </Link>
+                            {cart.length > 0 &&
+                                <Link 
+                                    href='/login'
+                                    variant='body2'
+                                    underline='none'
+                                >
+                                    Login to checkout
+                                </Link>
+                            }
                         </Box>
                 }
 

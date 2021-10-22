@@ -13,7 +13,7 @@ import Input from '@material-ui/core/Input';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS, QUERY_GET_PRODUCT } from '../../utils/queries';
-import { ADD_TO_CART, UPDATE_PRODUCTS } from '../../utils/actions';
+import { ADD_TO_CART, UPDATE_PRODUCTS, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import useStyles from './styles';
 import Cart from '../../components/Cart';
 
@@ -59,10 +59,22 @@ const ProductDetails = () => {
     }, [productData, loading, dispatch, productId, currentProduct, products]);
 
     const addToCart = () => {
-        dispatch({
-            type: ADD_TO_CART,
-            product: { ...currentProduct, purchaseQuantity: 1}
-        });
+        // check to see if item is already in cart
+        const itemInCart = cart.find((cartItem) => cartItem._id === currentProduct._id);
+
+        if (itemInCart) {
+            dispatch({
+                type: UPDATE_CART_QUANTITY,
+                _id: currentProduct._id,
+                purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+            });
+        }
+        else {
+            dispatch({
+                type: ADD_TO_CART,
+                product: { ...currentProduct, purchaseQuantity: 1}
+            });
+        }
     };
 
     const add = (x, y) => {

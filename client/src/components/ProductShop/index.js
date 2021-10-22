@@ -9,7 +9,7 @@ import Link from '@material-ui/core/Link';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
-import { ADD_TO_CART, UPDATE_PRODUCTS } from '../../utils/actions';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY, UPDATE_PRODUCTS } from '../../utils/actions';
 import useStyles from './styles';
 
 
@@ -18,7 +18,7 @@ const ProductShop = () => {
 
     const [state, dispatch] = useStoreContext();
 
-    const { products, currentCategory } = state;
+    const { products, currentCategory, cart } = state;
 
     const { loading, data: productData } = useQuery(QUERY_ALL_PRODUCTS);
 
@@ -32,24 +32,23 @@ const ProductShop = () => {
 
     }, [loading, productData, dispatch]);
 
-
-    // const addToCart = (event, element, item) => {
-    //     if (event.target !== element) {
-    //         event.stopPropagation();
-    //         return;
-    //     }
-
-    //     dispatch({
-    //         type: ADD_TO_CART,
-    //         product: { ...item, purchaseQuantity: 1}
-    //     });
-    // };
-
     const addToCart = item => {
-        dispatch({
-            type: ADD_TO_CART,
-            product: { ...item, purchaseQuantity: 1}
-        });
+        // check to see if item is already in cart
+        const itemInCart = cart.find((cartItem) => cartItem._id === item._id);
+
+        if (itemInCart) {
+            dispatch({
+                type: UPDATE_CART_QUANTITY,
+                _id: item._id,
+                purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+            });
+        }
+        else {
+            dispatch({
+                type: ADD_TO_CART,
+                product: { ...item, purchaseQuantity: 1}
+            });
+        }
     };
 
     const filterProductsByCategory = () => {
