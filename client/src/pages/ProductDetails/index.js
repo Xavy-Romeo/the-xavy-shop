@@ -15,6 +15,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS, QUERY_GET_PRODUCT } from '../../utils/queries';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 import useStyles from './styles';
+import Cart from '../../components/Cart';
 
 
 const ProductDetails = () => {
@@ -195,6 +196,8 @@ const ProductDetails = () => {
                             </Grid>
                         </Box>
                     </Grid>
+                    
+                    <Cart />
                     
                 </Container>
             }

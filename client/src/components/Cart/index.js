@@ -6,19 +6,23 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
+import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
 import ProductCart from '../ProductCart';
 import Auth from '../../utils/auth';
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { TOGGLE_CART } from '../../utils/actions';
 
 const Cart = () => {
     const classes = useStyles();
 
-    const [cartOpen, setCartOpen] = useState(true);
+    const [state, dispatch] = useStoreContext();
+    
+    const { cartOpen } = state;
 
     const toggleCart = () => {
-        setCartOpen(!cartOpen);
+        dispatch({type: TOGGLE_CART});
     };
 
     if (!cartOpen) {
