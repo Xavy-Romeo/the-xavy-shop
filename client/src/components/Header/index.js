@@ -1,11 +1,13 @@
 import React from 'react';
-
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
+import {
+    AppBar,
+    Toolbar,
+    Box,
+    Typography,
+    Grid,
+    Link as MaterialLink
+} from '@material-ui/core';
 
 import useStyles from './styles';
 import Logo from '../../assets/images/xr-logo.png';
@@ -50,8 +52,9 @@ const Header = () => {
                                 className={classes.xrLogo_Header}
                                 alt='site logo'
                             />
-                            <Link
-                                href='/'
+                            <MaterialLink
+                                to='/'
+                                component={RouterLink}
                                 underline='none'
                             >
                                 <Typography 
@@ -61,7 +64,7 @@ const Header = () => {
                                 >
                                     The Xavy Shop
                                 </Typography>
-                            </Link>
+                            </MaterialLink>
                         </Grid>
                     </Box>
                     <Grid item xs={5}>
@@ -78,40 +81,43 @@ const Header = () => {
                                     alignItems='center' 
                                 >
                                     <Grid item>
-                                        <Link
-                                            href='/shop'
+                                        <MaterialLink
+                                            to='/shop'
                                             className={classes.fakeClass}
+                                            component={RouterLink}
                                             underline='none'
                                             variant='body1'   
                                         >
                                             <Typography className={classes.navItem_Header}>
                                                 Shop
                                             </Typography>
-                                        </Link>
+                                        </MaterialLink>
                                     </Grid>
                                     <Grid item>
-                                        <Link
-                                            href='/login'
+                                        <MaterialLink
+                                            to='/login'
                                             className={classes.fakeClass}
+                                            component={RouterLink}
                                             underline='none'
                                             variant='body1'   
                                         >
                                             <Typography className={classes.navItem_Header}>
                                                 Account
                                             </Typography>
-                                        </Link>
+                                        </MaterialLink>
                                     </Grid>
                                     <Grid item>
-                                        <Link
-                                            href='/order-history'
+                                        <MaterialLink
+                                            to='/order-history'
                                             className={classes.fakeClass}
+                                            component={RouterLink}
                                             underline='none'
                                             variant='body1'   
                                         >
                                             <Typography className={classes.navItem_Header}>
                                                 Order History
                                             </Typography>
-                                        </Link>
+                                        </MaterialLink>
                                     </Grid>
                                 </Grid>
                             </Grid>

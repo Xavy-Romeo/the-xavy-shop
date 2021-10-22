@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { Link as RouterLink } from 'react-router-dom';
+import {
+    Container,
+    Grid,
+    TextField,
+    Paper,
+    Typography,
+    Button,
+    Box,
+    Link as MaterialLink,
+    Avatar 
+} from '@material-ui/core';
 
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
-import Avatar from '@material-ui/core/Avatar';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 import useStyles from './styles';
@@ -170,8 +173,9 @@ const Login = () => {
                                 Don't have an account?
                             </Typography>
                         </Box>
-                        <Link
-                            href='/signup'
+                        <MaterialLink
+                            to='/signup'
+                            component={RouterLink}
                             underline='none'
                         >
                             <Button className={classes.createAccountBtn_Login}>
@@ -179,7 +183,7 @@ const Login = () => {
                                     Create your Xavy account
                                 </Typography>
                             </Button>
-                        </Link>
+                        </MaterialLink>
                     </Grid>
                 </Paper>
             </Grid>

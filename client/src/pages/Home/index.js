@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
+import {
+    Box,
+    Typography,
+    Button,
+    Link as MaterialLink
+} from '@material-ui/core';
 
 import useStyles from './styles';
 import CategoryBar from '../../components/CategoryBar';
@@ -27,14 +30,15 @@ const Home = () => {
                     Save up to 30% sitewide
                 </Typography>
                 <Button className={classes.shopHeroBtn_Home} >
-                    <Link 
-                        href='/Shop'
+                    <MaterialLink 
+                        to='/Shop'
                         className={classes.shopNowLink_Home}
+                        component={RouterLink}
                         underline='none'
                         variant='body1'
                     >
                         Shop Now
-                    </Link>
+                    </MaterialLink>
                 </Button>
             </Box>
 

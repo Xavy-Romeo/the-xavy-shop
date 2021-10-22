@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import { Link as RouterLink } from 'react-router-dom';
 
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import { 
+    Paper,
+    Grid,
+    Typography,
+    Box,
+    Link as MaterialLink 
+} from '@material-ui/core';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
@@ -63,9 +66,10 @@ const HotItems = () => {
                                         xs={2}
                                         key={index}
                                     >
-                                        <Link
-                                            href={`/product/${product._id}`}
+                                        <MaterialLink
+                                            to={`/product/${product._id}`}
                                             className={classes.productLink_HotItem}
+                                            component={RouterLink}
                                             underline='none'
                                         >
                                             <img 
@@ -75,7 +79,7 @@ const HotItems = () => {
                                                 width='100%'
                                                 alt={product.name}
                                             />
-                                        </Link>
+                                        </MaterialLink>
                                     </Grid>
                                 ))}
                             </Grid>

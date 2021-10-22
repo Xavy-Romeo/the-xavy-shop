@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { Link as RouterLink } from 'react-router-dom';
+import {
+    Container,
+    Grid,
+    TextField,
+    Paper,
+    Typography,
+    Button,
+    Box,
+    Link as MaterialLink,
+    Avatar 
+} from '@material-ui/core';
 
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
-import Avatar from '@material-ui/core/Avatar';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 import useStyles from './styles';
@@ -269,13 +272,21 @@ const SignUp = () => {
                                 <Box className={classes.termsLinksContent_Signup}>
                                     <Typography  variant='caption' >
                                         By clicking Create Account, you acknowledge you have read and agreed to our
-                                        <Link className={classes.termsLinks_Signup} variant='caption'>
+                                        <MaterialLink 
+                                            className={classes.termsLinks_Signup} 
+                                            component={RouterLink}
+                                            variant='caption'
+                                        >  
                                             Terms of Use
-                                        </Link>
+                                        </MaterialLink>
                                         and 
-                                        <Link className={classes.termsLinks_Signup} variant='caption'>
+                                        <MaterialLink 
+                                            className={classes.termsLinks_Signup} 
+                                            component={RouterLink}
+                                            variant='caption'
+                                        >
                                             Privacy Policy
-                                        </Link>
+                                        </MaterialLink>
                                         .
                                     </Typography>
                                 </Box>
@@ -305,8 +316,9 @@ const SignUp = () => {
                                 Already have an account?
                             </Typography>
                         </Box>
-                        <Link
-                            href='/login'
+                        <MaterialLink
+                            to='/login'
+                            component={RouterLink}
                             underline='none'
                         >
                             <Button className={classes.signInBtn_Signup}>
@@ -314,7 +326,7 @@ const SignUp = () => {
                                     Sign In
                                 </Typography>
                             </Button>
-                        </Link>
+                        </MaterialLink>
                     </Grid>
                 </Paper>
             </Grid>

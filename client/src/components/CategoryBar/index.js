@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import { Link as RouterLink } from 'react-router-dom';
+import {
+    Box,
+    Typography,
+    Button,
+    Grid,
+    Link as MaterialLink 
+} from '@material-ui/core';
 
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
@@ -73,9 +76,10 @@ const CategoryBar = () => {
                         key={index} 
                         xs={1} md={3}
                     >
-                        <Link 
-                            href={`/shop/${category._id}`}
+                        <MaterialLink 
+                            to={`/shop/${category._id}`}
                             className={classes.categories_CatBar}
+                            component={RouterLink}
                         >
                             <img src={`/images/categoryImages/${category.image}`} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
                             <Grid container className={classes.categoryContent_CatBar} alignItems='center' justifyContent='center'>
@@ -83,7 +87,7 @@ const CategoryBar = () => {
                                     {category.name}
                                 </Typography>
                             </Grid>
-                        </Link>
+                        </MaterialLink>
                     </Grid> 
                 ))}
             </Grid>

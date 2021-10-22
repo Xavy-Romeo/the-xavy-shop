@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
-
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom'; 
+import { 
+    Box,
+    Grid,
+    Typography,
+    Button,
+    Link as MaterialLink
+} from '@material-ui/core';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
@@ -76,9 +78,10 @@ const Cart = () => {
                                 </Typography>
                             </Box>
                             <Box style={{width: '100%', marginTop: '10px'}}>
-                                <Link 
-                                    href='/shop'
+                                <MaterialLink 
+                                    to='/shop'
                                     style={{color: 'white', width: '100%'}}
+                                    component={RouterLink}
                                     underline='none'
                                 >
                                     <Button style={{width: '100%'}}>
@@ -86,16 +89,17 @@ const Cart = () => {
                                             Start Shopping
                                         </Typography>
                                     </Button>
-                                </Link>
+                                </MaterialLink>
                             </Box>
                         </Grid>
                 }
 
                 {Auth.loggedIn()
                     ?   <Box className={classes.checkoutBtnContainer_Cart}>
-                            <Link 
-                                href='/checkout'
+                            <MaterialLink 
+                                to='/checkout'
                                 className={classes.checkoutLink_Cart}
+                                component={RouterLink}
                                 underline='none'
                             >
                                 <Button className={classes.checkoutBtn_Cart}>
@@ -103,18 +107,19 @@ const Cart = () => {
                                         Checkout
                                     </Typography>
                                 </Button>
-                            </Link>
+                            </MaterialLink>
                         </Box>
 
                     :   <Box className={classes.loginLinkContainer_Cart}>
                             {cart.length > 0 &&
-                                <Link 
-                                    href='/login'
+                                <MaterialLink 
+                                    to='/login'
                                     variant='body2'
+                                    component={RouterLink}
                                     underline='none'
                                 >
                                     Login to checkout
-                                </Link>
+                                </MaterialLink>
                             }
                         </Box>
                 }
