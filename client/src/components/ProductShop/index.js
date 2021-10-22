@@ -9,7 +9,7 @@ import Link from '@material-ui/core/Link';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
-import { UPDATE_PRODUCTS } from '../../utils/actions';
+import { ADD_TO_CART, UPDATE_PRODUCTS } from '../../utils/actions';
 import useStyles from './styles';
 
 
@@ -31,6 +31,26 @@ const ProductShop = () => {
             }
 
     }, [loading, productData, dispatch]);
+
+
+    // const addToCart = (event, element, item) => {
+    //     if (event.target !== element) {
+    //         event.stopPropagation();
+    //         return;
+    //     }
+
+    //     dispatch({
+    //         type: ADD_TO_CART,
+    //         product: { ...item, purchaseQuantity: 1}
+    //     });
+    // };
+
+    const addToCart = item => {
+        dispatch({
+            type: ADD_TO_CART,
+            product: { ...item, purchaseQuantity: 1}
+        });
+    };
 
     const filterProductsByCategory = () => {
         if (!currentCategory || currentCategory === '') {
@@ -74,13 +94,6 @@ const ProductShop = () => {
                                             className={classes.productImage_ProductShop} 
                                             alt={product.name} 
                                         />
-                                        <Box className={classes.addBtnContainer_ProductShop}>
-                                            <Button className={classes.addBtn_ProductShop}>
-                                                <Typography>
-                                                    + Add to Cart
-                                                </Typography>
-                                            </Button>
-                                        </Box>
                                     </Box>
                                     <Grid container className={classes.productPriceContainer_ProductShop}>
                                         <Typography className={classes.productPrice_ProductShop}>
@@ -105,6 +118,16 @@ const ProductShop = () => {
                                     </Box>
                                 </Grid>
                             </Link>
+                            <Box className={classes.addBtnContainer_ProductShop}>
+                                <Button 
+                                    className={classes.addBtn_ProductShop}
+                                    onClick={() => addToCart(product)}
+                                >
+                                    <Typography>
+                                        + Add to Cart
+                                    </Typography>
+                                </Button>
+                            </Box>
                         </Grid>
                     ))}
                 </Grid>

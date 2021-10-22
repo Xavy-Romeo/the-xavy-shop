@@ -27,15 +27,15 @@ const CartItem = ({ item }) => {
 
     return (
         <Grid container className={classes.productContainer_ProductCart}>
-            <Grid item className={classes.imgContainer_ProductCart} xs={3}>
+            <Grid item className={classes.imgContainer_ProductCart} xs={2}>
                 <img
-                    src={`/images/${item.image}`}
+                    src={`/images/productImages/${item.image}`}
                     className={classes.cartItemImage_ProductCart}
                     alt={item.name}
                 />
             </Grid>
 
-            <Grid item xs={7}>
+            <Grid item xs={8}>
                 <Grid 
                     container 
                     className={classes.middleContainer_ProductCart}
