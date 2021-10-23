@@ -12,10 +12,10 @@ import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 const CartItem = ({ item }) => {
     const classes = useStyles();
 
-    const [, dispatch] = useStoreContext();
-    
-    const [price, setPrice] = useState('');
-    const [fullPrice, setFullPrice] = useState('');
+    const [state, dispatch] = useStoreContext();
+    const {cart} = state;
+
+    const [fullPrice, setFullPrice] = useState(0);
 
     useEffect(() => {
         // set full price to 2 decimals
@@ -23,10 +23,11 @@ const CartItem = ({ item }) => {
         setFullPrice(price);
 
         // calculate total price after sale discount and set to 2 decimals
-        let total = (item.fullPrice*(1 - (item.salePercent/100))).toFixed(2);
-        setPrice(total);
+        let total = parseFloat((item.fullPrice*(1 - (item.salePercent/100))).toFixed(2));
 
-    }, [item.fullPrice, item.salePercent]);
+        item.price = total;
+
+    }, [item.fullPrice, item.salePercent, cart]);
 
     const removeFromCart = () => {
         dispatch({
@@ -106,7 +107,7 @@ const CartItem = ({ item }) => {
                         variant='body2'
                         component='strong'
                     >
-                        ${price}
+                        ${item.price}
                     </Typography>
                     
                     {item.salePercent !== 0 && 

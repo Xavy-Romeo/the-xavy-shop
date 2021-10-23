@@ -64,6 +64,11 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center', 
         width: '100%', 
         marginTop: '10px'
+    },
+    loginLink_Cart: {
+        '&:hover': {
+            color: theme.palette.secondary.main
+        }
     }
 
 }));
