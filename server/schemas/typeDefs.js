@@ -14,6 +14,7 @@ const typeDefs = gql`
         image: String
         salePercent: Int
         fullPrice: Float
+        price: Float
         new: Boolean
         inStock: Boolean
         category: Category
@@ -40,6 +41,10 @@ const typeDefs = gql`
         user: User
     }
 
+    type Checkout {
+        session: ID
+    }
+
     type Query {
         user: User
         users: [User]
@@ -47,6 +52,7 @@ const typeDefs = gql`
         categories: [Category]
         products: [Product]
         product(_id: ID!): Product
+        checkout(products: [ID]!): Checkout
     }
 
     type Mutation {
@@ -57,8 +63,14 @@ const typeDefs = gql`
             email: String!,
             password: String!
         ): Auth
-
-        login(username: String!, password: String!): Auth
+        login(
+            username: String!, 
+            password: String!
+        ): Auth
+        updatePrice(
+            productId: ID!,
+            newPrice: Float!
+        ): Product
     }
 `;
 

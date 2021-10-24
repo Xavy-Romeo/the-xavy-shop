@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom'; 
 import { 
     Box,
@@ -7,6 +7,8 @@ import {
     Button,
     Link as MaterialLink
 } from '@material-ui/core';
+import { loadStripe } from '@stripe/stripe-js';
+import { useLazyQuery } from '@apollo/client';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
@@ -15,6 +17,9 @@ import Auth from '../../utils/auth';
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { TOGGLE_CART} from '../../utils/actions';
+import { QUERY_CHECKOUT } from '../../utils/queries';
+
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
     const classes = useStyles();
@@ -22,12 +27,18 @@ const Cart = () => {
     const [state, dispatch] = useStoreContext();  
     const { cartOpen, cart } = state;
 
+    const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
     const [subTotal, setSubTotal] = useState(0);
     const [quantity, setQuantity] = useState(0);
 
-    const toggleCart = () => {
-        dispatch({type: TOGGLE_CART});
-    };
+    useEffect(() => {
+        if (data) {
+            stripePromise.then((res) => {
+                res.redirectToCheckout({ sessionId: data.checkout.session })
+            })
+        }
+    }, [data]);
 
     useEffect(() => {
         const getTotals = async () => {
@@ -45,6 +56,24 @@ const Cart = () => {
 
         getTotals();
     }, [cart]);
+
+    const toggleCart = () => {
+        dispatch({type: TOGGLE_CART});
+    };
+    
+    const submitCheckout = () => {
+        const productIds = [];
+    
+        state.cart.forEach((item) => {
+            for (let i = 0; i < item.purchaseQuantity; i++) {
+                productIds.push(item._id);
+            }
+        });
+    
+        getCheckout({
+            variables: { products: productIds }
+        });
+    };
 
     if (!cartOpen) {
         return (
@@ -139,18 +168,21 @@ const Cart = () => {
 
                 {Auth.loggedIn()
                     ?   <Box className={classes.checkoutBtnContainer_Cart}>
-                            <MaterialLink 
+                            {/* <MaterialLink 
                                 to='/checkout'
                                 className={classes.checkoutLink_Cart}
                                 component={RouterLink}
                                 underline='none'
-                            >
-                                <Button className={classes.checkoutBtn_Cart}>
+                            > */}
+                                <Button 
+                                    className={classes.checkoutBtn_Cart}
+                                    onClick={submitCheckout}
+                                >
                                     <Typography>
                                         Checkout
                                     </Typography>
                                 </Button>
-                            </MaterialLink>
+                            {/* </MaterialLink> */}
                         </Box>
 
                     :   <Box className={classes.loginLinkContainer_Cart}>

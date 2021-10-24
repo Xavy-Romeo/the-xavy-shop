@@ -26,6 +26,10 @@ const productSchema = new Schema({
         required: true,
         min: 4.99
     },
+    price: {
+        type: Number,
+        default: 1.99
+    },
     new: {
         type: Boolean,
         default: false
