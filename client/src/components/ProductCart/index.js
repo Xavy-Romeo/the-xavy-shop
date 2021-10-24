@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useMutation } from '@apollo/client';
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -8,6 +9,7 @@ import Input from '@material-ui/core/Input';
 import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { UPDATE_PRODUCT_PRICE } from '../../utils/mutations';
 
 const CartItem = ({ item }) => {
     const classes = useStyles();
@@ -17,15 +19,34 @@ const CartItem = ({ item }) => {
 
     const [fullPrice, setFullPrice] = useState(0);
 
+    const [updatePrice, {error}] = useMutation(UPDATE_PRODUCT_PRICE);
+
     useEffect(() => {
-        // set full price to 2 decimals
-        let price = item.fullPrice.toFixed(2);
-        setFullPrice(price);
+        const setPrice = async () => {
+            // set full price to 2 decimals
+            let price = item.fullPrice.toFixed(2);
+            setFullPrice(price);
 
-        // calculate total price after sale discount and set to 2 decimals
-        let total = parseFloat((item.fullPrice*(1 - (item.salePercent/100))).toFixed(2));
+            // calculate total price after sale discount and set to 2 decimals
+            let total = parseFloat((item.fullPrice*(1 - (item.salePercent/100))).toFixed(2));
 
-        item.price = total;
+            item.price = total;
+
+            try {
+                const { data } = await updatePrice({
+                    variables: {
+                        productId: item._id,
+                        newPrice: total
+                    }
+                });
+                console.log('data', data);
+            }
+            catch (err) {
+                console.error(err);
+            }
+        };
+
+        setPrice();
 
     }, [item.fullPrice, item.salePercent, cart]);
 

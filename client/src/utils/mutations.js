@@ -25,3 +25,12 @@ export const ADD_USER = gql`
         }
     }
 `;
+
+export const UPDATE_PRODUCT_PRICE = gql`
+    mutation Mutation($productId: ID!, $newPrice: Float!) {
+        updatePrice(productId: $productId, newPrice: $newPrice) {
+            _id
+            price
+        }
+    }
+`;
