@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom'; 
 import { 
     Box,
@@ -19,17 +19,32 @@ import { TOGGLE_CART} from '../../utils/actions';
 const Cart = () => {
     const classes = useStyles();
 
-    const [state, dispatch] = useStoreContext();
-    
+    const [state, dispatch] = useStoreContext();  
     const { cartOpen, cart } = state;
+
+    const [subTotal, setSubTotal] = useState(0);
+    const [quantity, setQuantity] = useState(0);
 
     const toggleCart = () => {
         dispatch({type: TOGGLE_CART});
     };
 
     useEffect(() => {
-        console.log('cart', cart);
-    }, [cart.length, dispatch]);
+        const getTotals = async () => {
+            let sum = 0;
+            let quantity = 0;
+
+            await cart.forEach(item => {
+                sum += (item.price * item.purchaseQuantity);
+                quantity += item.purchaseQuantity;
+            });
+
+            setQuantity(quantity);
+            setSubTotal(sum.toFixed(2));
+        };
+
+        getTotals();
+    }, [cart]);
 
     if (!cartOpen) {
         return (
@@ -38,7 +53,17 @@ const Cart = () => {
                 onClick={toggleCart}
                 component='span'
             >
-                <ShoppingCartIcon fontSize='large' />
+                <Box style={{position: 'relative'}}>
+                    <ShoppingCartIcon fontSize='large' />
+
+                    {quantity > 0 &&
+                    <Box className={classes.quantityContainer_Cart}>
+                        <Typography className={classes.quantity_Cart} variant='body2'>
+                            {quantity}
+                        </Typography>
+                    </Box>
+                    }
+                </Box>
             </Box>
         );
     }
@@ -59,14 +84,32 @@ const Cart = () => {
 
                 {cart.length 
                     ?
-                        <Grid container>
-                            {cart.map((item, index) => (
-                                <ProductCart
-                                    item={item}
-                                    key={index}
-                                />
-                            ))}
-                        </Grid>
+                        <Box>
+                            <Grid container>
+                                {cart.map((item, index) => (
+                                    <ProductCart
+                                        item={item}
+                                        key={index}
+                                    />
+                                ))}
+                            </Grid>
+                            <Grid 
+                                container
+                                style={{marginTop: '10px'}}
+                                justifyContent='space-between'
+                            >
+                                <Typography style={{fontWeight: 'bold'}}>
+                                    Subtotal: 
+                                </Typography>
+                                <Typography 
+                                    style={{fontFamily: 'serif', fontWeight: 'bold'}}
+                                    variant='h5'
+                                    component='strong'
+                                >
+                                    ${subTotal}
+                                </Typography>
+                            </Grid>
+                        </Box>
                     :
                         <Grid container justifyContent='center' style={{marginTop: '10px'}}>
                             <Box style={{display: 'flex'}}>
@@ -114,6 +157,7 @@ const Cart = () => {
                             {cart.length > 0 &&
                                 <MaterialLink 
                                     to='/login'
+                                    className={classes.loginLink_Cart}
                                     variant='body2'
                                     component={RouterLink}
                                     underline='none'

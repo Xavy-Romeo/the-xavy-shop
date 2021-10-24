@@ -19,6 +19,22 @@ const useStyles = makeStyles((theme) => ({
             transform: 'rotate(-15deg)',
         }
     },
+    quantityContainer_Cart: {
+        position: 'absolute', 
+        top: -27, 
+        right: 5,
+        borderRadius: '50%',
+        border: `1px solid ${theme.palette.primary.contrastText}`,
+        background: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+        minWidth: '25px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center', 
+    },
+    quantity_Cart: {
+        fontFamily: 'serif'
+    },
     cartContainer_Cart: {
         position: 'fixed',
         top: 101,
@@ -64,6 +80,11 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center', 
         width: '100%', 
         marginTop: '10px'
+    },
+    loginLink_Cart: {
+        '&:hover': {
+            color: theme.palette.secondary.main
+        }
     }
 
 }));
