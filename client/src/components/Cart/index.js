@@ -23,23 +23,27 @@ const Cart = () => {
     const { cartOpen, cart } = state;
 
     const [subTotal, setSubTotal] = useState(0);
+    const [quantity, setQuantity] = useState(0);
 
     const toggleCart = () => {
         dispatch({type: TOGGLE_CART});
     };
 
     useEffect(() => {
-        const getSubTotal = async () => {
+        const getTotals = async () => {
             let sum = 0;
+            let quantity = 0;
 
             await cart.forEach(item => {
                 sum += (item.price * item.purchaseQuantity);
+                quantity += item.purchaseQuantity;
             });
 
+            setQuantity(quantity);
             setSubTotal(sum.toFixed(2));
         };
 
-        getSubTotal();
+        getTotals();
     }, [cart]);
 
     if (!cartOpen) {
@@ -49,7 +53,17 @@ const Cart = () => {
                 onClick={toggleCart}
                 component='span'
             >
-                <ShoppingCartIcon fontSize='large' />
+                <Box style={{position: 'relative'}}>
+                    <ShoppingCartIcon fontSize='large' />
+
+                    {quantity > 0 &&
+                    <Box className={classes.quantityContainer_Cart}>
+                        <Typography className={classes.quantity_Cart} variant='body2'>
+                            {quantity}
+                        </Typography>
+                    </Box>
+                    }
+                </Box>
             </Box>
         );
     }
@@ -85,7 +99,7 @@ const Cart = () => {
                                 justifyContent='space-between'
                             >
                                 <Typography style={{fontWeight: 'bold'}}>
-                                    Estimated Total: 
+                                    Subtotal: 
                                 </Typography>
                                 <Typography 
                                     style={{fontFamily: 'serif', fontWeight: 'bold'}}
