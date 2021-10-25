@@ -81,17 +81,27 @@ const ProductDetails = () => {
         const itemInCart = cart.find((cartItem) => cartItem._id === currentProduct._id);
 
         if (itemInCart) {
+            // update global state
             dispatch({
                 type: UPDATE_CART_QUANTITY,
                 _id: currentProduct._id,
                 purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
             });
+
+            // update IndexedDB with updated quantity
+            idbPromise('cart', 'put', {
+                ...itemInCart,
+                purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+            });
         }
         else {
+            // make updates if not yet in cart
             dispatch({
                 type: ADD_TO_CART,
                 product: { ...currentProduct, purchaseQuantity: 1}
             });
+
+            idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
         }
     };
 

@@ -16,8 +16,9 @@ import ProductCart from '../ProductCart';
 import Auth from '../../utils/auth';
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { TOGGLE_CART} from '../../utils/actions';
+import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import { QUERY_CHECKOUT } from '../../utils/queries';
+import idbPromise from '../../utils/indexedDB';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -39,6 +40,20 @@ const Cart = () => {
             })
         }
     }, [data]);
+
+    useEffect(() => {
+        const getCart = async () => {
+            // grab cart data from IndexedDB
+            const cart = await idbPromise('cart', 'get');
+            // update global state
+            dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
+        };
+
+        if (!cart.length) {
+            getCart();
+        }
+
+    }, [cart.length, dispatch])
 
     useEffect(() => {
         const getTotals = async () => {

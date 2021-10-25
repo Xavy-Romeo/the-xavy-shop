@@ -10,6 +10,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { UPDATE_PRODUCT_PRICE, UPDATE_PURCHASE_QUANTITY } from '../../utils/mutations';
+import idbPromise from '../../utils/indexedDB';
 
 const ProductCart = ({ item }) => {
     const classes = useStyles();
@@ -51,10 +52,14 @@ const ProductCart = ({ item }) => {
     }, [item.fullPrice, item.salePercent, cart]);
 
     const removeFromCart = () => {
+        // update global state
         dispatch({
             type: REMOVE_FROM_CART,
             _id: item._id
         });
+
+        // update IndexedDB
+        idbPromise('cart', 'delete', { ...item });
     };
 
     const updateQuantity = async e => {
@@ -65,6 +70,8 @@ const ProductCart = ({ item }) => {
                 type: REMOVE_FROM_CART,
                 _id: item._id
             });
+
+            idbPromise('cart', 'delete', { ...item });
         }
         else {
             dispatch({
@@ -73,6 +80,8 @@ const ProductCart = ({ item }) => {
                 purchaseQuantity: parseInt(value)
             });
             
+            idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
+
             try {
                 const { data } = await updateProductQuantity({
                     variables: {

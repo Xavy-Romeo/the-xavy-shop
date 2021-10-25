@@ -56,12 +56,20 @@ const ProductShop = () => {
         const itemInCart = cart.find((cartItem) => cartItem._id === item._id);
 
         if (itemInCart) {
+            // update global state
             dispatch({
                 type: UPDATE_CART_QUANTITY,
                 _id: item._id,
                 purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
             });
 
+            // update IndexedDB
+            idbPromise('cart', 'put', {
+                ...itemInCart,
+                purchaseQuantity: parseInt(itemInCart.purchaseQuantity)
+            });
+
+            // update database
             try {
                 const { data } = await updateProductQuantity({
                     variables: {
@@ -75,11 +83,14 @@ const ProductShop = () => {
             }
         }
         else {
+            // make updates if not yet in cart            
             dispatch({
                 type: ADD_TO_CART,
                 product: { ...item, purchaseQuantity: 1}
             });
             
+            idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
+
             try {
                 const { data } = await updateProductQuantity({
                     variables: {
