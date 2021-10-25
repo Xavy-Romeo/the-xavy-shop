@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { 
@@ -13,6 +13,7 @@ import {
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
 import { ADD_TO_CART, UPDATE_CART_QUANTITY, UPDATE_PRODUCTS } from '../../utils/actions';
+import { UPDATE_PURCHASE_QUANTITY } from '../../utils/mutations';
 import useStyles from './styles';
 
 
@@ -24,6 +25,7 @@ const ProductShop = () => {
     const { products, currentCategory, cart } = state;
 
     const { loading, data: productData } = useQuery(QUERY_ALL_PRODUCTS);
+    const [updateProductQuantity, ] = useMutation(UPDATE_PURCHASE_QUANTITY);
 
     useEffect(() => {
             if(productData) {
@@ -35,7 +37,7 @@ const ProductShop = () => {
 
     }, [loading, productData, dispatch]);
 
-    const addToCart = item => {
+    const addToCart = async item => {
         // check to see if item is already in cart
         const itemInCart = cart.find((cartItem) => cartItem._id === item._id);
 
@@ -45,13 +47,40 @@ const ProductShop = () => {
                 _id: item._id,
                 purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
             });
+
+            try {
+                const { data } = await updateProductQuantity({
+                    variables: {
+                        productId: item._id,
+                        newQuantity: parseInt(itemInCart.purchaseQuantity)
+                    }
+                });
+            }
+            catch (err) {
+                console.error(err);
+            }
         }
         else {
             dispatch({
                 type: ADD_TO_CART,
                 product: { ...item, purchaseQuantity: 1}
             });
+            
+            try {
+                const { data } = await updateProductQuantity({
+                    variables: {
+                        productId: item._id,
+                        newQuantity: 1
+                    }
+                });
+            }
+            catch (err) {
+                console.error(err);
+            }
         }
+       
+        
+
     };
 
     const filterProductsByCategory = () => {

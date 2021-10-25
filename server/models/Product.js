@@ -42,6 +42,10 @@ const productSchema = new Schema({
         type: Array,
         default: []
     },
+    purchaseQuantity: {
+        type: Number,
+        default: 0
+    },
     category: {
         type: Schema.Types.ObjectId,
         ref: 'Category',

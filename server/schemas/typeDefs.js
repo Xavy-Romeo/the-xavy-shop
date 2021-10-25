@@ -17,6 +17,7 @@ const typeDefs = gql`
         price: Float
         new: Boolean
         inStock: Boolean
+        purchaseQuantity: Int
         category: Category
         subCategory: Category
     }
@@ -70,6 +71,10 @@ const typeDefs = gql`
         updatePrice(
             productId: ID!,
             newPrice: Float!
+        ): Product
+        updateQuantity(
+            productId: ID!
+            newQuantity: Int!
         ): Product
     }
 `;

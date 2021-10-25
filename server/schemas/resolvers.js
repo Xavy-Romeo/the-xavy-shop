@@ -53,14 +53,17 @@ const resolvers = {
             const url = new URL(context.headers.referer).origin;
             const order = new Order({ products: args.products });
             const line_items = [];
-      
+
             const { products } = await order.populate('products');
-      
+
             for (let i = 0; i < products.length; i++) {
+                
+                console.log('product quantity', products[i].purchaseQuantity);
+
                 const product = await stripe.products.create({
                     name: products[i].name,
                     description: products[i].description,
-                    images: [`${url}/images/${products[i].image}`]
+                    images: [`${url}/images/productImages/${products[i].image}`],
                 });
         
                 const price = await stripe.prices.create({
@@ -71,18 +74,23 @@ const resolvers = {
         
                 line_items.push({
                     price: price.id,
-                    quantity: 1
+                    adjustable_quantity: {
+                        enabled: true,
+                        minimum: 1,
+                        maximum: 20
+                    },
+                    quantity: products[i].purchaseQuantity
                 });
             }
-      
+
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 line_items,
                 mode: 'payment',
                 success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${url}/`
+                cancel_url: `${url}/shop`
             });
-      
+
             return { session: session.id };
         }
     },
@@ -122,7 +130,16 @@ const resolvers = {
             );
 
             return updatedProductPrice;
-        }
+        },
+        updateQuantity: async (parent, { productId, newQuantity }) => {
+            const updatedProductPrice = await Product.findOneAndUpdate(
+                { _id: productId },
+                { purchaseQuantity: newQuantity },
+                { new: true }
+            );
+
+            return updatedProductPrice;
+        },
 
     }
 };

@@ -31,6 +31,17 @@ export const UPDATE_PRODUCT_PRICE = gql`
         updatePrice(productId: $productId, newPrice: $newPrice) {
             _id
             price
+            name
+        }
+    }
+`;
+
+export const UPDATE_PURCHASE_QUANTITY = gql`
+    mutation UpdateQuantityMutation($productId: ID!, $newQuantity: Int!) {
+        updateQuantity(productId: $productId, newQuantity: $newQuantity) {
+            _id
+            purchaseQuantity
+            name
         }
     }
 `;
