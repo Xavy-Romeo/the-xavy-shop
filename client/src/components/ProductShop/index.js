@@ -15,7 +15,7 @@ import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
 import { ADD_TO_CART, UPDATE_CART_QUANTITY, UPDATE_PRODUCTS } from '../../utils/actions';
 import { UPDATE_PURCHASE_QUANTITY } from '../../utils/mutations';
 import useStyles from './styles';
-
+import idbPromise from '../../utils/indexedDB';
 
 const ProductShop = () => {
     const classes = useStyles();
@@ -28,12 +28,26 @@ const ProductShop = () => {
     const [updateProductQuantity, ] = useMutation(UPDATE_PURCHASE_QUANTITY);
 
     useEffect(() => {
-            if(productData) {
+        if(productData) {
+            // store productData in Global Store
+            dispatch({
+                type: UPDATE_PRODUCTS,
+                products: productData.products
+            });
+
+            // store each product in IndexedDB
+            productData.products.forEach((product) => {
+                idbPromise('products', 'put', product);
+            });
+        }
+        else if (!loading) {
+            idbPromise('products', 'get').then((products) => {
                 dispatch({
                     type: UPDATE_PRODUCTS,
-                    products: productData.products
+                    products: products
                 });
-            }
+            });
+        }
 
     }, [loading, productData, dispatch]);
 

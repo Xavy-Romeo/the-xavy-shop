@@ -15,6 +15,7 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 import { QUERY_CATEGORIES } from '../../utils/queries';
+import idbPromise from '../../utils/indexedDB';
 import useStyles from './styles';
 
 const CategoryBar = () => {
@@ -27,7 +28,7 @@ const CategoryBar = () => {
 
     const { categories, currentCategory } = state; 
 
-    const { data: categoryData } = useQuery(QUERY_CATEGORIES);
+    const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
 
     // category slider functions
@@ -45,12 +46,28 @@ const CategoryBar = () => {
     useEffect(() => {
         // if categoryData exists or has changed from useQuery Response, then run dispatch()
         if (categoryData) {
+            
+            // store categoryData in Global Store
             dispatch({
                 type: UPDATE_CATEGORIES,
                 categories: categoryData.categories
             }); 
+
+            // store each category in IndexedDB
+            categoryData.categories.forEach(category => {
+                idbPromise('categories', 'put', category);
+            });
         }
-    }, [categoryData, currentCategory, dispatch]);
+        else if (!loading) {
+            idbPromise('categories', 'get').then(categories => {
+                dispatch({
+                    type: UPDATE_CATEGORIES,
+                    categories: categories
+                });
+            });
+        }
+
+    }, [categoryData, currentCategory, dispatch, loading]);
 
     const changeCategory = id => {
         dispatch({

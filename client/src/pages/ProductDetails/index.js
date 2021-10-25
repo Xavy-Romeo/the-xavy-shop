@@ -17,8 +17,8 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_ALL_PRODUCTS, QUERY_GET_PRODUCT } from '../../utils/queries';
 import { ADD_TO_CART, UPDATE_PRODUCTS, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import useStyles from './styles';
+import idbPromise from '../../utils/indexedDB';
 import Cart from '../../components/Cart';
-
 
 const ProductDetails = () => {
     const classes = useStyles();
@@ -34,13 +34,29 @@ const ProductDetails = () => {
     const { products, cart } = state;
 
     useEffect(() => {
+        // data exist in global state
         if (products.length) {
             setCurrentProduct(products.find(product => product._id === productId));
         }
+        // retrieve from server
         else if (productData) {
             dispatch({
                 type: UPDATE_PRODUCTS,
                 products: productData.products
+            });
+
+            // store date in indexedDB
+            productData.products.forEach((product) => {
+                idbPromise('products', 'put', product);
+            });
+        }
+        // get cache from idb
+        else if (!loading) {
+            idbPromise('products', 'get').then((indexedProducts) => {
+                dispatch({
+                    type: UPDATE_PRODUCTS,
+                    products: indexedProducts
+                });
             });
         }
 

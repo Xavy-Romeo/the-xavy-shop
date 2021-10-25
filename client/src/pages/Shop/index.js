@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams, Link as RouterLink } from 'react-router-dom';
-
 import {
     Container,
     Box,
@@ -15,11 +14,12 @@ import {
 
 import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
-import { QUERY_CATEGORIES, QUERY_GET_CATEGORY } from '../../utils/queries';
+import { QUERY_CATEGORIES } from '../../utils/queries';
 import ProductShop from '../../components/ProductShop';
 import HotItems from '../../components/HotItems';
 import Cart from '../../components/Cart';
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
+import idbPromise from '../../utils/indexedDB';
 
 const Shop = () => {
     const classes = useStyles();
@@ -42,12 +42,25 @@ const Shop = () => {
                 else {
                     setCurrentCat(current);
                 }
-                
+
+                // store categoryData in Global Store
                 dispatch({
                     type: UPDATE_CATEGORIES,
                     categories: categoryData.categories
                 }); 
-
+                
+                // store each category in IndexedDB
+                categoryData.categories.forEach(category => {
+                    idbPromise('categories', 'put', category);
+                });
+            }
+            else if (!loading) {
+                idbPromise('categories', 'get').then(categories => {
+                    dispatch({
+                        type: UPDATE_CATEGORIES,
+                        categories: categories
+                    });
+                });
             }
         };
 
@@ -60,7 +73,7 @@ const Shop = () => {
             });
         }
 
-    }, [categoryData, categoryId, dispatch]);
+    }, [categoryData, categoryId, dispatch, loading]);
 
     return (
         <Container className={classes.shopContainer_Shop} maxWidth='xl'>
@@ -81,33 +94,35 @@ const Shop = () => {
                             }}
                             variant='outlined'
                         >
-                            <MenuItem className={classes.menuItem_Shop}>
-                                <MaterialLink
-                                    to='/shop'
-                                    className={classes.menuItemLink_Shop}
-                                    component={RouterLink}
-                                    underline='none'
-                                >
-                                    All
-                                </MaterialLink>
-                            </MenuItem>
-                        
-                            {!loading && 
-                                categoryData.categories.map((category, index) => (
-                                    <MenuItem
-                                        key={index}
-                                        className={classes.menuItem_Shop}
-                                    >
+                            {loading === undefined &&
+                                <Box>
+                                    <MenuItem className={classes.menuItem_Shop}>
                                         <MaterialLink
-                                            to={`/shop/${category._id}`}
+                                            to='/shop'
                                             className={classes.menuItemLink_Shop}
                                             component={RouterLink}
                                             underline='none'
                                         >
-                                            {category.name}
+                                            All
                                         </MaterialLink>
                                     </MenuItem>
-                                ))
+                                
+                                    {categoryData.categories.map((category, index) => (
+                                        <MenuItem
+                                            key={index}
+                                            className={classes.menuItem_Shop}
+                                        >
+                                            <MaterialLink
+                                                to={`/shop/${category._id}`}
+                                                className={classes.menuItemLink_Shop}
+                                                component={RouterLink}
+                                                underline='none'
+                                            >
+                                                {category.name}
+                                            </MaterialLink>
+                                        </MenuItem>
+                                    ))}
+                                </Box>
                             }
                         </Select>
                     </FormControl>
