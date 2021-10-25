@@ -79,8 +79,6 @@ const ProductShop = () => {
             }
         }
        
-        
-
     };
 
     const filterProductsByCategory = () => {
@@ -109,7 +107,7 @@ const ProductShop = () => {
 
     return (
         <Box>
-            {products.length && 
+            {products.length > 0 && 
                 <Grid container>
                     {filterProductsByCategory().map((product, index) => (
                         <Grid item className={classes.productContainer_ProductShop} xs={2} key={index}>

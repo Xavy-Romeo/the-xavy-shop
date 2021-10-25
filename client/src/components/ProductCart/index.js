@@ -72,7 +72,7 @@ const ProductCart = ({ item }) => {
                 _id: item._id,
                 purchaseQuantity: parseInt(value)
             });
-
+            
             try {
                 const { data } = await updateProductQuantity({
                     variables: {
