@@ -15,7 +15,7 @@ import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
 import { ADD_TO_CART, UPDATE_CART_QUANTITY, UPDATE_PRODUCTS } from '../../utils/actions';
 import { UPDATE_PURCHASE_QUANTITY } from '../../utils/mutations';
 import useStyles from './styles';
-
+import idbPromise from '../../utils/indexedDB';
 
 const ProductShop = () => {
     const classes = useStyles();
@@ -28,12 +28,26 @@ const ProductShop = () => {
     const [updateProductQuantity, ] = useMutation(UPDATE_PURCHASE_QUANTITY);
 
     useEffect(() => {
-            if(productData) {
+        if(productData) {
+            // store productData in Global Store
+            dispatch({
+                type: UPDATE_PRODUCTS,
+                products: productData.products
+            });
+
+            // store each product in IndexedDB
+            productData.products.forEach((product) => {
+                idbPromise('products', 'put', product);
+            });
+        }
+        else if (!loading) {
+            idbPromise('products', 'get').then((products) => {
                 dispatch({
                     type: UPDATE_PRODUCTS,
-                    products: productData.products
+                    products: products
                 });
-            }
+            });
+        }
 
     }, [loading, productData, dispatch]);
 
@@ -42,12 +56,20 @@ const ProductShop = () => {
         const itemInCart = cart.find((cartItem) => cartItem._id === item._id);
 
         if (itemInCart) {
+            // update global state
             dispatch({
                 type: UPDATE_CART_QUANTITY,
                 _id: item._id,
                 purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
             });
 
+            // update IndexedDB
+            idbPromise('cart', 'put', {
+                ...itemInCart,
+                purchaseQuantity: parseInt(itemInCart.purchaseQuantity)
+            });
+
+            // update database
             try {
                 const { data } = await updateProductQuantity({
                     variables: {
@@ -61,11 +83,14 @@ const ProductShop = () => {
             }
         }
         else {
+            // make updates if not yet in cart            
             dispatch({
                 type: ADD_TO_CART,
                 product: { ...item, purchaseQuantity: 1}
             });
             
+            idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
+
             try {
                 const { data } = await updateProductQuantity({
                     variables: {
@@ -79,8 +104,6 @@ const ProductShop = () => {
             }
         }
        
-        
-
     };
 
     const filterProductsByCategory = () => {
@@ -109,7 +132,7 @@ const ProductShop = () => {
 
     return (
         <Box>
-            {products.length && 
+            {products.length > 0 && 
                 <Grid container>
                     {filterProductsByCategory().map((product, index) => (
                         <Grid item className={classes.productContainer_ProductShop} xs={2} key={index}>

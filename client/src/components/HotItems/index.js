@@ -57,7 +57,7 @@ const HotItems = () => {
                         </Typography>
                     </Grid>
                     <Box>
-                        {products.length &&
+                        {products.length > 0 &&
                             <Grid container className={classes.newProductsGridContainer_HotItem}>
                                 {filterProductsByCategory().filter(product => product.new === true).slice(0,6).map((product, index) => ( 
                                     <Grid 
