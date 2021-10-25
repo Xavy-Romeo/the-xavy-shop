@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({ 
+const useStyles = makeStyles((theme) => ({ 
     orderHistoryPageContainer_OrderHistory:{
         margin: '120px 0 50px 0'
     },
@@ -12,7 +12,43 @@ const useStyles = makeStyles({
         display: 'flex', 
         alignItems: 'end', 
         marginLeft: '10px'
+    },
+    bold_OrderHistory: {
+        fontWeight: 'bold'
+    },
+    name_OrderHistory: {
+        marginLeft: '10px'
+    },
+    ordersContainer_OrderHistory: {
+        marginTop: '10px'
+    },
+    orderContainer_OrderHistory: {
+        paddingBottom: '10px', 
+        borderBottom: '1px solid rgba(0,0,0,.05)'
+    },
+    itemMainContainer_OrderHistory: {
+        display: 'flex', 
+        marginTop: '10px'
+    },
+    itemContainer_OrderHistory: {
+        marginRight: '10px', 
+        display: 'flex'
+    },
+    imageContainer_OrderHistory: {
+        marginRight: '10px'
+    },
+    noHistoryContainer_OrderHistory: {
+        margin: '30px 0 150px 0'
+    },
+    shopNowBtn_OrderHistory: {
+        width: '300px', 
+        marginTop: '10px'
+    },
+    shopNowBtnLink_OrderHistory: {
+        // width: '100%',
+        // height: '100%',
+        color: theme.palette.primary.contrastText
     }
-});
+}));
 
 export default useStyles;

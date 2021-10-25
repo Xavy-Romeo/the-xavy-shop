@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import {
@@ -6,6 +6,7 @@ import {
     Typography,
     Grid, 
     Box,
+    Button,
     Link as MaterialLink
 } from '@material-ui/core';
 
@@ -40,73 +41,99 @@ const OrderHistory = () => {
                         <Typography variant='h2'>
                             Order History
                         </Typography>
-                        <Box style={{display: 'flex'}}>
+                        <Box className={classes.flexBox_OrderHistory}>
                             <Typography variant='h3'>
                                 for: 
                             </Typography>
-                            <Typography variant='h3' style={{marginLeft: '10px'}}>
+                            <Typography className={classes.name_OrderHistory} variant='h3'>
                                 {user.firstName} ({user.username})
                             </Typography>
                         </Box>
                     </Grid>
 
-                    <Grid container style={{marginTop: '10px'}} direction='column'>
-                        {user.orders.map((order, index) => (
-                            <Grid item key={index} style={{paddingBottom: '10px', borderBottom: '1px solid rgba(0,0,0,.05)'}}>
-                                <Box className={classes.flexBox_OrderHistory} style={{display: 'flex'}}>
-                                    <Typography variant='subtitle2' style={{fontWeight: 'bold'}}>
-                                        Order Number: 
-                                    </Typography>
-                                    <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
-                                        {order._id} 
-                                    </Typography>
-                                </Box>
-                                <Box className={classes.flexBox_OrderHistory} style={{display: 'flex'}}>
-                                    <Typography style={{fontWeight: 'bold'}}>
-                                        Order Date: 
-                                    </Typography>
-                                    <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
-                                        {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
-                                    </Typography>
-                                </Box>
-                                <Box style={{display: 'flex', marginTop: '10px'}}>
-                                    {order.products.map((product, i) => (
-                                        <Box key={i} style={{marginRight: '10px', display: 'flex'}}>
-                                            <Box style={{marginRight: '10px'}}>
-                                                <img src={`/images/productImages/${product.image}`} alt={product.name} width='55px' />
-                                            </Box>
-
-                                            <Box>
-                                                <Box>
-                                                    <Typography variant='body2' style={{fontWeight: 'bold'}}>
-                                                        {product.name}
-                                                    </Typography>
-                                                </Box>
-                                                <Box>
-                                                    <Box className={classes.flexBox_OrderHistory}>
-                                                        <Typography variant='body2'>
-                                                            Quantity: 
-                                                        </Typography>
-                                                        <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
-                                                            {product.purchaseQuantity}
-                                                        </Typography>
-                                                    </Box>
-                                                    <Box className={classes.flexBox_OrderHistory}>
-                                                        <Typography variant='body2'>
-                                                            Price: 
-                                                        </Typography>
-                                                        <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
-                                                            {product.price}
-                                                        </Typography>
-                                                    </Box>
-                                                </Box>
-                                            </Box>
+                    {user.orders.length > 0
+                        ?
+                            <Grid container className={classes.ordersContainer_OrderHistory} direction='column'>
+                                {user.orders.map((order, index) => (
+                                    <Grid item className={classes.orderContainer_OrderHistory} key={index}>
+                                        <Box className={classes.flexBox_OrderHistory}>
+                                            <Typography variant='subtitle2' className={classes.bold_OrderHistory}>
+                                                Order Number: 
+                                            </Typography>
+                                            <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
+                                                {order._id} 
+                                            </Typography>
                                         </Box>
-                                    ))}
-                                </Box>
+                                        <Box className={classes.flexBox_OrderHistory}>
+                                            <Typography className={classes.bold_OrderHistory}>
+                                                Order Date: 
+                                            </Typography>
+                                            <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
+                                                {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
+                                            </Typography>
+                                        </Box>
+                                        <Box className={classes.itemMainContainer_OrderHistory}>
+                                            {order.products.map((product, i) => (
+                                                <Box className={classes.itemContainer_OrderHistory} key={i}>
+                                                    <Box className={classes.imageContainer_OrderHistory}>
+                                                        <img src={`/images/productImages/${product.image}`} alt={product.name} width='55px' />
+                                                    </Box>
+
+                                                    <Box>
+                                                        <Box>
+                                                            <Typography variant='body2' className={classes.bold_OrderHistory}>
+                                                                {product.name}
+                                                            </Typography>
+                                                        </Box>
+                                                        <Box>
+                                                            <Box className={classes.flexBox_OrderHistory}>
+                                                                <Typography variant='body2'>
+                                                                    Quantity: 
+                                                                </Typography>
+                                                                <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
+                                                                    {product.purchaseQuantity}
+                                                                </Typography>
+                                                            </Box>
+                                                            <Box className={classes.flexBox_OrderHistory}>
+                                                                <Typography variant='body2'>
+                                                                    Price: 
+                                                                </Typography>
+                                                                <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
+                                                                    {product.price}
+                                                                </Typography>
+                                                            </Box>
+                                                        </Box>
+                                                    </Box>
+                                                </Box>
+                                            ))}
+                                        </Box>
+                                    </Grid>
+                                ))}                
                             </Grid>
-                        ))}                
-                    </Grid>
+                        : 
+                            <Grid 
+                                container
+                                className={classes.noHistoryContainer_OrderHistory} 
+                                direction='column' 
+                                alignItems='center'
+                            >
+                                <Typography variant='h5'>
+                                    😨 You have no order history!
+                                </Typography>
+                                <MaterialLink
+                                    to='/shop'
+                                    component={RouterLink}
+                                    className={classes.shopNowBtnLink_OrderHistory}
+                                    underline='none'
+                                >
+                                    <Button className={classes.shopNowBtn_OrderHistory}>
+                                        <Typography>
+                                            Start Shopping Now
+                                        </Typography>
+                                    </Button>
+                                </MaterialLink>
+                            </Grid>
+                    }
 
                 </Grid>
             }

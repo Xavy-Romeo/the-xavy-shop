@@ -109,7 +109,10 @@ const theme = createTheme({
             },
             contained: {
                color: 'rgba(255,255,255,.87)',
-               backgroundColor: 'rgb(5,44,133)',  
+               backgroundColor: 'rgb(5,44,133)',
+               '&:hover': {
+                   backgroundColor: 'rgb(47,96,162)'
+               }  
             }
         },
         MuiPaper: {
