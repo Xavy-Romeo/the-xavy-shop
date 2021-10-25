@@ -65,6 +65,7 @@ function App() {
                 <Route exact path='/signup' component={Signup} />
                 <Route exact path='/order-history' component={OrderHistory} />
                 <Route exact path='/checkout' component={Checkout} />
+                <Route exact path='/success' component={SuccessOrder} />
                 <Route component={Page404} />
               </Switch>
               <Footer />

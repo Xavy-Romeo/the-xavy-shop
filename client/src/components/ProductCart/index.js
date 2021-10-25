@@ -9,9 +9,9 @@ import Input from '@material-ui/core/Input';
 import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
-import { UPDATE_PRODUCT_PRICE } from '../../utils/mutations';
+import { UPDATE_PRODUCT_PRICE, UPDATE_PURCHASE_QUANTITY } from '../../utils/mutations';
 
-const CartItem = ({ item }) => {
+const ProductCart = ({ item }) => {
     const classes = useStyles();
 
     const [state, dispatch] = useStoreContext();
@@ -19,7 +19,8 @@ const CartItem = ({ item }) => {
 
     const [fullPrice, setFullPrice] = useState(0);
 
-    const [updatePrice, {error}] = useMutation(UPDATE_PRODUCT_PRICE);
+    const [updatePrice ,] = useMutation(UPDATE_PRODUCT_PRICE);
+    const [updateProductQuantity, ] = useMutation(UPDATE_PURCHASE_QUANTITY);
 
     useEffect(() => {
         const setPrice = async () => {
@@ -39,7 +40,6 @@ const CartItem = ({ item }) => {
                         newPrice: total
                     }
                 });
-                console.log('data', data);
             }
             catch (err) {
                 console.error(err);
@@ -57,7 +57,7 @@ const CartItem = ({ item }) => {
         });
     };
 
-    const updateQuantity = e => {
+    const updateQuantity = async e => {
         const value = e.target.value;
 
         if (value === '0') {
@@ -72,6 +72,18 @@ const CartItem = ({ item }) => {
                 _id: item._id,
                 purchaseQuantity: parseInt(value)
             });
+
+            try {
+                const { data } = await updateProductQuantity({
+                    variables: {
+                        productId: item._id,
+                        newQuantity: parseInt(value)
+                    }
+                });
+            }
+            catch (err) {
+                console.error(err);
+            }
         }
     };
 
@@ -148,4 +160,4 @@ const CartItem = ({ item }) => {
     );
 };
 
-export default CartItem;
+export default ProductCart;
