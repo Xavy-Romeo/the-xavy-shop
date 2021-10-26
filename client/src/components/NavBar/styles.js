@@ -10,7 +10,10 @@ const useStyles = makeStyles((theme) => ({
     navItemContainer_NavBar: {
         color: theme.palette.primary.contrastText, 
         display: 'flex', 
-        alignItems: 'end'
+        alignItems: 'end', 
+        '&:hover': {
+            color: theme.palette.primary.light,
+        }
     },
     navIcon_NavBar: {
         marginRight: '5px'
@@ -21,8 +24,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center'
     },
     navItemName_NavBar: {
-        color: theme.palette.primary.contrastText,
-        marginTop: '-8px'
+        marginTop: '-8px',
     },
 }));
 

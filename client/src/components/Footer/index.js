@@ -7,13 +7,15 @@ import {
     Typography,
     Container,
     Button,
-    Link as MaterialLink 
+    Link as MaterialLink
 } from '@material-ui/core';
 
 import CheckCircleOutlineOutlinedIcon from '@material-ui/icons/CheckCircleOutlineOutlined';
 import LocalHospitalOutlinedIcon from '@material-ui/icons/LocalHospitalOutlined';
 
 import useStyles from './styles';
+import { useStoreContext } from '../../utils/GlobalState';
+import { UPDATE_PAGE } from '../../utils/actions';
 import Logo from '../../assets/images/xr-logo.png';
 import facebook from '../../assets/images/facebook.svg';
 import instagram from '../../assets/images/instagram.svg';
@@ -23,17 +25,29 @@ import twitter from '../../assets/images/twitter.svg';
 import youtube from '../../assets/images/youtube.svg';
 
 const socialLogos = [
-    {logo: facebook, name: 'facebook'},
-    {logo: instagram, name: 'instagram'},
-    {logo: pinterest, name: 'pinterest'},
-    {logo: tiktok, name: 'tiktok'},
-    {logo: twitter, name: 'twitter'},
-    {logo: youtube , name: 'youtube'}
+    {logo: facebook, name: 'Facebook'},
+    {logo: instagram, name: 'Instagram'},
+    {logo: pinterest, name: 'Pinterest'},
+    {logo: tiktok, name: 'Tiktok'},
+    {logo: twitter, name: 'Twitter'},
+    {logo: youtube , name: 'Youtube'}
 ];
 
 const Footer = () => {
     const classes = useStyles();
 
+    const [, dispatch] = useStoreContext();
+
+    const changePage = async (pageName) => {
+        const page = await socialLogos.find(page => page.name === pageName);
+
+        dispatch({
+            type: UPDATE_PAGE,
+            currentMimicPage: page
+        });
+    }
+
+    // function scroll to top of page
     const toTop = () => {
         window.scrollTo(0,0);
     };
@@ -165,10 +179,17 @@ const Footer = () => {
                                     Follow Us
                                 </Typography>
                                 <Grid container justifyContent='center'>
-                                    {socialLogos.map((img, index) => (
-                                        <Grid item className={classes.socialIconDiv_Footer} key={index}  >                    
-                                            <img src={img.logo} alt={img.name} height='30px' width='30px' />
-                                        </Grid>
+                                    {socialLogos.map((item, index) => (
+                                        <MaterialLink
+                                            to='/mimic-page'
+                                            component={RouterLink}
+                                            onClick={() => changePage(item.name)}
+                                            underline='none'
+                                        >
+                                            <Grid item className={classes.socialIconDiv_Footer} key={index}  >                    
+                                                <img src={item.logo} alt={item.name} height='30px' width='30px' />
+                                            </Grid>
+                                        </MaterialLink>
                                     ))}
                                 </Grid>
                             </Grid>
