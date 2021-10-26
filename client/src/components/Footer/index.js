@@ -17,29 +17,22 @@ import useStyles from './styles';
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PAGE } from '../../utils/actions';
 import Logo from '../../assets/images/xr-logo.png';
-import facebook from '../../assets/images/facebook.svg';
-import instagram from '../../assets/images/instagram.svg';
-import pinterest from '../../assets/images/pinterest.svg';
-import tiktok from '../../assets/images/tiktok.svg';
-import twitter from '../../assets/images/twitter.svg';
-import youtube from '../../assets/images/youtube.svg';
-
-const socialLogos = [
-    {logo: facebook, name: 'Facebook'},
-    {logo: instagram, name: 'Instagram'},
-    {logo: pinterest, name: 'Pinterest'},
-    {logo: tiktok, name: 'Tiktok'},
-    {logo: twitter, name: 'Twitter'},
-    {logo: youtube , name: 'Youtube'}
-];
+import { socialLogos, moreInfo } from './helpers';
 
 const Footer = () => {
     const classes = useStyles();
 
     const [, dispatch] = useStoreContext();
 
-    const changePage = async (pageName) => {
-        const page = await socialLogos.find(page => page.name === pageName);
+    const changePage = async (pageName, type) => {
+        let page;
+
+        if (type === 'social') {
+            page = await socialLogos.find(page => page.name === pageName);
+        }
+        else if (type === 'moreInfo') {
+            page = await moreInfo.find(page => page.name === pageName);
+        }
 
         dispatch({
             type: UPDATE_PAGE,
@@ -128,21 +121,19 @@ const Footer = () => {
                             More Info
                         </Typography>
                         <Grid container direction='column'>
-                            <Typography variant='body2'>
-                                Help Center
-                            </Typography>
-                            <Typography variant='body2'>
-                                Order Status
-                            </Typography>
-                            <Typography variant='body2'>
-                                Careers
-                            </Typography>
-                            <Typography variant='body2'>
-                                Privacy Policy
-                            </Typography>
-                            <Typography variant='body2'>
-                               Terms of Use
-                            </Typography>
+                            {moreInfo.map((item, index) => (
+                                <MaterialLink
+                                    to='/mimic-page'
+                                    className={classes.moreInfoLinks_Footer}
+                                    component={RouterLink}
+                                    onClick={() => changePage(item.name, 'moreInfo')}
+                                    underline='none'
+                                    variant='body2'
+                                    key={index}
+                                >
+                                    {item.name}
+                                </MaterialLink>
+                            ))}
                         </Grid>
                     </Grid>
 
@@ -183,7 +174,7 @@ const Footer = () => {
                                         <MaterialLink
                                             to='/mimic-page'
                                             component={RouterLink}
-                                            onClick={() => changePage(item.name)}
+                                            onClick={() => changePage(item.name, 'social')}
                                             underline='none'
                                         >
                                             <Grid item className={classes.socialIconDiv_Footer} key={index}  >                    

@@ -56,8 +56,14 @@ const useStyles = makeStyles((theme) => ({
         padding: '10px',
         marginBottom: '20px'
     },
-    moreInfo: {
+    moreInfo_Footer: {
         padding: '0 20px'
+    },
+    moreInfoLinks_Footer: {
+        color: theme.palette.primary.contrastText,
+        '&:hover': {
+            color: theme.palette.primary.light
+        }
     },
     button_Footer: {
         width: '300px',
