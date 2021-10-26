@@ -24,6 +24,7 @@ import Page404 from './pages/Page404';
 import ProductDetails from './pages/ProductDetails';
 import Signup from './pages/Signup';
 import SuccessOrder from './pages/SuccessOrder';
+import Account from './pages/Account';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import theme from './theme';
@@ -63,6 +64,7 @@ function App() {
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/signup' component={Signup} />
                 <Route exact path='/order-history' component={OrderHistory} />
+                <Route exact path='/account' component={Account} />
                 <Route exact path='/success' component={SuccessOrder} />
                 <Route component={Page404} />
               </Switch>
