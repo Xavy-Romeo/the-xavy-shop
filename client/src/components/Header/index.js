@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 
 import useStyles from './styles';
+import NavBar from '../NavBar';
 import Logo from '../../assets/images/xr-logo.png';
 
 const Header = () => {
@@ -67,63 +68,11 @@ const Header = () => {
                             </MaterialLink>
                         </Grid>
                     </Box>
+
                     <Grid item xs={5}>
-                        <Grid 
-                            container
-                            className={classes.navContainer_Header}
-                            justifyContent='space-between' 
-                        >
-                            <Grid item color='textSecondary' xs={10}>
-                                <Grid 
-                                    container
-                                    className={classes.navGrid_Header}
-                                    justifyContent='space-evenly' 
-                                    alignItems='center' 
-                                >
-                                    <Grid item>
-                                        <MaterialLink
-                                            to='/shop'
-                                            className={classes.fakeClass}
-                                            component={RouterLink}
-                                            underline='none'
-                                            variant='body1'   
-                                        >
-                                            <Typography className={classes.navItem_Header}>
-                                                Shop
-                                            </Typography>
-                                        </MaterialLink>
-                                    </Grid>
-                                    <Grid item>
-                                        <MaterialLink
-                                            to='/login'
-                                            className={classes.fakeClass}
-                                            component={RouterLink}
-                                            underline='none'
-                                            variant='body1'   
-                                        >
-                                            <Typography className={classes.navItem_Header}>
-                                                Account
-                                            </Typography>
-                                        </MaterialLink>
-                                    </Grid>
-                                    <Grid item>
-                                        <MaterialLink
-                                            to='/order-history'
-                                            className={classes.fakeClass}
-                                            component={RouterLink}
-                                            underline='none'
-                                            variant='body1'   
-                                        >
-                                            <Typography className={classes.navItem_Header}>
-                                                Order History
-                                            </Typography>
-                                        </MaterialLink>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            
-                        </Grid>
+                        <NavBar />
                     </Grid>
+                    
                 </Grid>
             </Toolbar>
         </AppBar>
