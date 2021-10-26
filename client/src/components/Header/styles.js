@@ -34,16 +34,7 @@ const useStyles = makeStyles((theme) => ({
             textShadow: '5px 5px 10px rgba(150,150,150,.87)',
             transform: 'scale(1.03)'
         }
-    },
-    navContainer_Header: {
-        height: '100%'
-    },
-    navGrid_Header: {
-        height: '100%'
-    },
-    navItem_Header: {
-        color: theme.palette.primary.contrastText
-    },
+    }
 }));
 
 export default useStyles;

@@ -45,8 +45,6 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px'
     },
     shopNowBtnLink_OrderHistory: {
-        // width: '100%',
-        // height: '100%',
         color: theme.palette.primary.contrastText
     }
 }));
