@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
     homeBox_Home: {
-        position: 'relative'
+        position: 'relative',
+        marginBottom: '15px'
     },
     heroImg_Home: {
         height: '100vh',
@@ -44,19 +45,7 @@ const useStyles = makeStyles((theme) => ({
             background: 'rgba(20,20,20,.5)'
         }
     },
-    downloadAppBox_Home: {
-        background: 'rgba(140,210,255)', 
-        height: '80px', 
-        margin: '20px 0 25px 0', 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        color: 'rgba(0,0,0,.87)' 
-    },
-    downloadAppBtn_Home: {
-        width: '150px', 
-        marginLeft: '20px',  
-    }
+
 }));
 
 export default useStyles;
