@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { 
     Toolbar,
@@ -7,6 +7,7 @@ import {
     Typography,
     Container,
     Button,
+    Modal,
     Link as MaterialLink
 } from '@material-ui/core';
 
@@ -18,9 +19,12 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PAGE } from '../../utils/actions';
 import Logo from '../../assets/images/xr-logo.png';
 import { socialLogos, moreInfo } from './helpers';
+import FeedbackModal from '../FeedbackModal';
 
 const Footer = () => {
     const classes = useStyles();
+
+    const [modalOpen, setModalOpen] = useState(false);
 
     const [, dispatch] = useStoreContext();
 
@@ -41,7 +45,15 @@ const Footer = () => {
             type: UPDATE_PAGE,
             currentMimicPage: page
         });
-    }
+    };
+
+    const handleOpen = () => {
+        setModalOpen(true);
+    };
+
+    const handleClose = () => {
+        setModalOpen(false);
+    };
 
     // function scroll to top of page
     const toTop = () => {
@@ -179,7 +191,7 @@ const Footer = () => {
                         <Typography className={classes.textMargin_Footer}>
                             Let us know what you think! Your feedback is greatly appreciated.
                         </Typography>
-                        <Button className={classes.button_Footer}>
+                        <Button className={classes.button_Footer} onClick={handleOpen}>
                             <Typography variant='body2'>
                                 Give Feedback
                             </Typography>
@@ -233,6 +245,15 @@ const Footer = () => {
                     </Grid>
                 </Grid>
             </Container>
+            <Modal
+                open={modalOpen}
+                onClose={handleClose}
+                style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+            >
+                <FeedbackModal 
+                    handleClose={handleClose}
+                />
+            </Modal>
         </Toolbar>
     );
 };
