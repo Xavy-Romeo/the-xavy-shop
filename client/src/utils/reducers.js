@@ -8,7 +8,8 @@ import {
     UPDATE_CATEGORIES,
     UPDATE_CURRENT_CATEGORY,
     CLEAR_CART,
-    TOGGLE_CART
+    TOGGLE_CART,
+    UPDATE_PAGE
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -79,7 +80,11 @@ export const reducer = (state, action) => {
                 ...state,
                 currentCategory: action.currentCategory
             }
-
+        case UPDATE_PAGE:
+            return {
+                ...state,
+                currentMimicPage: action.currentMimicPage
+            }
         default:
             return state;
     }

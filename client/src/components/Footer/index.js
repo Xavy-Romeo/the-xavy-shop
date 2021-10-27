@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { 
     Toolbar,
@@ -7,33 +7,69 @@ import {
     Typography,
     Container,
     Button,
-    Link as MaterialLink 
+    Modal,
+    Link as MaterialLink
 } from '@material-ui/core';
 
 import CheckCircleOutlineOutlinedIcon from '@material-ui/icons/CheckCircleOutlineOutlined';
 import LocalHospitalOutlinedIcon from '@material-ui/icons/LocalHospitalOutlined';
 
 import useStyles from './styles';
+import { useStoreContext } from '../../utils/GlobalState';
+import { UPDATE_PAGE } from '../../utils/actions';
 import Logo from '../../assets/images/xr-logo.png';
-import facebook from '../../assets/images/facebook.svg';
-import instagram from '../../assets/images/instagram.svg';
-import pinterest from '../../assets/images/pinterest.svg';
-import tiktok from '../../assets/images/tiktok.svg';
-import twitter from '../../assets/images/twitter.svg';
-import youtube from '../../assets/images/youtube.svg';
-
-const socialLogos = [
-    {logo: facebook, name: 'facebook'},
-    {logo: instagram, name: 'instagram'},
-    {logo: pinterest, name: 'pinterest'},
-    {logo: tiktok, name: 'tiktok'},
-    {logo: twitter, name: 'twitter'},
-    {logo: youtube , name: 'youtube'}
-];
+import { socialLogos, moreInfo } from './helpers';
+import FeedbackModal from '../FeedbackModal';
 
 const Footer = () => {
     const classes = useStyles();
 
+    const [modalOpen, setModalOpen] = useState(false);
+    const [submitSub, setSubmitSub] = useState(false);
+
+    const [, dispatch] = useStoreContext();
+
+    const changePage = async (pageName, type) => {
+        let page;
+
+        if (type === 'social') {
+            page = await socialLogos.find(page => page.name === pageName);
+        }
+        else if (type === 'moreInfo') {
+            page = await moreInfo.find(page => page.name === pageName);
+        }
+        else {
+            page = { name: pageName, logo: Logo };
+        }
+
+        dispatch({
+            type: UPDATE_PAGE,
+            currentMimicPage: page
+        });
+    };
+
+    const handleOpen = () => {
+        setModalOpen(true);
+    };
+
+    const handleClose = () => {
+        setModalOpen(false);
+    };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        const input = document.getElementById('sub-submit');
+        input.value = '';
+
+        setSubmitSub(true);
+
+        setTimeout(() => {
+            setSubmitSub(false);
+        }, 2500);
+    };
+
+    // function scroll to top of page
     const toTop = () => {
         window.scrollTo(0,0);
     };
@@ -70,9 +106,16 @@ const Footer = () => {
                         <Typography className={classes.textMargin_Footer}>
                             We know prioritizing quality and durability is what our community wants.
                         </Typography>
-                        <Typography className={classes.textMargin_Footer} variant='caption'>
+                        <MaterialLink
+                            to='/mimic-page'
+                            className={classes.topLinks_Footer}
+                            component={RouterLink}
+                            onClick={() => changePage('Guarantee')}
+                            variant='caption'
+                            underline='none'
+                        >
                             View Guarantee
-                        </Typography>
+                        </MaterialLink>
                     </Grid>
                     
                     <Grid item className={classes.upperFooter_Footer} xs={5}>
@@ -85,9 +128,16 @@ const Footer = () => {
                         <Typography className={classes.textMargin_Footer}>
                             We've pledged 1% of sales to help children who need medical treatment at Children's Hospital.
                         </Typography>
-                        <Typography className={classes.textMargin_Footer} variant='caption'>
+                        <MaterialLink
+                            to='/mimic-page'
+                            className={classes.topLinks_Footer}
+                            component={RouterLink}
+                            onClick={() => changePage('For the Children')}
+                            variant='caption'
+                            underline='none'
+                        >
                             View 1% For the Children
-                        </Typography>
+                        </MaterialLink>
                     </Grid>
 
                     <Grid item className={classes.midFooterDiv_Footer} xs={5}>
@@ -97,16 +147,29 @@ const Footer = () => {
                         <Typography className={classes.textMargin_Footer}>
                             Sign up for exclusive offers, original stories, charity, events and more.
                         </Typography>
-                        <input 
-                            className={classes.subscribeInput_Footer}
-                            placeholder='Email Address'
-                            required
-                        />
-                        <Button className={classes.button_Footer} type='submit'>
-                            <Typography variant='body2'>
-                                Sign Me Up
-                            </Typography>
-                        </Button>
+                        <Box>
+                            <form onSubmit={handleSubmit}>
+                                <input 
+                                    className={classes.subscribeInput_Footer}
+                                    id='sub-submit'
+                                    placeholder='Email Address'
+                                    type='email'
+                                    required
+                                />
+                                <Button className={classes.button_Footer} type='submit'>
+                                    <Typography variant='body2'>
+                                        Sign Me Up
+                                    </Typography>
+                                    {submitSub &&
+                                        <Button className={classes.subscribedButton_Footer}>
+                                            <Typography>
+                                                You Subscribed ✔️
+                                            </Typography>
+                                        </Button>
+                                    }
+                                </Button>
+                            </form>
+                        </Box>
                     </Grid>
 
                     <Grid item xs={2} className={classes.moreInfo_Footer}>
@@ -114,21 +177,39 @@ const Footer = () => {
                             More Info
                         </Typography>
                         <Grid container direction='column'>
-                            <Typography variant='body2'>
-                                Help Center
-                            </Typography>
-                            <Typography variant='body2'>
-                                Order Status
-                            </Typography>
-                            <Typography variant='body2'>
-                                Careers
-                            </Typography>
-                            <Typography variant='body2'>
+                            {moreInfo.map((item, index) => (
+                                <MaterialLink
+                                    to='/mimic-page'
+                                    className={classes.moreInfoLinks_Footer}
+                                    component={RouterLink}
+                                    onClick={() => changePage(item.name, 'moreInfo')}
+                                    underline='none'
+                                    variant='body2'
+                                    key={index}
+                                >
+                                    {item.name}
+                                </MaterialLink>
+                            ))}
+                            <MaterialLink
+                                to='/policies'
+                                className={classes.moreInfoLinks_Footer}
+                                component={RouterLink}
+                                onClick={() => changePage('Privacy Policy')}
+                                underline='none'
+                                variant='body2'
+                            >
                                 Privacy Policy
-                            </Typography>
-                            <Typography variant='body2'>
-                               Terms of Use
-                            </Typography>
+                            </MaterialLink>
+                            <MaterialLink
+                                to='/policies'
+                                className={classes.moreInfoLinks_Footer}
+                                component={RouterLink}
+                                onClick={() => changePage('Terms of Use')}
+                                underline='none'
+                                variant='body2'
+                            >
+                                Terms of Use
+                            </MaterialLink>
                         </Grid>
                     </Grid>
 
@@ -139,7 +220,7 @@ const Footer = () => {
                         <Typography className={classes.textMargin_Footer}>
                             Let us know what you think! Your feedback is greatly appreciated.
                         </Typography>
-                        <Button className={classes.button_Footer}>
+                        <Button className={classes.button_Footer} onClick={handleOpen}>
                             <Typography variant='body2'>
                                 Give Feedback
                             </Typography>
@@ -165,10 +246,17 @@ const Footer = () => {
                                     Follow Us
                                 </Typography>
                                 <Grid container justifyContent='center'>
-                                    {socialLogos.map((img, index) => (
-                                        <Grid item className={classes.socialIconDiv_Footer} key={index}  >                    
-                                            <img src={img.logo} alt={img.name} height='30px' width='30px' />
-                                        </Grid>
+                                    {socialLogos.map((item, index) => (
+                                        <MaterialLink
+                                            to='/mimic-page'
+                                            component={RouterLink}
+                                            onClick={() => changePage(item.name, 'social')}
+                                            underline='none'
+                                        >
+                                            <Grid item className={classes.socialIconDiv_Footer} key={index}  >                    
+                                                <img src={item.logo} alt={item.name} height='30px' width='30px' />
+                                            </Grid>
+                                        </MaterialLink>
                                     ))}
                                 </Grid>
                             </Grid>
@@ -186,6 +274,15 @@ const Footer = () => {
                     </Grid>
                 </Grid>
             </Container>
+            <Modal
+                open={modalOpen}
+                onClose={handleClose}
+                className={classes.modal_Footer}
+            >
+                <FeedbackModal 
+                    handleClose={handleClose}
+                />
+            </Modal>
         </Toolbar>
     );
 };

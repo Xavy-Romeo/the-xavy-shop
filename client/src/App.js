@@ -25,6 +25,8 @@ import ProductDetails from './pages/ProductDetails';
 import Signup from './pages/Signup';
 import SuccessOrder from './pages/SuccessOrder';
 import Account from './pages/Account';
+import Policy from './pages/Policy';
+import Mimic from './pages/Mimic';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import theme from './theme';
@@ -66,6 +68,8 @@ function App() {
                 <Route exact path='/order-history' component={OrderHistory} />
                 <Route exact path='/account' component={Account} />
                 <Route exact path='/success' component={SuccessOrder} />
+                <Route exact path='/policies' component={Policy} />
+                <Route exact path='/mimic-page' component={Mimic} />
                 <Route component={Page404} />
               </Switch>
               <Footer />

@@ -43,6 +43,13 @@ const useStyles = makeStyles((theme) => ({
     textMargin_Footer: {
         marginBottom: '15px'
     },
+    topLinks_Footer: {
+        color: theme.palette.primary.contrastText,
+        marginBottom: '15px',
+        '&:hover': {
+            color: theme.palette.primary.light
+        }
+    },
     midFooterDiv_Footer: {
         paddingRight: '20px' 
     },
@@ -56,13 +63,29 @@ const useStyles = makeStyles((theme) => ({
         padding: '10px',
         marginBottom: '20px'
     },
-    moreInfo: {
+    moreInfo_Footer: {
         padding: '0 20px'
     },
+    moreInfoLinks_Footer: {
+        color: theme.palette.primary.contrastText,
+        '&:hover': {
+            color: theme.palette.primary.light
+        }
+    },
     button_Footer: {
+        position: 'relative',
         width: '300px',
         '&:hover': {
             background: theme.palette.primary.light,
+        }
+    },
+    subscribedButton_Footer: {
+        position: 'absolute', 
+        width: '100%', 
+        height: '100%',
+        background: 'green',
+        '&:hover': {
+            background: 'green'
         }
     },
     footerBottom_Footer: {
@@ -94,6 +117,12 @@ const useStyles = makeStyles((theme) => ({
     },
     copyContainer_Footer: {
         height: '100%'
+    },
+    modal_Footer: {
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        zIndex: '99999' 
     }
 }));
 

@@ -12,3 +12,6 @@ export const TOGGLE_CART = 'TOGGLE_CART';
 // category actions
 export const UPDATE_CATEGORIES = 'UPDATE_CATEGORIES';
 export const UPDATE_CURRENT_CATEGORY = 'UPDATE_CURRENT_CATEGORY';
+
+// dummy page actions
+export const UPDATE_PAGE = 'UPDATE_PAGE';
