@@ -25,6 +25,7 @@ const Footer = () => {
     const classes = useStyles();
 
     const [modalOpen, setModalOpen] = useState(false);
+    const [submitSub, setSubmitSub] = useState(false);
 
     const [, dispatch] = useStoreContext();
 
@@ -53,6 +54,19 @@ const Footer = () => {
 
     const handleClose = () => {
         setModalOpen(false);
+    };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        const input = document.getElementById('sub-submit');
+        input.value = '';
+
+        setSubmitSub(true);
+
+        setTimeout(() => {
+            setSubmitSub(false);
+        }, 2500);
     };
 
     // function scroll to top of page
@@ -98,6 +112,7 @@ const Footer = () => {
                             component={RouterLink}
                             onClick={() => changePage('Guarantee')}
                             variant='caption'
+                            underline='none'
                         >
                             View Guarantee
                         </MaterialLink>
@@ -119,6 +134,7 @@ const Footer = () => {
                             component={RouterLink}
                             onClick={() => changePage('For the Children')}
                             variant='caption'
+                            underline='none'
                         >
                             View 1% For the Children
                         </MaterialLink>
@@ -131,16 +147,29 @@ const Footer = () => {
                         <Typography className={classes.textMargin_Footer}>
                             Sign up for exclusive offers, original stories, charity, events and more.
                         </Typography>
-                        <input 
-                            className={classes.subscribeInput_Footer}
-                            placeholder='Email Address'
-                            required
-                        />
-                        <Button className={classes.button_Footer} type='submit'>
-                            <Typography variant='body2'>
-                                Sign Me Up
-                            </Typography>
-                        </Button>
+                        <Box>
+                            <form onSubmit={handleSubmit}>
+                                <input 
+                                    className={classes.subscribeInput_Footer}
+                                    id='sub-submit'
+                                    placeholder='Email Address'
+                                    type='email'
+                                    required
+                                />
+                                <Button className={classes.button_Footer} type='submit'>
+                                    <Typography variant='body2'>
+                                        Sign Me Up
+                                    </Typography>
+                                    {submitSub &&
+                                        <Button className={classes.subscribedButton_Footer}>
+                                            <Typography>
+                                                You Subscribed ✔️
+                                            </Typography>
+                                        </Button>
+                                    }
+                                </Button>
+                            </form>
+                        </Box>
                     </Grid>
 
                     <Grid item xs={2} className={classes.moreInfo_Footer}>
@@ -248,7 +277,7 @@ const Footer = () => {
             <Modal
                 open={modalOpen}
                 onClose={handleClose}
-                style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                className={classes.modal_Footer}
             >
                 <FeedbackModal 
                     handleClose={handleClose}

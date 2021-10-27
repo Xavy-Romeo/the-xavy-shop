@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         width: '40px',
         height: '40px',
         padding: '30px',
-        zIndex: '99999',
+        zIndex: '9999',
         color: theme.palette.primary.contrastText,
         backgroundColor: theme.palette.secondary.main,
         '&:hover': {
