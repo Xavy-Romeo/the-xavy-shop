@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
     mimicPageContainer_MimicPage: {
-        margin: '120px 0 50px 0'
+        marginTop: '120px',
+        marginBottom: '50px'
     },
     logoContainer_MimicPage: {
         background: theme.palette.primary.main, 

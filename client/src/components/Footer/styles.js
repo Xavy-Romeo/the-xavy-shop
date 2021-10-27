@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
     textMargin_Footer: {
         marginBottom: '15px'
     },
+    topLinks_Footer: {
+        color: theme.palette.primary.contrastText,
+        marginBottom: '15px'
+    },
     midFooterDiv_Footer: {
         paddingRight: '20px' 
     },

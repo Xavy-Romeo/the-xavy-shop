@@ -18,7 +18,5 @@ export const socialLogos = [
 export const moreInfo = [
     {logo: Logo, name: 'Help Center'},
     {logo: Logo, name: 'Order Status'},
-    {logo: Logo, name: 'Careers'},
-    {logo: Logo, name: 'Privacy Policy'},
-    {logo: Logo, name: 'Terms of Use'},
+    {logo: Logo, name: 'Careers'}
 ];

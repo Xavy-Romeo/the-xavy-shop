@@ -33,6 +33,9 @@ const Footer = () => {
         else if (type === 'moreInfo') {
             page = await moreInfo.find(page => page.name === pageName);
         }
+        else {
+            page = { name: pageName, logo: Logo };
+        }
 
         dispatch({
             type: UPDATE_PAGE,
@@ -77,9 +80,15 @@ const Footer = () => {
                         <Typography className={classes.textMargin_Footer}>
                             We know prioritizing quality and durability is what our community wants.
                         </Typography>
-                        <Typography className={classes.textMargin_Footer} variant='caption'>
+                        <MaterialLink
+                            to='/mimic-page'
+                            className={classes.topLinks_Footer}
+                            component={RouterLink}
+                            onClick={() => changePage('Guarantee')}
+                            variant='caption'
+                        >
                             View Guarantee
-                        </Typography>
+                        </MaterialLink>
                     </Grid>
                     
                     <Grid item className={classes.upperFooter_Footer} xs={5}>
@@ -92,9 +101,15 @@ const Footer = () => {
                         <Typography className={classes.textMargin_Footer}>
                             We've pledged 1% of sales to help children who need medical treatment at Children's Hospital.
                         </Typography>
-                        <Typography className={classes.textMargin_Footer} variant='caption'>
+                        <MaterialLink
+                            to='/mimic-page'
+                            className={classes.topLinks_Footer}
+                            component={RouterLink}
+                            onClick={() => changePage('For the Children')}
+                            variant='caption'
+                        >
                             View 1% For the Children
-                        </Typography>
+                        </MaterialLink>
                     </Grid>
 
                     <Grid item className={classes.midFooterDiv_Footer} xs={5}>
@@ -134,6 +149,26 @@ const Footer = () => {
                                     {item.name}
                                 </MaterialLink>
                             ))}
+                            <MaterialLink
+                                to='/policies'
+                                className={classes.moreInfoLinks_Footer}
+                                component={RouterLink}
+                                onClick={() => changePage('Privacy Policy')}
+                                underline='none'
+                                variant='body2'
+                            >
+                                Privacy Policy
+                            </MaterialLink>
+                            <MaterialLink
+                                to='/policies'
+                                className={classes.moreInfoLinks_Footer}
+                                component={RouterLink}
+                                onClick={() => changePage('Terms of Use')}
+                                underline='none'
+                                variant='body2'
+                            >
+                                Terms of Use
+                            </MaterialLink>
                         </Grid>
                     </Grid>
 

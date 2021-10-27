@@ -21,7 +21,7 @@ const MimicPage = () => {
     const { currentMimicPage } = state;
 
     return (
-        <Container className={classes.mimicPageContainer_MimicPage} maxWidth='xl'>
+        <Container maxWidth='xl' className={classes.mimicPageContainer_MimicPage}>
             <Grid container alignItems='center' direction='column'>
                 <Typography variant='h2'>
                     {currentMimicPage.name}
