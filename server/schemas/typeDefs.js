@@ -76,6 +76,7 @@ const typeDefs = gql`
             productId: ID!
             newQuantity: Int!
         ): Product
+        addOrder(products: [ID]!): Order
     }
 `;
 
