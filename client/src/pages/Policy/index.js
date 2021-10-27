@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import {
+    Container,
+    Box, 
+    Grid,
+    Typography,
+    Button,
+    Link as MaterialLink
+} from '@material-ui/core';
 
 import { useStoreContext } from '../../utils/GlobalState';
 import useStyles from './styles';
@@ -29,25 +34,35 @@ const Policy = () => {
     const { currentMimicPage } = state;
 
     return (
-        <Container maxWidth='xl' style={{marginTop: '120px', marginBottom: '50px'}}>
+        <Container className={classes.policyPageContainer_Policy} maxWidth='xl'>
             <Grid container direction='column' alignItems='center'>
                 <Typography variant='h2'>
                     {currentMimicPage.name}
                 </Typography>
             </Grid>
             {content.map((paragraph, index) => (
-                <Box key={index}>
-                    <Typography variant='subtitle2' style={{fontFamily: 'serif', fontWeight: 'bold'}}>
+                <Box className={classes.sectionContainer_Policy} key={index}>
+                    <Typography className={classes.sectionTitles_Policy} variant='subtitle2'>
                         {index + 1}. {paragraph.title}
                     </Typography>
-                    <Typography>
+                    <Typography variant='body2'>
                         {paragraph.content}
                     </Typography>
                 </Box>
             ))}
-     
-                
-            
+            <Grid container className={classes.btnLinkContainer_Policy} justifyContent='center'>
+                <MaterialLink
+                    to='/'
+                    component={RouterLink}
+                    underline='none'
+                >
+                    <Button className={classes.btn_Policy}>
+                        <Typography>
+                            Return Home
+                        </Typography>
+                    </Button>
+                </MaterialLink> 
+            </Grid>
         </Container>
     );
 };
