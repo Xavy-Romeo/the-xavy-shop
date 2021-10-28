@@ -34,7 +34,12 @@ const useStyles = makeStyles((theme) => ({
     upperFooter_Footer: {
         margin: '20px 20px 70px 20px',
         width: '80%',
-
+        '@media (max-width:599px)': {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            margin: '5px 0 0 0'
+        }, 
     },
     iconDiv_Footer: {
         display: 'flex',
@@ -43,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
     textMargin_Footer: {
         marginBottom: '15px'
     },
+    textUpperFooter_Footer: {
+        '@media (max-width:599px)': {
+            textAlign: 'center',
+        }
+    },
     topLinks_Footer: {
         color: theme.palette.primary.contrastText,
         marginBottom: '15px',
@@ -50,8 +60,15 @@ const useStyles = makeStyles((theme) => ({
             color: theme.palette.primary.light
         }
     },
-    midFooterDiv_Footer: {
-        paddingRight: '20px' 
+    subscribeDiv_Footer: {
+        paddingRight: '20px',
+        '@media (max-width:599px)': {
+            marginTop: '20px',
+            paddingRight: '0',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        }, 
     },
     subscribeInput_Footer: {
         width: '100%',
@@ -63,20 +80,16 @@ const useStyles = makeStyles((theme) => ({
         padding: '10px',
         marginBottom: '20px'
     },
-    moreInfo_Footer: {
-        padding: '0 20px'
-    },
-    moreInfoLinks_Footer: {
-        color: theme.palette.primary.contrastText,
-        '&:hover': {
-            color: theme.palette.primary.light
-        }
-    },
     button_Footer: {
         position: 'relative',
         width: '300px',
+        maxWidth: '80vw',
         '&:hover': {
             background: theme.palette.primary.light,
+        },
+        '@media (max-width:599px)': {
+            display: 'flex',
+            justifyContent: 'center'
         }
     },
     subscribedButton_Footer: {
@@ -87,6 +100,58 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             background: 'green'
         }
+    },
+    moreInfo_Footer: {
+        padding: '0 20px',
+        '@media (min-width:1279px)': {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+        },
+        '@media (max-width:599px)': {
+            marginTop: '20px',
+            padding: '0',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        },
+    },
+    moreInfoTitle_Footer: {
+        '@media (min-width:1279px)': {
+            fontSize: '35px'
+        },
+        '@media (min-width:1300px)': {
+            fontSize: '2.25rem'
+        }
+    },
+    moreInfoLinksContainer_Footer:
+    {
+        width: '115px',
+        '@media (max-width:599px)': {
+            display: 'flex',
+            alignItems: 'center',
+        },
+    },
+    moreInfoLinks_Footer: {
+        color: theme.palette.primary.contrastText,
+        '&:hover': {
+            color: theme.palette.primary.light
+        },
+        '@media (max-width:599px)': {
+            width: '90px',
+            display: 'flex',
+            justifyContent: 'center'
+        },
+    },
+    sendThoughtsDiv_Footer: {
+        '@media (max-width:959px)': {
+            marginTop: '20px',
+        },
+        '@media (max-width:599px)': {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        }, 
     },
     footerBottom_Footer: {
         margin: '70px 0 5px 0', 
@@ -100,7 +165,11 @@ const useStyles = makeStyles((theme) => ({
     },
     xrLogo_Footer: {
         height: '60px',
-        width: '60px'
+        width: '60px',
+        '@media (max-width:599px)': {
+            height: '45px',
+            width: '45px'
+        }, 
     },
     socialIconDiv_Footer: { 
         display: 'flex',
@@ -113,6 +182,14 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             borderRadius: '4px',
             background: theme.palette.primary.main,
+        }
+    },
+    socialIcon_Footer: {
+        height: '30px',
+        width: '30px',
+        '@media (max-width:599px)': {
+            height: '20px',
+            width: '20px'
         }
     },
     copyContainer_Footer: {
