@@ -34,6 +34,8 @@ const ProductDetails = () => {
 
     const { products, cart } = state;
 
+    let similarPdt = products.filter(product=> product.category.name === currentProduct.category.name);
+
     useEffect(() => {
         // data exist in global state
         if (products.length) {
@@ -64,9 +66,7 @@ const ProductDetails = () => {
         if (currentProduct.category.name === '') {
             return;
         }
-        else {
-            let similarPdt = products.filter(product=> product.category.name === currentProduct.category.name);
-            
+        else {            
             if (similarPdt[0]._id === currentProduct._id) {
                 setSimilarProduct(similarPdt[1]);
             }
@@ -106,6 +106,68 @@ const ProductDetails = () => {
         }
     };
 
+    const buyTogether = async () => {
+        await addToCart();
+
+        console.log('sim', similarPdt);
+        if (similarPdt[0]._id === currentProduct._id) {
+            const simProduct = similarPdt[1]
+            const itemInCart = await cart.find((cartItem) => cartItem._id === simProduct._id);
+
+            if (itemInCart) {
+                // update global state
+                dispatch({
+                    type: UPDATE_CART_QUANTITY,
+                    _id: simProduct._id,
+                    purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+                });
+    
+                // update IndexedDB with updated quantity
+                idbPromise('cart', 'put', {
+                    ...itemInCart,
+                    purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+                });
+            }
+            else {
+                // make updates if not yet in cart
+                dispatch({
+                    type: ADD_TO_CART,
+                    product: { ...simProduct, purchaseQuantity: 1}
+                });
+    
+                idbPromise('cart', 'put', { ...simProduct, purchaseQuantity: 1 });
+            }
+        }
+        else {
+            const simProduct = similarPdt[0]
+            const itemInCart = await cart.find((cartItem) => cartItem._id === simProduct._id);
+
+            if (itemInCart) {
+                // update global state
+                dispatch({
+                    type: UPDATE_CART_QUANTITY,
+                    _id: simProduct._id,
+                    purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+                });
+    
+                // update IndexedDB with updated quantity
+                idbPromise('cart', 'put', {
+                    ...itemInCart,
+                    purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+                });
+            }
+            else {
+                // make updates if not yet in cart
+                dispatch({
+                    type: ADD_TO_CART,
+                    product: { ...simProduct, purchaseQuantity: 1}
+                });
+    
+                idbPromise('cart', 'put', { ...simProduct, purchaseQuantity: 1 });
+            }
+        }
+    };
+
     const add = (x, y) => {
         return (x + y).toFixed(2);
     };
@@ -132,13 +194,13 @@ const ProductDetails = () => {
                 <Container maxWidth='xl' className={classes.detailsContainer_ProductDetails}>
                     
                     <Grid container>
-                        <Grid item xs={9}>
+                        <Grid item xs={12} md={9}>
                             <Paper className={classes.aboutPaper_ProductDetails}>
                                 <Grid container>
                                     <Grid 
                                         item  
                                         className={classes.productImage_ProductDetails} 
-                                        xs={3}
+                                        xs={12} sm={3}
                                     >
                                         <img 
                                             src={`/images/productImages/${currentProduct.image}`} 
@@ -146,7 +208,7 @@ const ProductDetails = () => {
                                             alt={currentProduct.name} 
                                         />
                                     </Grid>
-                                    <Grid item className={classes.aboutItemContainer_ProductDetails} xs={9} >
+                                    <Grid item className={classes.aboutItemContainer_ProductDetails} xs={12} sm={9} >
                                         <Typography variant='subtitle2' className={classes.aboutTitle_ProductDetails}>
                                             About this item
                                         </Typography>
@@ -157,7 +219,7 @@ const ProductDetails = () => {
                                 </Grid>
                             </Paper>
                         </Grid>
-                        <Grid item className={classes.addContainer_ProductDetails} xs={3}>
+                        <Grid item className={classes.addContainer_ProductDetails} xs={12} md={3}>
                             <Grid container direction='column'>
                                 <Box>
                                     <Typography variant='h5'>
@@ -210,7 +272,7 @@ const ProductDetails = () => {
                             </Typography>
                         </Box>
                         <Box>
-                            <Grid container alignItems='center'>
+                            <Grid container  className={classes.boughtTogetherContentContainer_ProductDetails} alignItems='center'>
                                 <img src={`/images/productImages/${currentProduct.image}`} width='200px' alt={currentProduct.name} />
                                 <Typography variant='h3' className={classes.boughtTogetherPlusSign_ProductDetails}>
                                     +
@@ -238,7 +300,10 @@ const ProductDetails = () => {
                                                 $ {add(similarProduct.fullPrice, currentProduct.fullPrice)}
                                             </Typography>
                                         </Grid>
-                                        <Button className={classes.buyTogetherBtn_ProductDetails}>
+                                        <Button 
+                                            className={classes.buyTogetherBtn_ProductDetails}
+                                            onClick={buyTogether}
+                                        >
                                             <Typography variant='body2'>
                                                 Buy Together
                                             </Typography>
