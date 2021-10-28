@@ -54,6 +54,7 @@ const NavBar = () => {
                     keepMounted
                     open={Boolean(anchorEl)}
                     onClose={closeMenu}
+                    style={{zIndex: '999999'}}
                 >
                     <MenuItem onClick={() => setAnchorEl(null)}>
                         <MaterialLink

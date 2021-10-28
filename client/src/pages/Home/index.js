@@ -14,6 +14,7 @@ import Cart from '../../components/Cart';
 import hero from '../../assets/images/hero.jpg';
 
 const Home = () => {
+    window.scrollTo(0, 0);
     const classes = useStyles();
     
     return (

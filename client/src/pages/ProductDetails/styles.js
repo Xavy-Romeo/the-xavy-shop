@@ -18,7 +18,10 @@ const useStyles = makeStyles((theme) => ({
         justifyContent:'center'
     },
     aboutItemContainer_ProductDetails: {
-        paddingLeft: '20px'
+        paddingLeft: '20px',
+        '@media (max-width:599px)': {
+            padding: '0'
+        }, 
     },
     aboutTitle_ProductDetails: {
         fontWeight: 'bold'
@@ -77,7 +80,17 @@ const useStyles = makeStyles((theme) => ({
         margin: '5px 0 15px 0'
     },
     boughtTogetherTitle_ProductDetails: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        '@media (max-width:599px)': {
+            display: 'flex',
+            justifyContent: 'center'
+        },
+    },
+    boughtTogetherContentContainer_ProductDetails: {
+        '@media (max-width:599px)': {
+            display: 'flex',
+            flexDirection: 'column'
+        },
     },
     boughtTogetherPlusSign_ProductDetails: {
         margin: '10px'

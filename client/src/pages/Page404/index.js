@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Logo from '../../assets/images/xr-logo.png';
 
 const Page404 = () => {
+    window.scrollTo(0, 0);
     return (
         <Grid container direction='column' justifyContent='center' alignItems='center' 
             style={{minHeight: '800px'}}

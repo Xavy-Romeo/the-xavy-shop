@@ -21,6 +21,7 @@ import Auth from '../../utils/auth';
 import Beach from '../../assets/images/beach.jpg';
 
 const Login = () => {
+    window.scrollTo(0, 0);
     const classes = useStyles();
     
     // initial state for values

@@ -96,14 +96,14 @@ const Footer = () => {
                     className={classes.toolbarMain_Footer}
                     justifyContent='space-evenly'
                 >
-                    <Grid item className={classes.upperFooter_Footer} xs={5}>
+                    <Grid item className={classes.upperFooter_Footer} xs={12} sm={5}>
                         <Box className={classes.iconDiv_Footer}>
                             <CheckCircleOutlineOutlinedIcon fontSize='large' className={classes.textMargin_Footer} />
                         </Box>
-                        <Typography className={classes.textMargin_Footer} variant='h4'>
+                        <Typography className={`${classes.textMargin_Footer} ${classes.textUpperFooter_Footer}`} variant='h4'>
                             We guarantee everything we make.
                         </Typography>
-                        <Typography className={classes.textMargin_Footer}>
+                        <Typography className={`${classes.textMargin_Footer} ${classes.textUpperFooter_Footer}`}>
                             We know prioritizing quality and durability is what our community wants.
                         </Typography>
                         <MaterialLink
@@ -118,14 +118,14 @@ const Footer = () => {
                         </MaterialLink>
                     </Grid>
                     
-                    <Grid item className={classes.upperFooter_Footer} xs={5}>
+                    <Grid item className={classes.upperFooter_Footer} xs={12} sm={5}>
                         <Box className={classes.iconDiv_Footer}>
                             <LocalHospitalOutlinedIcon fontSize='large' className={classes.textMargin_Footer} />
                         </Box>
-                        <Typography className={classes.textMargin_Footer} variant='h4'>
+                        <Typography className={`${classes.textMargin_Footer} ${classes.textUpperFooter_Footer}`} variant='h4'>
                             We give back for every sale.
                         </Typography>
-                        <Typography className={classes.textMargin_Footer}>
+                        <Typography className={`${classes.textMargin_Footer} ${classes.textUpperFooter_Footer}`}>
                             We've pledged 1% of sales to help children who need medical treatment at Children's Hospital.
                         </Typography>
                         <MaterialLink
@@ -140,11 +140,11 @@ const Footer = () => {
                         </MaterialLink>
                     </Grid>
 
-                    <Grid item className={classes.midFooterDiv_Footer} xs={5}>
+                    <Grid item className={classes.subscribeDiv_Footer} xs={12} sm={9} lg={5}>
                         <Typography className={classes.textMargin_Footer} variant='h4'>
                             Subscribe
                         </Typography>
-                        <Typography className={classes.textMargin_Footer}>
+                        <Typography className={`${classes.textMargin_Footer} ${classes.textUpperFooter_Footer}`}>
                             Sign up for exclusive offers, original stories, charity, events and more.
                         </Typography>
                         <Box>
@@ -172,11 +172,11 @@ const Footer = () => {
                         </Box>
                     </Grid>
 
-                    <Grid item xs={2} className={classes.moreInfo_Footer}>
-                        <Typography className={classes.textMargin_Footer} variant='h4'>   
+                    <Grid item xs={12} sm={3} lg={2} className={classes.moreInfo_Footer}>
+                        <Typography className={`${classes.textMargin_Footer} ${classes.moreInfoTitle_Footer}`} variant='h4'>   
                             More Info
                         </Typography>
-                        <Grid container direction='column'>
+                        <Grid container className={classes.moreInfoLinksContainer_Footer} direction='column'>
                             {moreInfo.map((item, index) => (
                                 <MaterialLink
                                     to='/mimic-page'
@@ -213,11 +213,11 @@ const Footer = () => {
                         </Grid>
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item className={classes.sendThoughtsDiv_Footer} xs={12} sm={12} lg={5}>
                         <Typography className={classes.textMargin_Footer} variant='h4'>
                             Send Us Your Thoughts
                         </Typography>
-                        <Typography className={classes.textMargin_Footer}>
+                        <Typography className={`${classes.textMargin_Footer} ${classes.textUpperFooter_Footer}`}>
                             Let us know what you think! Your feedback is greatly appreciated.
                         </Typography>
                         <Button className={classes.button_Footer} onClick={handleOpen}>
@@ -252,9 +252,10 @@ const Footer = () => {
                                             component={RouterLink}
                                             onClick={() => changePage(item.name, 'social')}
                                             underline='none'
+                                            key={index}
                                         >
                                             <Grid item className={classes.socialIconDiv_Footer} key={index}  >                    
-                                                <img src={item.logo} alt={item.name} height='30px' width='30px' />
+                                                <img src={item.logo} className={classes.socialIcon_Footer} alt={item.name} />
                                             </Grid>
                                         </MaterialLink>
                                     ))}

@@ -4,7 +4,18 @@ const useStyles = makeStyles((theme) => ({
     pageContainer_SuccessOrder: {
         margin: '200px 0 100px 0', 
         display: 'flex', 
-        justifyContent: 'center'
+        justifyContent: 'center',
+        '@media (max-width:599px)': {
+            margin: '200px 15px 100px 15px',
+        },
+    },
+    logo_SuccessOrder: {
+        width: '200px',
+        height: '200px',
+        '@media (max-width:599px)': {
+            width: '150px',
+            height: '150px',
+        }
     },
     contentBox_SuccessOrder: {
         display: 'flex',
@@ -14,13 +25,27 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '4px',
         background: 'black',
         color: theme.palette.primary.contrastText,
-        padding: '30px 50px'
+        padding: '30px 50px',
+        '@media (max-width:599px)': {
+            padding: '30px 10px',
+        },
     },
     successText_SuccessOrder: {
-        margin: '20px 0 10px 0'
+        margin: '20px 0 10px 0',
+        '@media (max-width:599px)': {
+            fontSize: '18px',
+        },
     },
     thankYou_SuccessOrder: {
-        marginBottom: '10px'
+        marginBottom: '10px',
+        '@media (max-width:599px)': {
+            fontSize: '16px',
+        },
+    },
+    redirect_SuccessOrder: {
+        '@media (max-width:599px)': {
+            fontSize: '12px',
+        },
     },
     countDownContainer_SuccessOrder: {
         marginTop: '15px', 

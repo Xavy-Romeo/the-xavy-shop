@@ -23,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        '@media (max-width:600px)': {
+        '@media (max-width:599px)': {
             right: '10%',
-            top: '10%',
+            top: '11%',
         },
         '@media (max-width:365px)': {
             transform: 'scale(.65)',
@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
         background: 'black', 
         '&:hover': {
             background: 'rgba(20,20,20,.5)'
+        },
+        '@media (max-width:400px)': {
+            marginLeft: '80px'
         }
     },
 

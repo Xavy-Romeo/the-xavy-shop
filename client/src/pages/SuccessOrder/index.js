@@ -10,6 +10,7 @@ import Logo from '../../assets/images/xr-logo.png';
 import idbPromise from '../../utils/indexedDB';
 
 const SuccessOrder = () => {
+    window.scrollTo(0, 0);
     const classes = useStyles();
 
     const [countDown, setCountDown] = useState(8);
@@ -53,7 +54,7 @@ const SuccessOrder = () => {
     return (
         <Box className={classes.pageContainer_SuccessOrder}>
             <Box className={classes.contentBox_SuccessOrder}>
-                <img src={Logo} height='200px' width='200px' alt='Logo' />
+                <img src={Logo} className={classes.logo_SuccessOrder} alt='Logo' />
 
                 <Typography className={classes.successText_SuccessOrder} variant='h3'>
                     🌟 🌟 🌟 SUCCESS! 🌟 🌟 🌟
@@ -61,7 +62,7 @@ const SuccessOrder = () => {
                 <Typography className={classes.thankYou_SuccessOrder} variant='h4'>
                     Thank you for your purchase!
                 </Typography>
-                <Typography variant='h5'>
+                <Typography className={classes.redirect_SuccessOrder} variant='h5'>
                     You will be redirected to homepage
                 </Typography>
 

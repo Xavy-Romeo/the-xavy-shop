@@ -11,13 +11,21 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold'
     },
     contentContainer_Account: {
-        marginTop: '20px'
+        marginTop: '20px',
+        '@media (max-width:700px)': {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+        },
     },
     personalInfoPaper_Account: {
         border: '1px solid black', 
         marginRight: '10px', 
         padding: '0 10px 10px 10px', 
-        width: '300px'
+        width: '300px',
+        '@media (max-width:700px)': {
+            margin: '0 0 10px 0'
+        },
     },
     paperTitle_Account: {
         fontWeight: 'bold', 

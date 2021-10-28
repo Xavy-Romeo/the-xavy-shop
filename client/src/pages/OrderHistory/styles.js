@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
     orderHistoryPageContainer_OrderHistory:{
-        margin: '120px 0 50px 0'
+        marginTop: '120px',
+        marginBottom: '50px'
     },
     flexBox_OrderHistory: {
         display: 'flex'
@@ -24,7 +25,12 @@ const useStyles = makeStyles((theme) => ({
     },
     orderContainer_OrderHistory: {
         paddingBottom: '10px', 
-        borderBottom: '1px solid rgba(0,0,0,.05)'
+        borderBottom: '1px solid rgba(0,0,0,.05)',
+    },
+    orderNumberContainer: {
+        '@media (max-width:599px)': {
+            flexDirection: 'column'
+        }
     },
     itemMainContainer_OrderHistory: {
         display: 'flex', 
@@ -32,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     itemContainer_OrderHistory: {
         marginRight: '10px', 
-        display: 'flex'
+        display: 'flex',
     },
     imageContainer_OrderHistory: {
         marginRight: '10px'

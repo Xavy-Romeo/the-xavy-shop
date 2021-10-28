@@ -13,8 +13,7 @@ const StoreProvider = ({ value = [], ...props }) => {
         currentCategory: '',
         currentMimicPage: ''
     });
-  
-    console.log(state);
+
     return <Provider value={[state, dispatch]} {...props} />;
 };
 
