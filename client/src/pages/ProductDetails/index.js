@@ -21,6 +21,7 @@ import idbPromise from '../../utils/indexedDB';
 import Cart from '../../components/Cart';
 
 const ProductDetails = () => {
+    window.scrollTo(0, 0);
     const classes = useStyles();
 
     const [state, dispatch] = useStoreContext();

@@ -21,6 +21,7 @@ import Auth from '../../utils/auth';
 import Beach from '../../assets/images/beach.jpg';
 
 const SignUp = () => {
+    window.scrollTo(0, 0);
     const classes = useStyles();
     
     const initialValues = {

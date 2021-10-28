@@ -15,6 +15,7 @@ import useStyles from './styles';
 import { QUERY_USER } from '../../utils/queries';
 
 const Account = () => {
+    window.scrollTo(0, 0);
     const classes = useStyles();
 
     const { loading, data: userData } = useQuery(QUERY_USER);

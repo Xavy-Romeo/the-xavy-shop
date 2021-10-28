@@ -10,6 +10,7 @@ import Logo from '../../assets/images/xr-logo.png';
 import idbPromise from '../../utils/indexedDB';
 
 const SuccessOrder = () => {
+    window.scrollTo(0, 0);
     const classes = useStyles();
 
     const [countDown, setCountDown] = useState(8);
