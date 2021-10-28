@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 
 import { useStoreContext } from '../../utils/GlobalState';
-import { QUERY_ALL_PRODUCTS, QUERY_GET_PRODUCT } from '../../utils/queries';
+import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
 import { ADD_TO_CART, UPDATE_PRODUCTS, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import useStyles from './styles';
 import idbPromise from '../../utils/indexedDB';

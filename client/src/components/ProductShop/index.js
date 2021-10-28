@@ -71,7 +71,7 @@ const ProductShop = () => {
 
             // update database
             try {
-                const { data } = await updateProductQuantity({
+                await updateProductQuantity({
                     variables: {
                         productId: item._id,
                         newQuantity: parseInt(itemInCart.purchaseQuantity)
@@ -92,7 +92,7 @@ const ProductShop = () => {
             idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
 
             try {
-                const { data } = await updateProductQuantity({
+                await updateProductQuantity({
                     variables: {
                         productId: item._id,
                         newQuantity: 1
@@ -107,7 +107,7 @@ const ProductShop = () => {
     };
 
     const filterProductsByCategory = () => {
-        if (!currentCategory || currentCategory === '') {
+        if (!currentCategory || currentCategory === 'All') {
             return products;
         }
 

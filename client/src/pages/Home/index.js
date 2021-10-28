@@ -44,17 +44,6 @@ const Home = () => {
 
             <CategoryBar />
 
-            <Box className={classes.downloadAppBox_Home}>
-                <Typography>
-                    Download our App
-                </Typography>
-                <Button className={classes.downloadAppBtn_Home}>
-                    <Typography variant='body2'>
-                        Download
-                    </Typography>
-                </Button>
-            </Box>
-
             <Cart />
         </Box>
     );

@@ -594,7 +594,7 @@ db.once('open', async () => {
     {
         name: 'Soccer Ball',
         description: description,
-        image: 'soccer-ball.jpeg',
+        image: 'soccer-ball.jpg',
         salePercent: 10,
         fullPrice: 34.99,
         options: [
@@ -751,7 +751,20 @@ db.once('open', async () => {
     password: 'password',
     orders: [
       {
-        products: [products[0]._id, products[0]._id, products[1]._id]
+        products: [products[0]._id, products[1]._id, products[2]._id]
+      }
+    ]
+  });
+
+  await User.create({
+    firstName: 'Demo',
+    lastName: 'User',
+    username: 'Demo123',
+    email: 'demo@demomail.com',
+    password: 'password',
+    orders: [
+      {
+        products: [products[0]._id, products[1]._id, products[2]._id]
       }
     ]
   });

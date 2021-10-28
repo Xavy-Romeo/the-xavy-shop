@@ -24,9 +24,11 @@ import idbPromise from '../../utils/indexedDB';
 const Shop = () => {
     const classes = useStyles();
 
-    const [, dispatch] = useStoreContext();
+    const [state, dispatch] = useStoreContext();
+    const { categories } = state;
+    
     const { categoryId } = useParams();
-
+    
     const [currentCat, setCurrentCat] = useState([{name: 'All'}]);
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
@@ -34,15 +36,6 @@ const Shop = () => {
     useEffect(() => {
         const getCategory = async () => {
             if (categoryData) {
-                let current = await categoryData.categories.filter(category => category._id === categoryId);
-
-                if (current.length === 0) {
-                    return;
-                }
-                else {
-                    setCurrentCat(current);
-                }
-
                 // store categoryData in Global Store
                 dispatch({
                     type: UPDATE_CATEGORIES,
@@ -53,6 +46,15 @@ const Shop = () => {
                 categoryData.categories.forEach(category => {
                     idbPromise('categories', 'put', category);
                 });
+                
+                let current = await categoryData.categories.filter(category => category._id === categoryId);
+
+                if (current.length === 0) {
+                    return;
+                }
+                else {
+                    setCurrentCat(current);
+                }
             }
             else if (!loading) {
                 idbPromise('categories', 'get').then(categories => {
@@ -93,15 +95,17 @@ const Shop = () => {
                                 }
                             }}
                             variant='outlined'
+                            defaultValue=''
                         >
-                            {loading === undefined &&
+                            {categories.length > 0 &&
                                 <Box>
                                     <MenuItem className={classes.menuItem_Shop}>
                                         <MaterialLink
-                                            to='/shop'
+                                            to="/shop/All"
                                             className={classes.menuItemLink_Shop}
                                             component={RouterLink}
                                             underline='none'
+                                            // onClick={() => setCurrentCat([{name: 'All'}])}
                                         >
                                             All
                                         </MaterialLink>

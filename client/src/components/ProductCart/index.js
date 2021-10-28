@@ -35,7 +35,7 @@ const ProductCart = ({ item }) => {
             item.price = total;
 
             try {
-                const { data } = await updatePrice({
+                await updatePrice({
                     variables: {
                         productId: item._id,
                         newPrice: total
@@ -49,7 +49,7 @@ const ProductCart = ({ item }) => {
 
         setPrice();
 
-    }, [item.fullPrice, item.salePercent, cart]);
+    }, [item, cart, updatePrice]);
 
     const removeFromCart = () => {
         // update global state
@@ -83,7 +83,7 @@ const ProductCart = ({ item }) => {
             idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
 
             try {
-                const { data } = await updateProductQuantity({
+                await updateProductQuantity({
                     variables: {
                         productId: item._id,
                         newQuantity: parseInt(value)

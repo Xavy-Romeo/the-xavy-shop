@@ -18,7 +18,7 @@ import ReceiptIcon from '@material-ui/icons/Receipt';
 const NavBar = () => {
     const classes = useStyles();
     
-    const { loading, data: userData } = useQuery(QUERY_USER);
+    const { data: userData } = useQuery(QUERY_USER);
     let user;
 
     if (userData) {
