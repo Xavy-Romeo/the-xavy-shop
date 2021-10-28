@@ -50,13 +50,22 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             background: 'rgb(150,150,150)',
             color: 'white'
-        }
+        },
+        '@media (max-width:599px)': {
+            top: '20%',
+        }, 
     },
-    leftArrow_CatBar: {
+    leftArrowBtn_CatBar: {
         left: '23%',
+        '@media (max-width:599px)': {
+            left: 0,
+        }, 
     },
-    rightArrow_CatBar: {
+    rightArrowBtn_CatBar: {
         right: '23%',
+        '@media (max-width:599px)': {
+            right: 0,
+        }, 
     },
 }));
 
