@@ -6,6 +6,7 @@ import {
     Typography,
     Button,
     Grid,
+    Hidden,
     Link as MaterialLink 
 } from '@material-ui/core';
 
@@ -79,40 +80,94 @@ const CategoryBar = () => {
     return (
         <Box className={classes.categoryContainer_CatBar}>
             <Button
-                className={`${classes.arrowButton_CatBar} ${classes.leftArrow_CatBar}`} 
+                className={`${classes.arrowButton_CatBar} ${classes.leftArrowBtn_CatBar}`} 
                 onClick={() => previousCategory()}
             >
                 <KeyboardArrowLeftIcon fontSize='large' />
             </Button>
-            <Grid container justifyContent='center'>
-                {categories.slice(0,4).map((category, index) => (
-                    <Grid 
-                        item 
-                        className={classes.categoryItemContainer_CatBar}
-                        onClick={() => changeCategory(category._id)}
-                        key={index} 
-                        xs={1} md={3}
-                    >
-                        <MaterialLink 
-                            to={`/shop/${category._id}`}
-                            className={classes.categories_CatBar}
-                            component={RouterLink}
+            <Hidden smUp>
+                <Grid container justifyContent='center'>
+                    {categories.slice(0,2).map((category, index) => (
+                        <Grid 
+                            item 
+                            className={classes.categoryItemContainer_CatBar}
+                            onClick={() => changeCategory(category._id)}
+                            key={index} 
+                            xs={6}
                         >
-                            <img src={`/images/categoryImages/${category.image}`} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
-                            <Grid container className={classes.categoryContent_CatBar} alignItems='center' justifyContent='center'>
-                                <Typography className={classes.categoryTitle_CatBar} variant='h4'>
-                                    {category.name}
-                                </Typography>
-                            </Grid>
-                        </MaterialLink>
-                    </Grid> 
-                ))}
-            </Grid>
+                            <MaterialLink 
+                                to={`/shop/${category._id}`}
+                                className={classes.categories_CatBar}
+                                component={RouterLink}
+                            >
+                                <img src={`/images/categoryImages/${category.image}`} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
+                                <Grid container className={classes.categoryContent_CatBar} alignItems='center' justifyContent='center'>
+                                    <Typography className={classes.categoryTitle_CatBar} variant='h4'>
+                                        {category.name}
+                                    </Typography>
+                                </Grid>
+                            </MaterialLink>
+                        </Grid> 
+                    ))}
+                </Grid>
+            </Hidden>
+            <Hidden lgUp xsDown>
+                <Grid container justifyContent='center'>
+                    {categories.slice(0,3).map((category, index) => (
+                        <Grid 
+                            item 
+                            className={classes.categoryItemContainer_CatBar}
+                            onClick={() => changeCategory(category._id)}
+                            key={index} 
+                            sm={4}
+                        >
+                            <MaterialLink 
+                                to={`/shop/${category._id}`}
+                                className={classes.categories_CatBar}
+                                component={RouterLink}
+                            >
+                                <img src={`/images/categoryImages/${category.image}`} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
+                                <Grid container className={classes.categoryContent_CatBar} alignItems='center' justifyContent='center'>
+                                    <Typography className={classes.categoryTitle_CatBar} variant='h4'>
+                                        {category.name}
+                                    </Typography>
+                                </Grid>
+                            </MaterialLink>
+                        </Grid> 
+                    ))}
+                </Grid>
+            </Hidden>
+            <Hidden mdDown>
+                <Grid container justifyContent='center'>
+                    {categories.slice(0,4).map((category, index) => (
+                        <Grid 
+                            item 
+                            className={classes.categoryItemContainer_CatBar}
+                            onClick={() => changeCategory(category._id)}
+                            key={index} 
+                            xs={6} sm={3}
+                        >
+                            <MaterialLink 
+                                to={`/shop/${category._id}`}
+                                className={classes.categories_CatBar}
+                                component={RouterLink}
+                            >
+                                <img src={`/images/categoryImages/${category.image}`} className={classes.categoryImg_CatBar} alt={category.name}  height='250px' width='250px' />   
+                                <Grid container className={classes.categoryContent_CatBar} alignItems='center' justifyContent='center'>
+                                    <Typography className={classes.categoryTitle_CatBar} variant='h4'>
+                                        {category.name}
+                                    </Typography>
+                                </Grid>
+                            </MaterialLink>
+                        </Grid> 
+                    ))}
+                </Grid>
+            </Hidden>
             <Button 
-                className={`${classes.arrowButton_CatBar} ${classes.rightArrow_CatBar}`}
+                className={`${classes.arrowButton_CatBar} ${classes.rightArrowBtn_CatBar}`}
                 onClick={() => nextCategory()}
             >
-                <KeyboardArrowRightIcon fontSize='large' />
+                <KeyboardArrowRightIcon className={classes.arrowIcon_CatBar} fontSize='large' />
             </Button>
         </Box>
     );

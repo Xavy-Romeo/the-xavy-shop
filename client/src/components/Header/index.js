@@ -45,6 +45,7 @@ const Header = () => {
                     container 
                     className={classes.toolbarGrid_Header} 
                     justifyContent='space-between'
+                    alignItems='center'
                 >
                     <Box>
                         <Grid container alignItems='center'>
@@ -69,7 +70,7 @@ const Header = () => {
                         </Grid>
                     </Box>
 
-                    <Grid item xs={5}>
+                    <Grid item xs={1} lg={5}>
                         <NavBar />
                     </Grid>
                     
