@@ -93,12 +93,12 @@ const Cart = () => {
     if (!cartOpen) {
         return (
             <Box 
-                className={classes.cartIcon_Cart}
+                className={classes.cartIconContainer_Cart}
                 onClick={toggleCart}
                 component='span'
             >
-                <Box style={{position: 'relative'}}>
-                    <ShoppingCartIcon fontSize='large' />
+                <Box className={classes.cartIconBox_Cart}>
+                    <ShoppingCartIcon fontSize='large' className={classes.cartIcon_Cart} />
 
                     {quantity > 0 &&
                     <Box className={classes.quantityContainer_Cart}>
@@ -139,14 +139,14 @@ const Cart = () => {
                             </Grid>
                             <Grid 
                                 container
-                                style={{marginTop: '10px'}}
+                                className={classes.marginTop_Cart}
                                 justifyContent='space-between'
                             >
-                                <Typography style={{fontWeight: 'bold'}}>
-                                    Subtotal: 
+                                <Typography className={classes.bold_Cart}>
+                                    Total: 
                                 </Typography>
                                 <Typography 
-                                    style={{fontFamily: 'serif', fontWeight: 'bold'}}
+                                    className={classes.totalPrice_Cart}
                                     variant='h5'
                                     component='strong'
                                 >
@@ -155,8 +155,8 @@ const Cart = () => {
                             </Grid>
                         </Box>
                     :
-                        <Grid container justifyContent='center' style={{marginTop: '10px'}}>
-                            <Box style={{display: 'flex'}}>
+                        <Grid container className={classes.marginTop_Cart} justifyContent='center'>
+                            <Box className={classes.emptyCartContainer_Cart}>
                                 <Typography variant='subtitle2' component='span' role='img' aria-label='oh no face'>
                                     😨
                                 </Typography>
@@ -164,14 +164,14 @@ const Cart = () => {
                                     Your cart is empty!
                                 </Typography>
                             </Box>
-                            <Box style={{width: '100%', marginTop: '10px'}}>
+                            <Box className={classes.shopBtnLinkContainer_Cart}>
                                 <MaterialLink 
                                     to='/shop'
-                                    style={{color: 'white', width: '100%'}}
+                                    className={classes.shopBtnLink_Cart}
                                     component={RouterLink}
                                     underline='none'
                                 >
-                                    <Button style={{width: '100%'}}>
+                                    <Button className={classes.shopBtn_Cart}>
                                         <Typography>
                                             Start Shopping
                                         </Typography>
@@ -181,7 +181,7 @@ const Cart = () => {
                         </Grid>
                 }
 
-                {Auth.loggedIn()
+                {cart.length && Auth.loggedIn()
                     ?   <Box className={classes.checkoutBtnContainer_Cart}>
                             {/* <MaterialLink 
                                 to='/checkout'

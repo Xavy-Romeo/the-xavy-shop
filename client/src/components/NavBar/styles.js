@@ -4,6 +4,27 @@ const useStyles = makeStyles((theme) => ({
     navContainer_NavBar: {
         height: '100%'
     },
+    menuIconContainer_NavBar: {
+        display: 'flex', 
+        justifyContent: 'flex-end'
+    },
+    menuIcon_NavBar: {
+        fontSize: '55px',
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        border: '1px solid rgba(255,255,255,.87)',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        color: 'rgba(255,255,255,0.87)',
+        transition: '.1s ease',
+        '&:hover': {
+            border: '2px solid rgba(255,255,255,.87)',
+            backgroundColor: 'rgb(100,100,100,0.5)',
+            color: 'rgb(200,200,200)'
+        },
+        '@media (max-width:599px)': {
+            fontSize: '35px'
+        }, 
+    },
     navGrid_NavBar: {
         height: '100%'
     },

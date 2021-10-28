@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
-    cartIcon_Cart: {
+    cartIconContainer_Cart: {
         position: 'fixed',
         top: '65px',
         right: '1%',
@@ -17,12 +17,37 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.secondary.main,
         '&:hover': {
             transform: 'rotate(-15deg)',
-        }
+        },
+        '@media (max-width:1279px)': {
+            top: '35px',
+            right: '90px'
+        },  
+        '@media (max-width:599px)': {
+            width: '45px',
+            height: '45px',
+            padding: '15px',
+            top: '38px',
+            right: '60px'
+        }, 
+    },
+    marginTop_Cart: {
+        marginTop: '10px'
+    },
+    bold_Cart: {
+        fontWeight: 'bold'
+    },
+    cartIconBox_Cart: {
+        position: 'relative', 
+        height: '100%', 
+        width: '100%', 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center'
     },
     quantityContainer_Cart: {
         position: 'absolute', 
-        top: -27, 
-        right: 5,
+        top: -40, 
+        right: -12,
         borderRadius: '50%',
         border: `1px solid ${theme.palette.primary.contrastText}`,
         background: theme.palette.primary.main,
@@ -30,7 +55,11 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '25px',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center', 
+        alignItems: 'center',
+        '@media (max-width:599px)': {
+            top: -28,
+            right: -7
+        }, 
     },
     quantity_Cart: {
         fontFamily: 'serif'
@@ -64,9 +93,27 @@ const useStyles = makeStyles((theme) => ({
     cartTitle_Cart: {
         fontWeight: 'bold'
     },
+    totalPrice_Cart: {
+        fontFamily: 'serif', 
+        fontWeight: 'bold'
+    },
+    emptyCartContainer_Cart: {
+        display: 'flex'
+    },
+    shopBtnLinkContainer_Cart: {
+        width: '100%', 
+        marginTop: '10px'
+    },
     checkoutBtnContainer_Cart: {
         width: '100%', 
         marginTop: '10px'
+    },
+    shopBtnLink_Cart: {
+        color: theme.palette.primary.contrastText, 
+        width: '100%'
+    },
+    shopBtn_Cart: {
+        width: '100%'
     },
     checkoutLink_Cart: {
         color: theme.palette.primary.contrastText, 
