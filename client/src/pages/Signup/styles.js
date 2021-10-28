@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
         width: '500px',
         padding: '10px 30px',
         paddingBottom: '50px',
-        opacity: '90%'
+        opacity: '90%',
+        '@media (max-width:650px)': {
+            width: '80%'
+        }
     },
     avatar_Signup: {
         background: theme.palette.primary.main
@@ -33,7 +36,11 @@ const useStyles = makeStyles((theme) => ({
         padding: '5px 10px',
         borderRadius: '4px',
         height: '35px',
-    
+        '@media (max-width:650px)': {
+            fontSize: '18px',
+            padding: '3px 10px',
+            height: '28px',
+        }
     },
     inputFocused_SignUp: {
         background: 'rgba(240,240,240,.9)',
@@ -43,7 +50,10 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '15px'
     },
     termsLinksContent_Signup: {
-        margin: '20px 0'
+        margin: '20px 0',
+        '@media (max-width:650px)': {
+            margin: '10px 0'
+        }
     },
     termsLinks_Signup: {
         margin: '0 7px'
@@ -65,7 +75,10 @@ const useStyles = makeStyles((theme) => ({
     haveAccountBox_Signup: {
         display: 'flex', 
         justifyContent: 'center',
-        margin: '25px 0 12px 0' 
+        margin: '25px 0 12px 0',
+        '@media (max-width:650px)': {
+            margin: '10px 0'
+        } 
     },
     signInBtn_Signup: {
         border: '1px solid black', 

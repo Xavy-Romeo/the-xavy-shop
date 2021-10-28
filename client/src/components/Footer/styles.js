@@ -144,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     sendThoughtsDiv_Footer: {
-        '@media (max-width:959px)': {
+        '@media (max-width:1279px)': {
             marginTop: '20px',
         },
         '@media (max-width:599px)': {

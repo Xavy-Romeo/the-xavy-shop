@@ -252,6 +252,7 @@ const Footer = () => {
                                             component={RouterLink}
                                             onClick={() => changePage(item.name, 'social')}
                                             underline='none'
+                                            key={index}
                                         >
                                             <Grid item className={classes.socialIconDiv_Footer} key={index}  >                    
                                                 <img src={item.logo} className={classes.socialIcon_Footer} alt={item.name} />

@@ -28,6 +28,7 @@ const content = [
 ];
 
 const Policy = () => {
+    window.scrollTo(0, 0);
     const classes = useStyles();
 
     const [state, ] = useStoreContext();

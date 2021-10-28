@@ -16,14 +16,17 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         position: 'absolute',
         top: 0,
-        left: 0
+        left: 0,
     },
     formPaper_Login: {
         margin: '20px 0 50px 0',
         width: '500px',
         padding: '10px 30px',
         paddingBottom: '50px',
-        opacity: '90%'
+        opacity: '90%',
+        '@media (max-width:650px)': {
+            width: '80%'
+        }
     },
     avatar_Login: {
         background:'rgb(5,44,133)'
