@@ -32,7 +32,15 @@ const useStyles = makeStyles((theme) => ({
             border: `2px solid ${theme.palette.primary.main}`,
             boxShadow: '5px 5px 5px black',
             transform: 'scale(1.02)'
-        }
+        },
+        '@media (max-width:900px)': {
+            height: '150px',
+            width: '150px',
+        }, 
+        '@media (max-width:700px)': {
+            height: '132px',
+            width: '132px',
+        }, 
     },
 }));
 

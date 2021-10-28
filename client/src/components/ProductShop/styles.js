@@ -21,8 +21,21 @@ const useStyles = makeStyles((theme) => ({
     },
     addBtnContainer_ProductShop: {
         position: 'absolute', 
-        bottom: '35%', 
-        left: '5%'
+        bottom: '20%', 
+        left: '5%',
+        '@media (max-width:1508px)': {
+            bottom: '25%',
+        },
+        '@media (max-width:1279px)': {
+            bottom: '17%',
+        },
+        '@media (max-width:599px)': {
+            bottom: '20%',
+        },
+        '@media (max-width:400px)': {
+            position: 'relative',
+            marginTop: '-50px'
+        }, 
     },
     addBtn_ProductShop: {
         '&:hover': {
@@ -30,7 +43,10 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     productPriceContainer_ProductShop: {
-        marginTop: '30px'
+        marginTop: '30px',
+        '@media (max-width:400px)': {
+            paddingTop: '20px'
+        }
     },
     productPrice_ProductShop: {
         fontFamily: 'serif',

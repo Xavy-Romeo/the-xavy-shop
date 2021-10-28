@@ -135,7 +135,7 @@ const ProductShop = () => {
             {products.length > 0 && 
                 <Grid container>
                     {filterProductsByCategory().map((product, index) => (
-                        <Grid item className={classes.productContainer_ProductShop} xs={2} key={index}>
+                        <Grid item className={classes.productContainer_ProductShop} xs={6} sm={4} md={3} lg={2} key={index}>
                             <MaterialLink
                                 to={`/product/${product._id}`}
                                 className={classes.productLink_ProductShop}

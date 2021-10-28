@@ -7,6 +7,7 @@ import {
     Grid,
     Typography,
     Box,
+    Hidden, 
     Link as MaterialLink 
 } from '@material-ui/core';
 
@@ -59,29 +60,56 @@ const HotItems = () => {
                     <Box>
                         {products.length > 0 &&
                             <Grid container className={classes.newProductsGridContainer_HotItem}>
-                                {filterProductsByCategory().filter(product => product.new === true).slice(0,6).map((product, index) => ( 
-                                    <Grid 
-                                        item 
-                                        className={classes.newProductContainer_HotItem}
-                                        xs={2}
-                                        key={index}
-                                    >
-                                        <MaterialLink
-                                            to={`/product/${product._id}`}
-                                            className={classes.productLink_HotItem}
-                                            component={RouterLink}
-                                            underline='none'
+                                <Hidden mdDown>
+                                    {filterProductsByCategory().filter(product => product.new === true).slice(0,6).map((product, index) => ( 
+                                        <Grid 
+                                            item 
+                                            className={classes.newProductContainer_HotItem}
+                                            lg={2}
+                                            key={index}
                                         >
-                                            <img 
-                                                src={`/images/productImages/${product.image}`} 
-                                                className={classes.newImage_HotItem}
-                                                height='100%' 
-                                                width='100%'
-                                                alt={product.name}
-                                            />
-                                        </MaterialLink>
-                                    </Grid>
-                                ))}
+                                            <MaterialLink
+                                                to={`/product/${product._id}`}
+                                                className={classes.productLink_HotItem}
+                                                component={RouterLink}
+                                                underline='none'
+                                            >
+                                                <img 
+                                                    src={`/images/productImages/${product.image}`} 
+                                                    className={classes.newImage_HotItem}
+                                                    height='100%' 
+                                                    width='100%'
+                                                    alt={product.name}
+                                                />
+                                            </MaterialLink>
+                                        </Grid>
+                                    ))}
+                                </Hidden>
+                                <Hidden lgUp>
+                                    {filterProductsByCategory().filter(product => product.new === true).slice(0,4).map((product, index) => ( 
+                                        <Grid 
+                                            item 
+                                            className={classes.newProductContainer_HotItem}
+                                            xs={6} sm={3}
+                                            key={index}
+                                        >
+                                            <MaterialLink
+                                                to={`/product/${product._id}`}
+                                                className={classes.productLink_HotItem}
+                                                component={RouterLink}
+                                                underline='none'
+                                            >
+                                                <img 
+                                                    src={`/images/productImages/${product.image}`} 
+                                                    className={classes.newImage_HotItem}
+                                                    height='100%' 
+                                                    width='100%'
+                                                    alt={product.name}
+                                                />
+                                            </MaterialLink>
+                                        </Grid>
+                                    ))}
+                                </Hidden>
                             </Grid>
                         }
                     </Box>
