@@ -32,18 +32,19 @@ const useStyles = makeStyles((theme) => ({
     inputLabelDropdown_Shop: {
         color: theme.palette.primary.main, 
         paddingLeft: '10px',
-        
+    },
+    selectMenu_Shop: {
+        background: 'rgba(20,20,20,.1)'
+    },
+    dropdownMenu_Shop: {
+        background: 'rgb(5,44,133)', 
+        width: '200px', 
+        padding: '10px 0 10px 30px'
     },
     menuItemLink_Shop: {
         color: theme.palette.primary.contrastText,
         '&:hover': {
             color: theme.palette.secondary.main,
-        }
-    },
-    PaperProps: {
-        background: 'yellow',
-        '&:hover': {
-            background: 'yellow'
         }
     }
     

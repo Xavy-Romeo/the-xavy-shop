@@ -54,11 +54,13 @@ const NavBar = () => {
                     keepMounted
                     open={Boolean(anchorEl)}
                     onClose={closeMenu}
-                    style={{zIndex: '999999'}}
+                    PaperProps={{ className: classes.menuPaper_NavBar }}
+                    style={{zIndex: '99999'}}
                 >
                     <MenuItem onClick={() => setAnchorEl(null)}>
                         <MaterialLink
                             to='/shop'
+                            className={classes.menuItemLink_NavBar}
                             component={RouterLink}
                             underline='none'
                             variant='body1'
@@ -70,6 +72,7 @@ const NavBar = () => {
                     <MenuItem onClick={() => setAnchorEl(null)}>
                         <MaterialLink
                             to={Auth.loggedIn() ? '/account' : '/login'}
+                            className={classes.menuItemLink_NavBar}
                             component={RouterLink}
                             underline='none'
                             variant='body1'
@@ -77,10 +80,11 @@ const NavBar = () => {
                             Account
                         </MaterialLink>
                     </MenuItem>
-                    {Auth.loggedIn &&
+                    {Auth.loggedIn() &&
                         <MenuItem onClick={() => setAnchorEl(null)}>
                             <MaterialLink
                                 to='/order-history'
+                                className={classes.menuItemLink_NavBar}
                                 component={RouterLink}
                                 underline='none'
                                 variant='body1'

@@ -24,20 +24,47 @@ const useStyles = makeStyles((theme) => ({
     productLink_ProductShop: {
         color: theme.palette.text.primary
     },
+    productImageContainer_ProductShop: {
+        height: 'calc(100vw/6*.95*1.333)',
+        maxHeight: '360px',
+        '@media (max-width:1279px)': {
+            height: 'calc(100vw/4*.95*1.333)',
+        },
+        '@media (max-width:959px)': {
+            height: 'calc(100vw/3*.95*1.333)',
+        }, 
+        '@media (max-width:599px)': {
+            height: 'calc(100vw/2*.95*1.333)',
+        }, 
+    },
     productImage_ProductShop: {
-        width: '95%',
-        height: '100%',
-        objectFit: 'cover', 
+        display: 'block',
+        objectFit: 'cover',        
     },
     addBtnContainer_ProductShop: {
         position: 'absolute', 
         bottom: '20%', 
         left: '5%',
+        '@media (min-width:1800px)': {
+            bottom: '15%',
+        },
         '@media (max-width:1508px)': {
             bottom: '25%',
         },
         '@media (max-width:1279px)': {
             bottom: '17%',
+        },
+        '@media (max-width:1130px)': {
+            bottom: '22%',
+        },
+        '@media (max-width:959px)': {
+            bottom: '16%',
+        },
+        '@media (max-width:880px)': {
+            bottom: '20%',
+        },
+        '@media (max-width:730px)': {
+            bottom: '23%',
         },
         '@media (max-width:599px)': {
             bottom: '20%',
