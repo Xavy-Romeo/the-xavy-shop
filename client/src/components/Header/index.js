@@ -20,18 +20,22 @@ const Header = () => {
         <AppBar className={classes.Appbar_Header}>
             <Box className={classes.upperHeader_Header}>
                 <Typography 
-                    className={classes.upperHeaderSpan_Header}
+                    className={`${classes.upperHeaderSpan_Header} ${classes.upperHeaderContent_Header}`}
                     color='secondary'
                     component='span' 
                     variant='body2' 
                 >
                     FREE GROUND SHIPPING 
                 </Typography>
-                <Typography color='textPrimary' variant='body2'>
+                <Typography 
+                    className={classes.upperHeaderContent_Header}
+                    color='textPrimary' 
+                    variant='body2'
+                >
                     ON ORDERS OVER $
                 </Typography>
                 <Typography 
-                    className={classes.upperHeaderNumb_Header}
+                    className={`${classes.upperHeaderNumb_Header} ${classes.upperHeaderContent_Header}`} 
                     color='textPrimary' 
                     variant='body2' 
                     component='span'
@@ -58,6 +62,7 @@ const Header = () => {
                                 to='/'
                                 component={RouterLink}
                                 underline='none'
+                                
                             >
                                 <Typography 
                                     className={classes.title_Header}

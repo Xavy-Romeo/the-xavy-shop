@@ -26,15 +26,15 @@ const useStyles = makeStyles((theme) => ({
             width: '45px',
             height: '45px',
             padding: '15px',
-            top: '38px',
+            top: '29px',
             right: '60px'
+        },
+        '@media (max-width:420px)': {
+            width: '35px',
+            height: '35px',
+            right: '50px',
+            top: '34px'
         }, 
-    },
-    marginTop_Cart: {
-        marginTop: '10px'
-    },
-    bold_Cart: {
-        fontWeight: 'bold'
     },
     cartIconBox_Cart: {
         position: 'relative', 
@@ -43,6 +43,17 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center'
+    },
+    cartIcon_Cart: {
+        '@media (max-width:420px)': {
+            fontSize: '24px'
+        }, 
+    },
+    marginTop_Cart: {
+        marginTop: '10px'
+    },
+    bold_Cart: {
+        fontWeight: 'bold'
     },
     quantityContainer_Cart: {
         position: 'absolute', 
