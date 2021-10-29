@@ -9,6 +9,7 @@ import {
     Container,
     Box,
     Paper,
+    CircularProgress,
     Link as MaterialLink,
     Input 
 } from '@material-ui/core';
@@ -19,6 +20,7 @@ import { ADD_TO_CART, UPDATE_PRODUCTS, UPDATE_CART_QUANTITY } from '../../utils/
 import useStyles from './styles';
 import idbPromise from '../../utils/indexedDB';
 import Cart from '../../components/Cart';
+import Logo from '../../assets/images/xr-logo.png';
 
 const ProductDetails = () => {
     window.scrollTo(0, 0);
@@ -181,8 +183,15 @@ const ProductDetails = () => {
     if (loading) {
         return(
             <Box className={classes.loadingContainer_ProductDetails}>
+                <Box sx={{ display: 'flex' }}>
+                    <CircularProgress
+                        className={classes.loadingIcon_ProductDetails} 
+                        size={120}
+                    />
+                </Box>
+                <img src={Logo} height='120px' width='120px' alt='logo'/>
                 <Typography variant='h1'>
-                    LOADING...
+                    LOADING PRODUCT
                 </Typography>
             </Box>
         );

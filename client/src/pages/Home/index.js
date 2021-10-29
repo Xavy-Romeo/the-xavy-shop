@@ -37,6 +37,7 @@ const Home = () => {
                         component={RouterLink}
                         underline='none'
                         variant='body1'
+                        onClick={() => window.scrollTo(0, 0)}
                     >
                         Shop Now
                     </MaterialLink>

@@ -7,6 +7,7 @@ import {
     Box,
     Typography,
     Button,
+    CircularProgress,
     Link as MaterialLink 
 } from '@material-ui/core';
 
@@ -16,6 +17,7 @@ import { ADD_TO_CART, UPDATE_CART_QUANTITY, UPDATE_PRODUCTS } from '../../utils/
 import { UPDATE_PURCHASE_QUANTITY } from '../../utils/mutations';
 import useStyles from './styles';
 import idbPromise from '../../utils/indexedDB';
+import Logo from '../../assets/images/xr-logo.png';
 
 const ProductShop = () => {
     const classes = useStyles();
@@ -122,9 +124,16 @@ const ProductShop = () => {
 
     if (loading) {
         return(
-            <Box style={{marginTop: '200px'}}>
+            <Box className={classes.loadingContainer_ProductShop}>
+                <Box sx={{ display: 'flex' }}>
+                    <CircularProgress
+                        className={classes.loadingIcon_ProductShop} 
+                        size={120}
+                    />
+                </Box>
+                <img src={Logo} height='120px' width='120px' alt='logo'/>
                 <Typography variant='h1'>
-                    LOADING...
+                    LOADING SHOP
                 </Typography>
             </Box>
         );

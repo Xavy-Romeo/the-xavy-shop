@@ -62,6 +62,7 @@ const NavBar = () => {
                             component={RouterLink}
                             underline='none'
                             variant='body1'
+                            onClick={() => window.scrollTo(0, 0)}
                         >
                             Shop
                         </MaterialLink>
@@ -108,7 +109,8 @@ const NavBar = () => {
                                     to='/shop'
                                     component={RouterLink}
                                     underline='none'
-                                    variant='body1'   
+                                    variant='body1'
+                                    onClick={() => window.scrollTo(0, 0)}   
                                 >
                                     <Box className={classes.navItemContainer_NavBar}>
                                         <LocalMallOutlinedIcon className={classes.navIcon_NavBar} fontSize='large' />
