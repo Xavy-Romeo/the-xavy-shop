@@ -126,6 +126,7 @@ const OrderHistory = () => {
                                     component={RouterLink}
                                     className={classes.shopNowBtnLink_OrderHistory}
                                     underline='none'
+                                    onClick={() => window.scrollTo(0, 0)}
                                 >
                                     <Button className={classes.shopNowBtn_OrderHistory}>
                                         <Typography>
