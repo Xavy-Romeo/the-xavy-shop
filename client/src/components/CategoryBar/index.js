@@ -31,8 +31,6 @@ const CategoryBar = () => {
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
-    console.log('categories', categories)
-
     // category slider functions
     const nextCategory = () => {
         categories.push(categories.splice(0, 1)[0]);

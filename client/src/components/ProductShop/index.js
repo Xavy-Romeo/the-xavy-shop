@@ -151,11 +151,13 @@ const ProductShop = () => {
                                 component={RouterLink}
                                 underline='none'  
                             >
-                                <Grid container direction='column'>
+                                <Grid container direction='column' style={{position: 'relative'}}>
                                     <Box className={classes.productImageContainer_ProductShop}>
                                         <img 
                                             src={`/images/productImages/${product.image}`} 
                                             className={classes.productImage_ProductShop} 
+                                            width='95%'
+                                            height='auto'
                                             alt={product.name} 
                                         />
                                     </Box>

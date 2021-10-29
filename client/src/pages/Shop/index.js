@@ -89,10 +89,9 @@ const Shop = () => {
                             </Typography>
                         </InputLabel>
                         <Select 
-                            MenuProps={{
-                                PaperProps: { 
-                                    style: {background: 'rgb(5,44,133)', width: '250px', paddingLeft: '10px'}
-                                }
+                            className={classes.selectMenu_Shop}
+                            MenuProps={{ 
+                                classes: { paper: classes.dropdownMenu_Shop }
                             }}
                             variant='outlined'
                             defaultValue=''
@@ -105,7 +104,6 @@ const Shop = () => {
                                             className={classes.menuItemLink_Shop}
                                             component={RouterLink}
                                             underline='none'
-                                            // onClick={() => setCurrentCat([{name: 'All'}])}
                                         >
                                             All
                                         </MaterialLink>

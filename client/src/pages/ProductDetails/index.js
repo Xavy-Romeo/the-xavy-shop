@@ -77,7 +77,7 @@ const ProductDetails = () => {
             }
         }
        
-    }, [productData, loading, dispatch, productId, currentProduct, products]);
+    }, [productData, loading, dispatch, productId, currentProduct, products, similarPdt]);
 
     const addToCart = () => {
         // check to see if item is already in cart
@@ -111,7 +111,6 @@ const ProductDetails = () => {
     const buyTogether = async () => {
         await addToCart();
 
-        console.log('sim', similarPdt);
         if (similarPdt[0]._id === currentProduct._id) {
             const simProduct = similarPdt[1]
             const itemInCart = await cart.find((cartItem) => cartItem._id === simProduct._id);

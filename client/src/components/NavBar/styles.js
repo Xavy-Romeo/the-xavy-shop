@@ -25,6 +25,17 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '35px'
         }, 
     },
+    menuPaper_NavBar: {
+        background: 'rgb(5,44,133)', 
+        width: '200px', 
+        padding: '10px 0 10px 30px'
+    },
+    menuItemLink_NavBar: {
+        color: theme.palette.primary.contrastText,
+        '&:hover': {
+            color: theme.palette.secondary.main,
+        }
+    },
     navGrid_NavBar: {
         height: '100%'
     },
@@ -46,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     },
     navItemName_NavBar: {
         marginTop: '-8px',
-    },
+    }
 }));
 
 export default useStyles;
