@@ -31,6 +31,7 @@ const CategoryBar = () => {
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
+    console.log('categories', categories)
 
     // category slider functions
     const nextCategory = () => {
@@ -39,7 +40,7 @@ const CategoryBar = () => {
         setSliderIndex(sliderIndex + 1);
     };
     const previousCategory = () => {
-        categories.unshift(categories.splice(15, 1)[0]);
+        categories.unshift(categories.splice(20, 1)[0]);
         
         setSliderIndex(sliderIndex - 1);
     };
