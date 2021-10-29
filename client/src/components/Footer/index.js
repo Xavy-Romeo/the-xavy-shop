@@ -214,7 +214,7 @@ const Footer = () => {
                     </Grid>
 
                     <Grid item className={classes.sendThoughtsDiv_Footer} xs={12} sm={12} lg={5}>
-                        <Typography className={classes.textMargin_Footer} variant='h4'>
+                        <Typography className={`${classes.textMargin_Footer} ${classes.textUpperFooter_Footer}`} variant='h4'>
                             Send Us Your Thoughts
                         </Typography>
                         <Typography className={`${classes.textMargin_Footer} ${classes.textUpperFooter_Footer}`}>
