@@ -1,6 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
+    loadingContainer_ProductShop: {
+        marginTop: '200px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '40vh'
+    },
+    loadingIcon_ProductShop: {
+        color: theme.palette.secondary.main
+    },
     productContainer_ProductShop: {
         position: 'relative',
         marginBottom: '20px',

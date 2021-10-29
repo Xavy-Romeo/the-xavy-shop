@@ -2,9 +2,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({ 
     loadingContainer_ProductDetails: { 
+        marginTop: '200px',
         display: 'flex',
         justifyContent: 'center',
-        margin: '200px 0 200px 0'
+        alignItems: 'center',
+        height: '40vh'
+    },
+    loadingIcon_ProductDetails: {
+        color: theme.palette.secondary.main
     },
     detailsContainer_ProductDetails: {
         marginTop: '120px'
