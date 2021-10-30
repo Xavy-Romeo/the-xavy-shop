@@ -80,12 +80,16 @@ const useStyles = makeStyles((theme) => ({
         top: 101,
         right: 0,
         width: '300px',
+        maxWidth: '97vw',
         minHeight: '200px', 
         background: 'rgb(218,218,218)',
         overflow: 'auto',
         padding: '.5rem',
         boxShadow: '0 0 1rem rgba(0, 0, 0, .5)',
-        borderBottomLeftRadius: '.5rem'
+        borderBottomLeftRadius: '.5rem',
+        '@media (max-width:599px)': {
+            top: 81
+        },
     },
     closeIcon_Cart: {
         position: 'absolute', 
