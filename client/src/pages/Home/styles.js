@@ -27,9 +27,10 @@ const useStyles = makeStyles((theme) => ({
             right: '10%',
             top: '11%',
         },
-        '@media (max-width:365px)': {
+        '@media (max-width:400px)': {
             transform: 'scale(.65)',
-            width: '100%'
+            top: '10%',
+            right: '-30px'
         },
     },
     shopNowLink_Home: {
@@ -43,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
         background: 'black', 
         '&:hover': {
             background: 'rgba(20,20,20,.5)'
-        },
-        '@media (max-width:400px)': {
-            marginLeft: '80px'
         }
     },
 

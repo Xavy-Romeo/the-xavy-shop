@@ -35,7 +35,16 @@ const useStyles = makeStyles((theme) => ({
         }, 
         '@media (max-width:599px)': {
             height: 'calc(100vw/2*.95*1.333)',
+        },
+        '@media (max-width:400px)': {
+            height: '200px',
         }, 
+        '@media (max-width:350px)': {
+            height: '170px',
+        },
+        '@media (max-width:300px)': {
+            height: '150px',
+        },
     },
     productImage_ProductShop: {
         display: 'block',
@@ -79,6 +88,11 @@ const useStyles = makeStyles((theme) => ({
             background: theme.palette.primary.light,
         }
     },
+    addBtnTypography_ProductShop: {
+        '@media (max-width:350px)': {
+            fontSize: '12px'
+        }
+    },
     productPriceContainer_ProductShop: {
         marginTop: '30px',
         '@media (max-width:400px)': {
@@ -104,7 +118,8 @@ const useStyles = makeStyles((theme) => ({
         textDecorationStyle: 'double',
         display: 'flex',
         alignItems: 'flex-end'
-    }
+    },
+    
 }));
 
 export default useStyles;

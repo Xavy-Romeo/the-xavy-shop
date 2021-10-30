@@ -20,10 +20,10 @@ const FeedbackModal = ({ handleClose }) => {
 
     return (
         <Grid container className={classes.modalContainer_FeedbackModal} justifyContent='center'>
-            <Typography variant='h2'>
+            <Typography variant='h2' className={classes.flexCenter_FeedbackModal}>
                 Send Us Your Feedback
             </Typography>
-            <Typography>
+            <Typography className={classes.flexCenter_FeedbackModal}>
                 Your feedback matters! Help The Xavy Shop become better.
             </Typography>
             <textarea className={classes.textarea_FeedbackModal} rows='8'/>

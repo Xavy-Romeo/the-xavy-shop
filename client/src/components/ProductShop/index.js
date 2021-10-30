@@ -189,7 +189,7 @@ const ProductShop = () => {
                                     className={classes.addBtn_ProductShop}
                                     onClick={() => addToCart(product)}
                                 >
-                                    <Typography>
+                                    <Typography className={classes.addBtnTypography_ProductShop}>
                                         + Add to Cart
                                     </Typography>
                                 </Button>

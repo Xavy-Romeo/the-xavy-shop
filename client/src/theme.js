@@ -119,7 +119,7 @@ const theme = createTheme({
             root: {
                 backgroundColor: 'rgb(218,218,218)'
             }
-        }, 
+        },
     },
     props: {
         MuiButton: {

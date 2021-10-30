@@ -10,7 +10,10 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '4px'
     },
     backHomeBtn_MimicPage: {
-        width: '300px'
+        width: '300px',
+        '@media (max-width:325px)': {
+            width: '260px',
+        },
     }
 }));
 

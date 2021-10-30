@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
         },
         '@media (max-width:599px)': {
             fontSize: '35px'
+        },
+        '@media (max-width:420px)': {
+            fontSize: '30px'
         }, 
     },
     menuPaper_NavBar: {

@@ -7,6 +7,12 @@ const useStyles = makeStyles((theme) => ({
         background: 'rgba(200,200,200,.9)', 
         padding: '10px',
         borderRadius: '4px',
+        '@media (max-width:750px)': {
+            width: '95%'
+        } 
+    },
+    flexCenter_FeedbackModal: {
+        textAlign: 'center'
     },
     textarea_FeedbackModal: {
         width: '80%',
