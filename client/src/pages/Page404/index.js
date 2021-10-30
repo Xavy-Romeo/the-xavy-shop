@@ -5,24 +5,31 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import Logo from '../../assets/images/xr-logo.png';
+import useStyles from './styles';
 
 const Page404 = () => {
     window.scrollTo(0, 0);
+    const classes = useStyles();
+    
     return (
-        <Grid container direction='column' justifyContent='center' alignItems='center' 
-            style={{minHeight: '800px'}}
+        <Grid 
+            container
+            className={classes.pageContainer_Page404} 
+            direction='column' 
+            justifyContent='center' 
+            alignItems='center' 
         >
-            <Typography variant='h2' style={{marginBottom: '20px'}}>
+            <Typography className={classes.error_Page404} variant='h2'>
                 Error: 404
             </Typography>
-            <img src={Logo} height='300px' width= '300px' alt='logo' />
-            <Typography variant='h3' style={{marginTop: '20px'}}>
+            <img src={Logo} className={classes.logo_Page404} alt='logo' />
+            <Typography className={classes.uhOh_Page404} variant='h3'>
                 Uh-oh...
             </Typography>
-            <Typography variant='h5' style={{margin: '20px 0'}}>
+            <Typography className={classes.pageNotFound_Page404} variant='h5'>
                 Page Not Found 😔
             </Typography>
-            <Button style={{background: 'black', color: 'white', borderRadius: '30px', width: '300px'}}>
+            <Button className={classes.btnHome_Page404} style={{}}>
                 <Typography>
                     Return to Home
                 </Typography>

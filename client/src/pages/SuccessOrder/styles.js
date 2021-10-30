@@ -35,16 +35,31 @@ const useStyles = makeStyles((theme) => ({
         '@media (max-width:599px)': {
             fontSize: '18px',
         },
+        '@media (max-width:330px)': {
+            fontSize: '16px',
+        },
+        '@media (max-width:300px)': {
+            fontSize: '14px',
+        },
     },
     thankYou_SuccessOrder: {
         marginBottom: '10px',
         '@media (max-width:599px)': {
             fontSize: '16px',
         },
+        '@media (max-width:330px)': {
+            fontSize: '14px',
+        },
+        '@media (max-width:300px)': {
+            fontSize: '12px',
+        },
     },
     redirect_SuccessOrder: {
         '@media (max-width:599px)': {
             fontSize: '12px',
+        },
+        '@media (max-width:300px)': {
+            fontSize: '10px',
         },
     },
     countDownContainer_SuccessOrder: {
