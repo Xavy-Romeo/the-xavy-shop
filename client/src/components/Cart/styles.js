@@ -133,6 +133,13 @@ const useStyles = makeStyles((theme) => ({
     checkoutBtn_Cart: {
         width: '100%'
     },
+    demoText_Cart: {
+        color: theme.palette.secondary.main
+    },
+    demoCC_Cart: {
+        fontFamily: 'serif',
+        color: theme.palette.secondary.main
+    },
     loginLinkContainer_Cart: {
         display: 'flex', 
         justifyContent: 'center', 
