@@ -183,12 +183,6 @@ const Cart = () => {
 
                 {cart.length && Auth.loggedIn()
                     ?   <Box className={classes.checkoutBtnContainer_Cart}>
-                            {/* <MaterialLink 
-                                to='/checkout'
-                                className={classes.checkoutLink_Cart}
-                                component={RouterLink}
-                                underline='none'
-                            > */}
                                 <Button 
                                     className={classes.checkoutBtn_Cart}
                                     onClick={submitCheckout}
@@ -197,7 +191,17 @@ const Cart = () => {
                                         Checkout
                                     </Typography>
                                 </Button>
-                            {/* </MaterialLink> */}
+                                <Grid container direction='column' alignItems='center'>
+                                    <Typography className={classes.demoText_Cart}>
+                                        NOTE: DEMO MODE
+                                    </Typography>
+                                    <Typography className={classes.demoText_Cart}>
+                                        Use credit card number 
+                                    </Typography>
+                                    <Typography className={classes.demoCC_Cart}>
+                                        4242 4242 4242 4242
+                                    </Typography>
+                                </Grid>
                         </Box>
 
                     :   <Box className={classes.loginLinkContainer_Cart}>
