@@ -23,7 +23,6 @@ const OrderHistory = () => {
 
     if (userData) {
         user = userData.user;
-        console.log('user orders', user.orders);
     }
 
     if (loading) {
@@ -93,15 +92,7 @@ const OrderHistory = () => {
                                                                     Quantity: 
                                                                 </Typography>
                                                                 <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
-                                                                    {product.purchaseQuantity}
-                                                                </Typography>
-                                                            </Box>
-                                                            <Box className={classes.flexBox_OrderHistory}>
-                                                                <Typography variant='body2'>
-                                                                    Price: 
-                                                                </Typography>
-                                                                <Typography variant='body2' className={classes.fontStyles_OrderHistory}>
-                                                                    {product.price}
+                                                                    {order.quantities[i]}
                                                                 </Typography>
                                                             </Box>
                                                         </Box>

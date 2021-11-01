@@ -28,23 +28,13 @@ const SuccessOrder = () => {
                 products.push(item._id); 
                 quantities.push(item.purchaseQuantity);
             });
-            
-            // const prices = await cart.map(item => item.price);
-            // const quantities = cart.map(item => item.purchaseQuantity);
-            // let totalPrice = 0.11;
-            // await prices.forEach(price => totalPrice += price);
-
-            console.log('products', products);
-            console.log('quantities', quantities);
 
             if (products.length) {
                 // add order to user order history array via ADD_ORDER mutation
                 const { data } = await addOrder({ 
                     variables: { 
                         products,
-                        // prices,
                         quantities
-                        // totalPrice
                     } 
                 });
                 const productData = data.addOrder.products;
@@ -55,9 +45,9 @@ const SuccessOrder = () => {
                 });
             }
 
-            // setTimeout(() => {
-            //     window.location.assign('/');
-            // }, 8000);
+            setTimeout(() => {
+                window.location.assign('/');
+            }, 8000);
         };
 
         saveOrder();

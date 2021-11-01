@@ -51,7 +51,7 @@ export const ADD_ORDER = gql`
         addOrder(products: $products, quantities: $quantities) {
             _id
             purchaseDate
-            prices
+            quantities
             products {
                 _id
                 name
