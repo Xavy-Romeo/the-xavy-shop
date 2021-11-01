@@ -18,15 +18,24 @@ const SuccessOrder = () => {
     const [addOrder] = useMutation(ADD_ORDER);
 
     useEffect(() => {
+        let products = [];
+        let quantities = [];
+
         const saveOrder = async () => {
             // get cart data from IndexedDB
             const cart = await idbPromise('cart', 'get');
-            const products = cart.map(item => item._id);
+            await cart.map(item => { 
+                products.push(item._id); 
+                quantities.push(item.purchaseQuantity);
+            });
 
             if (products.length) {
                 // add order to user order history array via ADD_ORDER mutation
                 const { data } = await addOrder({ 
-                    variables: { products } 
+                    variables: { 
+                        products,
+                        quantities
+                    } 
                 });
                 const productData = data.addOrder.products;
 

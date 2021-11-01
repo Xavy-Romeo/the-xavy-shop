@@ -85,6 +85,9 @@ export const QUERY_USER = gql`
             orders {
                 _id
                 purchaseDate
+                totalPrice
+                prices
+                quantities
                 products {
                     _id
                     name
