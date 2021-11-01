@@ -10,6 +10,12 @@ const orderSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Product'
+        },
+    ],    
+    quantities: [
+        {
+            type: Number,
+            default: 1
         }
     ]
 });

@@ -47,9 +47,11 @@ export const UPDATE_PURCHASE_QUANTITY = gql`
 `;
 
 export const ADD_ORDER = gql`
-    mutation addOrder($products: [ID]!) {
-        addOrder(products: $products) {
+    mutation Mutation($products: [ID]!, $quantities: [Int]!) {
+        addOrder(products: $products, quantities: $quantities) {
+            _id
             purchaseDate
+            prices
             products {
                 _id
                 name
@@ -58,8 +60,9 @@ export const ADD_ORDER = gql`
                 purchaseQuantity
                 category {
                     name
-                } 
+                }
             }
+            
         }
     }
 `;

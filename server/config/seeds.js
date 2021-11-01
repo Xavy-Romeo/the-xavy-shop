@@ -750,9 +750,18 @@ db.once('open', async () => {
     email: 'rob@testmail.com',
     password: 'password',
     orders: [
-      {
-        products: [products[0]._id, products[1]._id, products[2]._id]
-      }
+        {
+            products: [products[0]._id, products[1]._id, products[2]._id],
+            totalPrice: 50.44,
+            prices: [96.57, 12.22, 1.33],
+            quantities: [1,2,3]
+        },
+        {
+            products: [products[5]._id, products[8]._id, products[22]._id],
+            price: 97.65,
+            prices: [96.57, 12.22, 1.33],
+            quantities: [1,2,3]
+        }
     ]
   });
 
@@ -764,7 +773,10 @@ db.once('open', async () => {
     password: 'password',
     orders: [
       {
-        products: [products[0]._id, products[1]._id, products[2]._id]
+        products: [products[0]._id, products[1]._id, products[2]._id],
+        totalPrice: 50.44,
+        prices: [96.57, 12.22, 1.33],
+        quantities: [1,2,3]
       }
     ]
   });

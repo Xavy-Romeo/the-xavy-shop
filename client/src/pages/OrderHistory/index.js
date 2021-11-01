@@ -22,7 +22,8 @@ const OrderHistory = () => {
     let user;
 
     if (userData) {
-        user = userData.user
+        user = userData.user;
+        console.log('user orders', user.orders);
     }
 
     if (loading) {

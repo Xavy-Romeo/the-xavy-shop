@@ -26,6 +26,9 @@ const typeDefs = gql`
         _id: ID
         purchaseDate: String
         products: [Product]
+        totalPrice: Float
+        prices: [Float]
+        quantities: [Int]
     }
 
     type User {
@@ -76,7 +79,10 @@ const typeDefs = gql`
             productId: ID!
             newQuantity: Int!
         ): Product
-        addOrder(products: [ID]!): Order
+        addOrder(
+            products: [ID]! 
+            quantities: [Int]!
+        ): Order
     }
 `;
 
