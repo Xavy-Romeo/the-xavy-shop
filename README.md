@@ -2,7 +2,7 @@
 ![Badge for License](https://img.shields.io/badge/license-MIT-blueviolet)
 
 ## Description:
-E-commerce Store.
+An E-Commerce shop where you can find your favorite sporting goods.
 
 ## Table of Contents: 
 1. [Screenshot](#Screenshot)
@@ -13,14 +13,16 @@ E-commerce Store.
 6. [Questions](#Questions)
 
 ## Screenshots:
-![TXS page](https://user-images.githubusercontent.com/79165884/136867679-1d7fb003-af11-4b03-b8be-062c609b9545.png)
-![TXS page2](https://user-images.githubusercontent.com/79165884/136867683-8fa2dffc-5a50-4e87-917d-72f557b16256.png)
+![xavy1](https://user-images.githubusercontent.com/79165884/139791431-bec67008-7992-4f64-a214-5178cf22cb3f.png)
+![xavy2](https://user-images.githubusercontent.com/79165884/139791425-4489a1b8-f4da-4a7f-bbb6-192b7a62a8cf.png)
+![xavy3](https://user-images.githubusercontent.com/79165884/139791480-934f07ae-e29d-493a-9f20-3dc6f9592037.png)
+![xavy4](https://user-images.githubusercontent.com/79165884/139791539-a679c9db-8f00-438f-9d31-5427a4411c35.png)
 
 ## Usage:
-
+Browse site and shop!
 
 ## Website: 
-
+https://the-xavy-shop.herokuapp.com/
 
 ## Technologies Used
 - React 
