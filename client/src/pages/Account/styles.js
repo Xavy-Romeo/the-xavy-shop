@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({ 
     accountPageContainer_Account: {
         marginTop: '120px',
-        marginBotton: '150px'
+        marginBottom: '150px'
     },
     flexBox_Account: {
         display: 'flex'
