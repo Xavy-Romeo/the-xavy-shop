@@ -25,12 +25,13 @@ Browse site and shop!
 https://the-xavy-shop.herokuapp.com/
 
 ## Technologies Used
-- React 
+- React
+- GraphQL
+- Material UI
 - MongoDB
 - Express.js
-- GraphQL
 - Node.js
-- Material UI
+- Stripe.js
 
 ## License:
 This project is covered under the MIT license.
